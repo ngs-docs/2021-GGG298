@@ -1,0 +1,2 @@
+#! /bin/bash
+/srv/conda/bin/conda init bash
