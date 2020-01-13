@@ -7,7 +7,7 @@
 
 ## Resources
 
-Week 1: [outline](https://hackmd.io/@ctb/S1_mb0fe8), [notes](https://hackmd.io/kXHoB6g4R92OIOwoNR2vkg), [reading](https://springerplus.springeropen.com/articles/10.1186/s40064-016-2888-8)
+Week 1: [outline](https://hackmd.io/@ctb/S1_mb0fe8), [lab notes](https://hackmd.io/kXHoB6g4R92OIOwoNR2vkg), [reading](https://springerplus.springeropen.com/articles/10.1186/s40064-016-2888-8), [discussion notes](https://hackmd.io/vm4LdvN8SDG619N8xFsatg)
 
 Week 2
 
