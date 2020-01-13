@@ -15,6 +15,25 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 * look at the contents of a directory with `ls`
 * find features of commands with `man`
 
+### Lesson
+#### What is the shell and what is the terminal?
+The **shell** is a computer program that uses a command line interface (CLI) to gives commmands made by your keyboard to your operating system. Most people are used to interacting with a graphic user interface (GUI), where you can use a combination of your mouse and keyboard to carry out commands on your computer. We can use the shell through a **terminal** program.
+
+The ease of getting things done via the shell will increase with your exposure to the program.  
+Go ahead and open a new terminal window in binder.
+
+When we open up terminal in binder we will see a a line of text. This is a **prompt statement**. It can tell us useful things such as the name of the directory we are currently in, our username, or what computer we are currently running terminal on. However, the prompt statement that pops up in binder is quite long and distracting. Let's adjust it by running:
+
+```
+PS1='$ '
+```
+
+Then hit <kbd>Enter</kbd>. Better right?
+
+
+
+
+
 ----
 
 ## Section 2: Navigation
