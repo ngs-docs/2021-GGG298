@@ -8,7 +8,6 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 ## Section 1: Introduction to UNIX
 
 ### Learning Goals
-
 * visualize file structure
 * understand basic shell vocabulary
 * understand the structure of commands
@@ -18,10 +17,10 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 
 ----
 
-## Section 2: Navigating Around
+## Section 2: Navigation
 
 ### Learning Goals
-
+* paths
 * navigate around directories with `cd`
 * move and copy files and directories 
 * perform functions outside of the directory you are in
@@ -31,12 +30,22 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 ## Section 3: Searching
 
 ### Learning Goals
-* search for files with `grep`
-* search for keywords within files
+* looking inside files
+* search for keywords within files with `grep`
 * gain exposure to regular expressions
 
 ----
 
 ## Section 4: File Manipulation
 
-* combine commands
+### Learning Goals
+* combine commands to carry out a sequence of steps with `|`
+* redirect output of commands to files with `>`
+* increase exposure to regular expressions
+
+----
+
+## Automating Scripts
+
+### Learning Goals
+* establish repeatability by automating a series of commands
