@@ -107,35 +107,14 @@ Try to find the option that allows you to differentiate between directories and 
 ```
 ls -F
 ```
-> > ~~~
-> > $ ls -l
-> > ~~~
 
-> ## Challenge
-> Use the `-l` option for the `ls` command to display more information for each item 
-> in the directory. What is one piece of additional information this long format
-> gives you that you don't see with the bare `ls` command?
->
-> > ## Solution
-> > ~~~
-> > $ ls -l
-> > ~~~
-> > {: .bash}
-> > 
-> > ~~~
-> > total 8
-> > drwxr-x--- 2 dcuser dcuser 4096 Jul 30  2015 sra_metadata
-> > drwxr-xr-x 2 dcuser dcuser 4096 Nov 15  2017 untrimmed_fastq
-> > ~~~
-> > {: .output}
-> > 
-> > The additional information given includes the name of the owner of the file,
-> > when the file was last modified, and whether the current user has permission
-> > to read and write to the file.
-> > 
-> {: .solution}
-{: .challenge}
+We can also combine commands:
 
+```
+ls -aFl
+```
+
+This combination of options will _list_ _all_ the contents of the directory and _differentiate_ between files types. 
 
 
 
