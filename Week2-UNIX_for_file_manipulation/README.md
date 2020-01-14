@@ -41,7 +41,6 @@ pwd
 This gives us **absolute path** to the directory where we are located. An absolute path shows a complete series of directories you need to locate either a directory or a file starting from the root of your computer.
 
 What is the root?
-![CLIvsGUI](https://raw.githubusercontent.com/ngs-docs/2020-ggg-298-first-day-rnaseq/master/txome%20workflow.png)
 ![CLIvsGUI](https://github.com/ngs-docs/2020-GGG298/blob/shannonekj-week-2/Week2-UNIX_for_file_manipulation/CLIvsGUI.png)
 
 We can also look at the contents of the directory by using the 
