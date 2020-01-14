@@ -12,8 +12,9 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 * understand basic shell vocabulary
 * understand the structure of commands
 * gain exposure to the syntax of shell & scripting
-* look at the contents of a directory with `ls`
+* look at the contents of a directory 
 * find features of commands with `man`
+* commands: `pwd`, `ls`, `cd`, `man`
 
 ### Lesson
 #### What is the shell and what is the terminal?
@@ -45,14 +46,62 @@ A useful way to start thinking about directories and files is through levels. At
 ![CLIvsGUI](https://github.com/ngs-docs/2020-GGG298/blob/shannonekj-week-2/Week2-UNIX_for_file_manipulation/CLIvsGUI.png)
 
 
-We can also look at the contents of the directory by using the `ls` command.
+We can also look at the contents of the directory by using the `ls` command:
 
 ```
 ls
 ```
 
-With this command we see what files and directories are located in our current working directory. 
+This command prints out a list of files and directories that are located in our current working directory. We don't currently have data in our directory for the lesson, so let's get some!
 
+```
+wget https://s3-us-west-1.amazonaws.com/dib-training.ucdavis.edu/shell-data.zip
+unzip shell-data.zip
+```
+
+Now, if we look at the contents of our current directory we have added a a file called `shell-data.zip` and a directory called `data`.
+
+To switch the directory we are located in, we need to change directories using the `cd` command. Let's move into the data directory. 
+
+```
+cd data
+```
+
+Let's have a look around.
+
+```
+ls
+```
+
+We can see the following directories:
+
+```
+MiSeq		Slide1.jpg	hello.sh	nano1.png
+README.md	gvng.jpg	hidden		nano2.png
+```
+
+How do we know what is a directory and what is a file? We can use the `-F` **option** with our list command:
+
+```
+ls -F
+```
+
+This puts a `/` symbol at the end of directories. Pretty neat right? Using options with our commands allows us to do a lot! The `man` command allows us to look at what options any shell command has. Let's look at the available options that `ls` has:
+
+```
+man ls
+```
+
+Here we see a long list of options. This directory contains more than the eye can see! Try to find the option to show hidden files. (**HINT** to search in less type `/`)
+
+If we use the command `ls -a` we will see the following:
+
+```
+.		MiSeq		Slide1.jpg	hello.sh	nano1.png
+..		README.md	gvng.jpg	hidden		nano2.png
+```
+
+Three new items pop up `.`, `..` and `hidden`. These hidden
 
 
 
