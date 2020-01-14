@@ -38,12 +38,20 @@ Let's take a look around. First, we can use the **print working directory** comm
 pwd
 ```
 
-This gives us **absolute path** to the directory where we are located. An absolute path shows a complete series of directories you need to locate either a directory or a file starting from the root of your computer.
+This gives us **absolute path** to the directory where we are located. An absolute path shows the complete series of directories you need to locate either a directory or a file starting from the root directory of your computer.
 
 What is the root?
+A useful way to start thinking about directories and files is through levels. At the highest level of your computer, you have the **root directory**. Everything that is contained in your computer is located in directories below your root directory. 
 ![CLIvsGUI](https://github.com/ngs-docs/2020-GGG298/blob/shannonekj-week-2/Week2-UNIX_for_file_manipulation/CLIvsGUI.png)
 
-We can also look at the contents of the directory by using the 
+
+We can also look at the contents of the directory by using the `ls` command.
+
+```
+ls
+```
+
+With this command we see what files and directories are located in our current working directory. 
 
 
 
