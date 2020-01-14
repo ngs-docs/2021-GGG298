@@ -75,10 +75,10 @@ ls
 
 We can see the following directories:
 
-```
+~~~
 MiSeq		Slide1.jpg	hello.sh	nano1.png
 README.md	gvng.jpg		nano2.png
-```
+~~~
 
 However, this directory contains more than the eye can see! To show hidden files we can use the `-a` option.
 
@@ -88,10 +88,10 @@ ls -a
 
 We will see the following:
 
-```
+~~~
 .		MiSeq		Slide1.jpg	hello.sh	nano1.png
 ..		README.md	gvng.jpg	hidden		nano2.png
-```
+~~~
 
 Three new items pop up `.`, `..` and `hidden`. 
 
@@ -126,9 +126,28 @@ This combination of options will _list_ _all_ the contents of the directory and 
 
 ### Learning Goals
 * paths
-* navigate around directories with `cd`
+* look at the contents of files
 * move and copy files and directories 
 * perform functions outside of the directory you are in
+* commands: `cat`, `cp`, `mv`
+
+Now we have a fairly good concept of navigating around our computers and seeing what is located in the directory we are. But some of the beauty of the shell is that we can execute activities in locations that we are not currently in. To do this we can either use an absolute path or a relative path. A **relative path** is the path to another directory from the the one you are currently in. 
+
+Navigate into the tmp1 directory located in the hidden directory.
+
+```
+cd hidden/tmp1
+```
+
+Here we see two files `notit.txt` and `thisinnotit.txt`. We can see what is in the directories using the `cat` command. 
+
+```
+cat thisinnotit.txt
+```
+
+~~~
+This is not the text file you're looking for
+~~~
 
 ----
 
