@@ -75,7 +75,7 @@ We can also look at the contents of the directory by using the
 
 ----
 
-## Automating Scripts
+## Section 5: Automating Scripts
 
 ### Learning Goals
 * establish repeatability by automating a series of commands
