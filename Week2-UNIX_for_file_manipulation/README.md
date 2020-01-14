@@ -77,31 +77,67 @@ We can see the following directories:
 
 ```
 MiSeq		Slide1.jpg	hello.sh	nano1.png
-README.md	gvng.jpg	hidden		nano2.png
+README.md	gvng.jpg		nano2.png
 ```
 
-How do we know what is a directory and what is a file? We can use the `-F` **option** with our list command:
+However, this directory contains more than the eye can see! To show hidden files we can use the `-a` option.
 
 ```
-ls -F
+ls -a
 ```
 
-This puts a `/` symbol at the end of directories. Pretty neat right? Using options with our commands allows us to do a lot! The `man` command allows us to look at what options any shell command has. Let's look at the available options that `ls` has:
-
-```
-man ls
-```
-
-Here we see a long list of options. This directory contains more than the eye can see! Try to find the option to show hidden files. (**HINT** to search in less type `/`)
-
-If we use the command `ls -a` we will see the following:
+We will see the following:
 
 ```
 .		MiSeq		Slide1.jpg	hello.sh	nano1.png
 ..		README.md	gvng.jpg	hidden		nano2.png
 ```
 
-Three new items pop up `.`, `..` and `hidden`. These hidden
+Three new items pop up `.`, `..` and `hidden`. 
+
+Using options with our commands allows us to do a lot! But how did we know to add `-a` after ls? The `man` command allows us to look at what options any shell command has. Let's look at the available options that `ls` has:
+
+```
+man ls
+```
+
+Here we see a long list of options. Each option will allow us to do something different.
+Try to find the option that allows you to differentiate between directories and executable files (**HINT** to search type `/` before the word you are looking for.)
+
+```
+ls -F
+```
+> > ~~~
+> > $ ls -l
+> > ~~~
+
+> ## Challenge
+> Use the `-l` option for the `ls` command to display more information for each item 
+> in the directory. What is one piece of additional information this long format
+> gives you that you don't see with the bare `ls` command?
+>
+> > ## Solution
+> > ~~~
+> > $ ls -l
+> > ~~~
+> > {: .bash}
+> > 
+> > ~~~
+> > total 8
+> > drwxr-x--- 2 dcuser dcuser 4096 Jul 30  2015 sra_metadata
+> > drwxr-xr-x 2 dcuser dcuser 4096 Nov 15  2017 untrimmed_fastq
+> > ~~~
+> > {: .output}
+> > 
+> > The additional information given includes the name of the owner of the file,
+> > when the file was last modified, and whether the current user has permission
+> > to read and write to the file.
+> > 
+> {: .solution}
+{: .challenge}
+
+
+
 
 
 
