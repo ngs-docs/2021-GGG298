@@ -128,9 +128,10 @@ This combination of options will _list_ _all_ the contents of the directory and 
 * look at the contents of files
 * perform functions outside of the directory you are in
 * intro to the wildcard regular expression: `*`
-* move and copy files and directories
+* copy, move and remove files
+* create and remove directories
 * understand the structure of commands
-* commands: `cat`, `cp`, `mv`
+* commands: `cat`, `cp`, `mv`, `rm`, `mkdir`
 
 Now we have a fairly good concept of navigating around our computers and seeing what is located in the directory we are. But some of the beauty of the shell is that we can execute activities in locations that we are not currently in. To do this we can either use an absolute path or a relative path. A **relative path** is the path to another directory from the the one you are currently in. 
 
@@ -162,7 +163,7 @@ and we can see the contents of tmp3
 ls ../tmp3
 ```
 
-So, even though we are in the tmp1 directory, we can see what is in other directories by using the relative path to the directory of interest. Note we can also use absolute paths too.
+So, even though we are in the tmp1 directory, we can see what is in other directories by using the relative path to the directory of interest. Note we can also use absolute paths too. You may have noticed the `../` this is how to get to the directory above the one you are currently located in. 
 
 **CHALLENGE** Use the absolute path to list the files in the tmp2 directory.
 
@@ -206,8 +207,39 @@ cd ../tmp2
 ls -l
 ```
 
-**CHALLENGE 1** Use the `mv` command to move the `thisinnotit.txt` file from tmp2 to tmp3.
-**CHALLENGE 2** Use the `rm` command to remove the `thisisacopy.txt` file from tmp1 while you are in the tmp2 directory.
+**CHALLENGE** Use the `mv` command to move the `thisinnotit.txt` file from tmp2 to tmp3.
+
+Once we know how to copy and move files, we can also copy and move directories. We can create new directories with the command `mkdir`. Let's make a new directory called `tmp4`
+
+```
+cd ../
+mkdir tmp4
+ls -l
+```
+
+The shell is quite powerful and can create multiple directories at once. It can create multiple in the current working directory:
+
+```
+mkdir tmp5 tmp6
+ls -l
+```
+
+or it can create a series of directories on top of one another:
+
+```
+mkdir -p how/deep/does/the/rabbit/hole/go
+```
+
+We can use tab complete to get to the `go` directory. Type `cd h` then hit <kbd>tab<kbd>, if you hit <kbd>tab<kbd> enough times your command will eventually read:
+
+```
+cd how/deep/does/the/rabbit/hole/go/
+```
+
+You can see that we've created a bit of a monster...
+
+
+**CHALLENGE** Use the `rm` command to remove the `how` directory and all its contents. 
 
 
 ----
@@ -216,8 +248,10 @@ ls -l
 
 ### Learning Goals
 * looking inside files
-* search for keywords within files with `grep`
-* gain exposure to regular expressions
+* search for keywords within files
+* commands: `less`, `head`, `tail`, `grep`
+
+A big part of bioinformatics is making sure what you _expect_ in a particular file is what you _have_ in that file. There are a few ways to look at the contents of a file. We've already seen how to print the entirety of a file to the stdout of our `cat` command. We can also look at files using the `less` command. 
 
 ----
 
