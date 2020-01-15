@@ -21,7 +21,7 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 ------------------------------------
 
 #### What is the shell and what is the terminal?
-The **shell** is a computer program that uses a command line interface (CLI) to give commmands made by your keyboard to your operating system. Most people are used to interacting with a graphic user interface (GUI), where you can use a combination of your mouse and keyboard to carry out commands on your computer. We can use the shell through a **terminal** program. 
+The **shell** is a computer program that uses a command line interface (CLI) to give commands made by your keyboard to your operating system. Most people are used to interacting with a graphic user interface (GUI), where you can use a combination of your mouse and keyboard to carry out commands on your computer. We can use the shell through a **terminal** program. 
 
 Everything we can do using our computer GUI, we can do in the shell. We can open programs, run analyses, create documents, delete files and create folders. We should note that _folders_ are called **directories** at the command line. For all intents and purposes they can be used interchangeably but if you'd like more information please see "The folder metaphor" section of [Wikipedia](https://en.wikipedia.org/wiki/Directory_%28computing%29#Folder_metaphor).
 
@@ -241,7 +241,7 @@ cd how/deep/does/the/rabbit/hole/go/
 
 You can see that we've created a bit of a monster directory structure...
 
-**CHALLENGE:** Navigate to the data directoy and use the `rm` command to remove the `how` directory and all its contents. 
+**CHALLENGE:** Navigate to the data directory and use the `rm` command to remove the `how` directory and all its contents. 
 
 ----
 
