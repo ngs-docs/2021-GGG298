@@ -172,6 +172,7 @@ Wouldn't it be nice to see the contents of all the tmp directories at once? We c
 ls tmp*
 ```
 
+~~~
 > > ../tmp1:
 > > notit.txt	thisinnotit.txt
 > > 
@@ -180,6 +181,7 @@ ls tmp*
 > > 
 > > ../tmp3:
 > > closebutnotit.txt	youfoundit.txt
+~~~
 
 So, even though we are in the `tmp1` directory we can use a relative path.
 
