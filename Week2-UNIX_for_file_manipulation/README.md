@@ -262,7 +262,7 @@ less F3D0_S188_L001_R1_001.fastq
 
 We can see a bunch of sequence data! Use the up, down, left and right arrows to look through the folder a bit. Then press `q` to quit less. 
 
-A lot of the time we want to know if a file contains what we expect. Many of the sequence files in this directory have the file ending `.fastq`. We expect these files to contain information in a particular format throughout the file. Looking through a million line file using less will take a long time. Rather than manually looking through the file we can print only a portion of the files contents to the terminal:
+A lot of the time we want to know if a file contains what we expect. Many of the sequence files in this directory have the file ending `.fastq`. We expect these files to contain information in a particular format throughout the file with four  lines of information for each sequence string. Looking through a million line file using less will take a long time. Rather than manually looking through the file we can print only a portion of the files contents to the terminal:
 
 ```
 head F3D0_S188_L001_R1_001.fastq
@@ -286,8 +286,31 @@ head F3D0_S188_L001_R1_001.fastq
 We can look at the last ten lines of a file using the `tail` command:
 
 ```
-head F3D0_S188_L001_R1_001.fastq
+tail F3D0_S188_L001_R1_001.fastq
 ```
+
+We can see that our **fastq** files look a lot different than the **fasta** files:
+
+```
+head HMP_MOCK.v35.fasta
+```
+
+Each sequence entry for a [fasta](https://en.wikipedia.org/wiki/FASTA_format) formatted file contains only two lines of information for each sequence string.
+
+Another useful thing to do is to be able to **search the contents of files** for a particular string of characters you would like to find. Let's say you'd like to find the sequence `CATTAG` in your files. We can use the file pattern searcher `grep` to look for our favorite sequence:
+
+```
+grep CATTAG F3D0_S188_L001_R2_001.fastq
+```
+
+We can also use the **wildcard** regular expression to search `CATTAG` in all of the fastq files located in our current working directory:
+
+```
+grep CATTAG *.fastq
+```
+
+**CHALLENGE:** What line does `CATTAG` occur on in `F3D141_S207_L001_R1_001.fastq`? (HINT: Use `man` to search for `grep` options related to line number)
+
 
 
 
