@@ -173,7 +173,7 @@ Wouldn't it be nice to see the contents of all the tmp directories at once? We c
 ls tmp*
 ```
 
-~~~
+> > ~~~
 > > ../tmp1:
 > > notit.txt	thisinnotit.txt
 > > 
@@ -182,7 +182,7 @@ ls tmp*
 > > 
 > > ../tmp3:
 > > closebutnotit.txt	youfoundit.txt
-~~~
+> > ~~~
 
 So, even though we are in the `tmp1` directory we can use a relative path.
 
@@ -230,7 +230,7 @@ or it can create a series of directories on top of one another:
 mkdir -p how/deep/does/the/rabbit/hole/go
 ```
 
-We can use tab complete to get to the `go` directory. Type `cd h` then hit <kbd>tab<kbd>, if you hit <kbd>tab<kbd> enough times your command will eventually read:
+We can use tab complete to get to the `go` directory. Type `cd h` then hit <kbd>tab<kbd> , if you hit <kbd>tab<kbd> enough times your command will eventually read:
 
 ```
 cd how/deep/does/the/rabbit/hole/go/
