@@ -100,8 +100,9 @@ Using options with our commands allows us to do a lot! But how did we know to ad
 man ls
 ```
 
-Here we see a long list of options. Each option will allow us to do something different.
-**CHALLENGE** Try to find the option that allows you to differentiate between directories and executable files.
+Here we see a long list of options. Each option will allow us to do something different. Type `q` to quit looking at the manual page.
+
+**CHALLENGE** Try to find the option that allows you to differentiate between directories and executable files when using `ls`.
 
 ```
 ls -F
@@ -230,15 +231,15 @@ or it can create a series of directories on top of one another:
 mkdir -p how/deep/does/the/rabbit/hole/go
 ```
 
-We can use tab complete to get to the `go` directory. Type `cd h` then hit <kbd>tab</kbd> , if you hit <kbd>tab</kbd> enough times your command will eventually read:
+We can use tab complete to get to the `go` directory. Type `cd h` then hit <kbd>tab</kbd>. If you hit tab enough times your command will eventually read:
 
 ```
 cd how/deep/does/the/rabbit/hole/go/
 ```
 
-You can see that we've created a bit of a monster...
+You can see that we've created a bit of a monster directory structure...
 
-**CHALLENGE:** Use the `rm` command to remove the `how` directory and all its contents. 
+**CHALLENGE:** Navigate to the data directoy and use the `rm` command to remove the `how` directory and all its contents. 
 
 
 ----
@@ -250,7 +251,45 @@ You can see that we've created a bit of a monster...
 * search for keywords within files
 * commands: `less`, `head`, `tail`, `grep`
 
-A big part of bioinformatics is making sure what you _expect_ in a particular file is what you _have_ in that file. There are a few ways to look at the contents of a file. We've already seen how to print the entirety of a file to the stdout of our `cat` command. We can also look at files using the `less` command. 
+A big part of bioinformatics is making sure what you _expect_ in a particular file is what you _have_ in that file. There are a few ways to look at the contents of a file. We've already seen how to print the entirety of a file to the stdout of our `cat` command. We can also look at files using the `less` command. Less is a safe way of looking at the contents of a file without the ability to change it. This is an important note since our raw sequence data should never be altered.
+
+Let's look at some sequence data in a [fastq file](https://en.wikipedia.org/wiki/FASTQ_format) format:
+
+```
+cd MiSeq
+less F3D0_S188_L001_R1_001.fastq
+```
+
+We can see a bunch of sequence data! Use the up, down, left and right arrows to look through the folder a bit. Then press `q` to quit less. 
+
+A lot of the time we want to know if a file contains what we expect. Many of the sequence files in this directory have the file ending `.fastq`. We expect these files to contain information in a particular format throughout the file. Looking through a million line file using less will take a long time. Rather than manually looking through the file we can print only a portion of the files contents to the terminal:
+
+```
+head F3D0_S188_L001_R1_001.fastq
+```
+
+> > ~~~
+> > @M00967:43:000000000-A3JHG:1:1101:18327:1699 1:N:0:188
+> > NACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGTGCGTAGGCGGCCTGCCAAGTCAGCGGTAAAATTGCGGGGCTCAACCCCGTACAGCCGTTGAAACTGCCGGGCTCGAGTGGGCGAGAAGTATGCGGAATGCGTGGTGTAGCGGTGAAATGCATAGATATCACGCAGAACCCCGATTGCGAAGGCAGCATACCGGCGCCCTACTGACGCTGAGGCACGAAAGTGCGGGGATCAAACAG
+> > +
+> > #>>AABABBFFFGGGGGGGGGGGGGGGGHHHHHHHGGGHHHHHGHGGGGGGGHGGGGGGHHHHHHHHHHGGGGGHHHHGHGGGGGGHHBGHGDGGGGGHHHGGGGHHHHHHHHGGGGGHG@DHHGHEGGGGGGBFGGEGGGGGGGG.DFEFFFFFFFDCFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFFFEFFCFF?FDFFFFFFFFAFFFFFFFFFFFBDDFFFFFEFADFFFFFBAFFFA?EFFFBFF
+> > @M00967:43:000000000-A3JHG:1:1101:14069:1827 1:N:0:188
+> > TACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGTGCGTAGGCGGCCTGCCAAGTCAGCGGTAAAATTGCGGGGCTCAACCCCGTACAGCCGTTGAAACTGCCGGGCTCGAGTGGGCGAGAAGTATGCGGAATGCGTGGTGTAGCGGTGAAATGCATAGATATCACGCAGAACCCCGATTGCGAAGGCAGCATACCGGCGCCCTACTGACGCTGAGGCACGAAAGTGCGGGGATCAAACAG
+> > +
+> > 3AA?ABBDBFFBEGGEGGGGAFFGGGGGHHHCGGGGGGHFGHGGCFDEFGGGHGGGEGF1GGFGHHHHHGGEGGHHHHHFGGGGGGHHHHHGGGGCDDGHHGGGFHHHHHHHHCD@CCHGGGGHEHGGG@GFGGGGGGG@BGGGEGCEBFFFBFFB;9@EFFFEFFFFFFFFFFFFAFBBBFFFFFBBBFFFFBBBFFFFFFFFFFFBBBBBBBFFFFFFFFFDDFAFFFFF.AF9/FBBBBB.EAFFE?F
+> > @M00967:43:000000000-A3JHG:1:1101:18044:1900 1:N:0:188
+> > TACGGAGGATGCGAGCGTTGTCCGGAATCACTGGGCGTAAAGGGCGCGTAGGCGGTTTAATAAGTCAGTGGTGAAAACTGAGGGCTCAACCCTCAGCCTGCCACTGATACTGTTAGACTTGAGTATGGAAGAGGAGAATGGAATTCCTAGTGTAGCGGTGAAATGCGTAGATATTAGGAGGAACACCAGTGGCGAAGGCGATTCTCTGGGCCAAGACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACA
+> > ~~~
+
+`head` prints the first ten lines of a file out onto your screen.
+
+We can look at the last ten lines of a file using the `tail` command:
+
+```
+head F3D0_S188_L001_R1_001.fastq
+```
+
+
 
 ----
 
