@@ -344,11 +344,9 @@ grep CATTAG *.fastq
 
 ### Renaming a bunch of files
 
-For our first task, let's pretend that we want to rename all of the fastq
-files to be .fq files instead.  Here, we get to use two of my favorite
-commands - 'for' and 'basename'.
+For our first task, let's pretend that we want to rename all of the fastq files to be .fq files instead.  Here, we get to use two of my favorite commands - 'for' and 'basename'.
 
-`for` lets you do something to every file in a list.  To see it in action::
+`for` lets you do something to every file in a list.  To see it in action:
 
 ```
 for i in *.fastq
@@ -357,20 +355,18 @@ do
 done
 ```
 
-This is running the command `echo` for every value of the variable 'i', which
-is set (one by one) to all the values in the expression `*.fastq`.
+This is running the command `echo` for every value of the variable 'i', which is set (one by one) to all the values in the expression `*.fastq`.
 
-If we want to get rid of the extension '.fastq', we can use the `basename`
-command::
+If we want to get rid of the extension '.fastq', we can use the `basename` command:
 
-  for i in *.fastq
-  do
-     basename $i .fastq
-  done
+```
+for i in *.fastq
+do
+   basename $i .fastq
+done
+```
 
-Now, this doesn't actually rename the files - it just prints out the name,
-with the suffix '.fastq' removed.  To rename the files, we need to capture
-the new name in a variable::
+Now, this doesn't actually rename the files - it just prints out the name, with the suffix '.fastq' removed.  To rename the files, we need to capture the new name in a variable::
 
 ```
 for i in *.fastq
@@ -380,11 +376,9 @@ do
 done
 ```
 
-What `$( ... )` does is run the command in the middle, and then replace the
-`$( )` with the value of running the command.
+What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the value of running the command.
 
-Now we have the old name ($i) and the new name ($newname) and we're ready
-to write the rename command -- ::
+Now we have the old name ($i) and the new name ($newname) and we're ready to write the rename command -- ::
 
 ```
 for i in *.fastq
@@ -396,7 +390,7 @@ done
 
 ***Question:*** why did I use `echo` here?
 
-Now that we're pretty sure it all looks good, let's run it for realz::
+Now that we're pretty sure it all looks good, let's run it for realz:
 
 ```
 for i in *.fastq
@@ -408,16 +402,13 @@ done
 
 and voila, we have renamed all the files!
 
-_Side note:_ you may see backquotes used instead of ``$(...)``. Same thing.
+_Side note:_ you may see backquotes used instead of `$(...)`. Same thing.
 
 ----
 
-Now let's also get rid of the annoying '\_001' that's at the end of the all
-files.  `basename` is all fine and good with the end of files, but what
-do we do about things in the middle? Now we get to use another one of
-my favorite commands -- `cut`.
+Now let's also get rid of the annoying '\_001' that's at the end of the all files.  `basename` is all fine and good with the end of files, but what do we do about things in the middle? Now we get to use another one of my favorite commands -- `cut`.
 
-What `cut` does is slice and dice strings.  So, for example, ::
+What `cut` does is slice and dice strings.  So, for example, :
 
 ```
 echo hello, world | cut -c5-
@@ -427,28 +418,19 @@ will print out `o, world`.
 
 But this is kind of a strange construction! What's going on?
 
-Well, `cut` expects to take a bunch of lines of input from a file. By
-default it is happy to take them in from stdin ("standard input"), so
-you can specify '-' and give it some input via a pipe, which is what
-we're doing with echo:
+Well, `cut` expects to take a bunch of lines of input from a file. By default it is happy to take them in from stdin ("standard input"), so you can specify '-' and give it some input via a pipe, which is what we're doing with echo:
 
-We're taking the output of 'echo hello, world' and sending it to the
-input of cut with the `|` command ('pipe').
+We're taking the output of 'echo hello, world' and sending it to the input of cut with the `|` command ('pipe').
 
-You may have already seen this with head or tail, but many UNIX
-commands take stdin and stdout.
+You may have already seen this with head or tail, but many UNIX commands take stdin and stdout.
 
-Let's construct the `cut` command we want to use.  If we look at the names of
-the files, and we want to remove '001' only, we can see that each filename
-has a bunch of fields separated by '\_'.  So we can ask 'cut' to pay attention
-to the first four fields, and omit the fifth, around the separator (or
-delimiter) '\_'::
+Let's construct the `cut` command we want to use.  If we look at the names of the files, and we want to remove '001' only, we can see that each filename has a bunch of fields separated by '\_'.  So we can ask 'cut' to pay attention to the first four fields, and omit the fifth, around the separator (or delimiter) '\_':
 
 ```
 echo F3D141_S207_L001_R1_001.fq | cut -d_ -f1-4
 ```
 
-That looks about right -- let's put it into a for loop::
+That looks about right -- let's put it into a for loop:
 
 ```
 for i in *.fq
@@ -457,7 +439,7 @@ do
 done
 ```
 
-Looking good - now assign it to a variable and append an ending::
+Looking good - now assign it to a variable and append an ending:
 
 ```
 for i in *.fq
@@ -467,7 +449,7 @@ do
 done
 ```
   
-and now construct the `mv` command::
+and now construct the `mv` command:
 
 ```
 for i in *.fq
@@ -477,7 +459,7 @@ do
 done
 ```
 
-and if that looks right, run it::
+and if that looks right, run it:
 
 ```
 for i in *.fq
@@ -501,10 +483,7 @@ If you look at one of the FASTQ files with head,
 head F3D0_S188_L001_R1.fq
 ```
 
-you'll see that it's full of FASTQ sequencing records.  Often I want
-to run a bioinformatices pipeline on some small set of records first,
-before running it on the full set, just to make sure all the commands work.
-So I'd like to subset all of these files without modifying the originals.
+you'll see that it's full of FASTQ sequencing records.  Often I want to run a bioinformatices pipeline on some small set of records first, before running it on the full set, just to make sure all the commands work. So I'd like to subset all of these files without modifying the originals.
 
 First, let's make sure the originals are read-only
 
@@ -551,8 +530,7 @@ A little backtracking...
 
 Variables:
 
-You can use either $varname or ${varname}.  The latter is useful
-when you want to construct a new filename, e.g.
+You can use either $varname or ${varname}.  The latter is useful when you want to construct a new filename, e.g.
 
 ```
    MY${varname}SUBSET
@@ -578,20 +556,26 @@ We used "$varname" above - what happens if we use ''?
 
 Pipes and redirection:
 
-To redirect stdin and stdout, you can use::
+To redirect stdin and stdout, you can use:
 
-  > - send stdout to a file
-  < - take stdin from a file
-  | - take stdout from first command and make it stdin for second command
-  >> - appends stdout to a previously-existing file
+```
+> - send stdout to a file
+< - take stdin from a file
+| - take stdout from first command and make it stdin for second command
+>> - appends stdout to a previously-existing file
+```
 
-stderr (errors) can be redirected::
+stderr (errors) can be redirected:
 
-  2> - send stderr to a file
+```
+2> - send stderr to a file
+```
 
 and you can also say::
 
-  >& - to send all output to a file
+```
+>& - to send all output to a file
+```
 
 Editing on the command line:
 
@@ -618,7 +602,7 @@ Let's go back to the 'data' directory and play around with loops some more.
   cd ..
 ```
 
-`if` acts on things conditionally::
+`if` acts on things conditionally:
 
 ```
 for i in *
@@ -631,10 +615,7 @@ do
 done
 ```
 
-but what the heck is this `[ ]` notation?  That's actually running
-the 'test' command; try `help test | less` to see the docs.  This is a
-weird syntax that lets you do all sorts of useful things with files --
-I usually use it to get rid of empty files.
+but what the heck is this `[ ]` notation?  That's actually running the 'test' command; try `help test | less` to see the docs.  This is a weird syntax that lets you do all sorts of useful things with files -- I usually use it to get rid of empty files.
 
 ```
 touch emptyfile.txt
@@ -656,8 +637,7 @@ done
 Executing things conditionally based on exit status
 ---------------------------------------------------
 
-Let's create two scripts (you can use 'nano' here if you want) -- in
-'success.sh', put:
+Let's create two scripts (you can use 'nano' here if you want) -- in 'success.sh', put:
 
 ```
   #! /bin/bash
@@ -694,8 +674,7 @@ Now make them executable --
 chmod +x success.sh fail.sh
 ```
 
-(Somewhat counterintuitively, an exit status of 0 means "success" in
-UNIX land.)
+(Somewhat counterintuitively, an exit status of 0 means "success" in UNIX land.)
 
 You can now use this to chain commands with `&&` and `||` -- :
 
@@ -704,10 +683,7 @@ You can now use this to chain commands with `&&` and `||` -- :
 ./fail.sh && echo this succeeded || echo this failed
 ```
 
-You can do this with R and python scripts too -- in R, you set the
-exit status of a script with `quit(status=0, save='no')` and in
-Python with `sys.exit(0)`.  Any failure of the script due to an
-exception will automatically set the exit status to non-zero.
+You can do this with R and python scripts too -- in R, you set the exit status of a script with `quit(status=0, save='no')` and in Python with `sys.exit(0)`.  Any failure of the script due to an exception will automatically set the exit status to non-zero.
 
 The exit status of the previous command can be examined with `$?` -- :
 
@@ -728,14 +704,12 @@ Always put `set -e` at the top.
 
 Sometimes put `set -x` at the top.
 
-You can take in command line parameters with '$1', '$2', etc. '$\*' gives
-you all of them at once.
+You can take in command line parameters with '$1', '$2', etc. '$\*' gives you all of them at once.
 
 Other things to mention
 -----------------------
 
-Scripts exit in a subshell and can't modify your environment variables.
-If you want to modify your environment, you need to use '.' or 'source'.
+Scripts exit in a subshell and can't modify your environment variables. If you want to modify your environment, you need to use '.' or 'source'.
 
 Subshells are ways to group commands with ( ... ).
 
