@@ -168,7 +168,7 @@ So, even though we are in the tmp1 directory, we can see what is in other direct
 Wouldn't it be nice to see the contents of all the tmp directories at once? We can use a regular expression to capture a sequence of characters (like the numbers 1, 2 and 3 at the end of the tmp directories). We can use the wild card character `*`, which expands to match any amount of characters.
 
 ```
-ls tmp*
+ls ../tmp*
 ```
 
 > > ~~~
