@@ -106,9 +106,6 @@ Here we see a long list of options. Each option will allow us to do something di
 
 **CHALLENGE** Try to find the option that allows you to differentiate between directories and executable files when using `ls`.
 
-```
-ls -F
-```
 
 We can also combine commands:
 
