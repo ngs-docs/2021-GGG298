@@ -4,8 +4,10 @@ Launch binder:
 
 This lesson is a combination of Data Carpentry's [Introduction to the Command Line for Genomics](https://datacarpentry.org/shell-genomics/) lesson and the Lab for Data Intensive Biology's [Advanced Beginner/Intermediate Shell](https://dib-training.readthedocs.io/en/pub/2016-01-13-adv-beg-shell.html) workshop.
 
+----
 
 ## Section 1: Introduction to UNIX
+----------------------------------
 
 ### Learning Goals
 * visualize file structure
@@ -14,8 +16,8 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 * look at the contents of a directory 
 * find features of commands with `man`
 * commands: `pwd`, `ls`, `cd`, `man`
+------------------------------------
 
-### Lesson
 #### What is the shell and what is the terminal?
 The **shell** is a computer program that uses a command line interface (CLI) to gives commmands made by your keyboard to your operating system. Most people are used to interacting with a graphic user interface (GUI), where you can use a combination of your mouse and keyboard to carry out commands on your computer. We can use the shell through a **terminal** program. 
 
@@ -116,13 +118,10 @@ ls -aFl
 
 This combination of options will _list_ _all_ the contents of the directory and _differentiate_ between files types. 
 
-
-
-
-
 ----
 
 ## Section 2: Navigation
+------------------------
 
 ### Learning Goals
 * paths
@@ -133,6 +132,7 @@ This combination of options will _list_ _all_ the contents of the directory and 
 * create and remove directories
 * understand the structure of commands
 * commands: `cat`, `cp`, `mv`, `rm`, `mkdir`
+--------------------------------------------
 
 Now we have a fairly good concept of navigating around our computers and seeing what is located in the directory we are. But some of the beauty of the shell is that we can execute activities in locations that we are not currently in. To do this we can either use an absolute path or a relative path. A **relative path** is the path to another directory from the the one you are currently in. 
 
@@ -244,12 +244,14 @@ You can see that we've created a bit of a monster directory structure...
 
 ----
 
-## Section 3: Searching
+## Section 3: Viewing & Searching
+---------------------------------
 
 ### Learning Goals
 * looking inside files
 * search for keywords within files
 * commands: `less`, `head`, `tail`, `grep`
+------------------------------------------
 
 A big part of bioinformatics is making sure what you _expect_ in a particular file is what you _have_ in that file. There are a few ways to look at the contents of a file. We've already seen how to print the entirety of a file to the stdout of our `cat` command. We can also look at files using the `less` command. Less is a safe way of looking at the contents of a file without the ability to change it. This is an important note since our raw sequence data should never be altered.
 
@@ -295,6 +297,19 @@ We can see that our **fastq** files look a lot different than the **fasta** file
 head HMP_MOCK.v35.fasta
 ```
 
+> > ~~~
+> > >A.baumannii.1
+> > TGGGGAATATTGGACAATGGGGGGAACCCTGATCCAGCCATGCCGCGTGTGTGAAGAAGGCCTTATGGTTGTAAAGCACTTTAAGCGAGGAGGAGGCTACTTTAGTTAATACCTAGAGATAGTGGACGTTACTCGCAGAATAAGCACCGGCTAACTCTGTGCCAGCAGCCGCGGTAATACAGAGGGTGCGAGCGTTAATCGGATTTACTGGGCGTAAAGCGTGCGTAGGCGGCTTATTAAGTCGGATGTGAAATCCCCGAGCTTAACTTGGGAATTGCATTCGATACTGGTGAGCTAGAGTATGGGAGAGGATGGTAGAATTCCAGGTGTAGCGGTGAAATGCGTAGAGATCTGGAGGAATACCGATGGCGAAGGCAGCCATCTGGCCTAATACTGACGCTGAGGTACGAAAGCATGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCATGCCGTAAACGATGTCTACTAGCCGTTGGGGCCTTTGAGGCTTTAGTGGCGCAGCTAACGCGATAAGTAGACCGCCTGGGGAGTACGGTC
+> > >A.odontolyticus.1
+> > TGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGGAGGCCTTCGGGTTGTAAACCTCTTTCGCTCATGGTCAAGCCGCAACTCAAGGTTGTGGTGAGGGTAGTGGGTAAAGAAGCGCCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGCGCGAGCGTTGTCCGGAATTATTGGGCGTAAAGGGCTTGTAGGCGGTTGGTCGCGTCTGCCGTGAAATCCTCTGGCTTAACTGGGGGCGTGCGGTGGGTACGGGCTGACTTGAGTGCGGTAGGGGAGACTGGAACTCCTGGTGTAGCGGTGGAATGCGCAGATATCAGGAAGAACACCGGTGGCGAAGGCGGGTCTCTGGGCCGTTACTGACGCTGAGGAGCGAAAGCGTGGGGAGCGAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGTTGGGCACTAGGTGTGGGGGCCACCCGTGGTTTCTGCGCCGTAGCTAACGCTTTAAGTGCCCCGCCTGGGGAGTACGGCC
+> > >B.cereus.1
+> > TAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCC
+> > >B.vulgatus.1
+> > TGAGGAATATTGGTCAATGGGCGCAGGCCTGAACCAGCCAAGTAGCGTGAAGGATGACTGCCCTATGGGTTGTAAACTTCTTTTATAAAGGAATAAAGTCGGGTATGGATACCCGTTTGCATGTACTTTATGAATAAGGATCGGCTAACTCCGTGCCAGCAGCCGCGGTAATACGGAGGATCCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGAGCGTAGATGGATGTTTAAGTCAGTTGTGAAAGTTTGCGGCTCAACCGTAAAATTGCAGTTGATACTGGATATCTTGAGTGCAGTTGAGGCAGGCGGAATTCGTGGTGTAGCGGTGAAATGCTTAGATATCACGAAGAACTCCGATTGCGAAGGCAGCCTGCTAAGCTGCAACTGACATTGAGGCTCGAAAGTGTGGGTATCAAACAGGATTAGATACCCTGGTAGTCCACACGGTAAACGATGAATACTCGCTGTTTGCGATATACGGCAAGCGGCCAAGCGAAAGCGTTAAGTATTCCACCTGGGGAGTACGCCG
+> > >B.vulgatus.2
+> > TGAGGAATATTGGTCAATGGGCGAGAGCCTGAACCAGCCAAGTAGCGTGAAGGATGACTGCCCTATGGGTTGTAAACTTCTTTTATAAAGGAATAAAGTCGGGTATGGATACCCGTTTGCATGTACTTTATGAATAAGGATCGGCTAACTCCGTGCCAGCAGCCGCGGTAATACGGAGGATCCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGAGCGTAGATGGATGTTTAAGTCAGTTGTGAAAGTTTGCGGCTCAACCGTAAAATTGCAGTTGATACTGGATATCTTGAGTGCAGTTGAGGCAGGCGGAATTCGTGGTGTAGCGGTGAAATGCTTAGATATCACGAAGAACTCCGATTGCGAAGGCAGCCTGCTAAGCTGCAACTGACATTGAGGCTCGAAAGTGTGGGTATCAAACAGGATTAGATACCCTGGTAGTCCACACGGTAAACGATGAATACTCGCTGTTTGCGATATACGGCAAGCGGCCAAGCGAAAGCGTTAAGTATTCCACCTGGGGAGTACGCCG
+> > ~~~
+
 Each sequence entry for a [fasta](https://en.wikipedia.org/wiki/FASTA_format) formatted file contains only two lines of information for each sequence string.
 
 Another useful thing to do is to be able to **search the contents of files** for a particular string of characters you would like to find. Let's say you'd like to find the sequence `CATTAG` in your files. We can use the file pattern searcher `grep` to look for our favorite sequence:
@@ -314,14 +329,86 @@ grep CATTAG *.fastq
 
 
 
+
 ----
 
 ## Section 4: File Manipulation
+-------------------------------
 
 ### Learning Goals
 * combine commands to carry out a sequence of steps with `|`
 * redirect output of commands to files with `>`
 * increase exposure to regular expressions
+* commands `basename`, `echo`
+------------------------------------------
+
+Renaming a bunch of files
+-------------------------
+
+Let's go into the MiSeq directory::
+
+  cd MiSeq
+
+and take a look with `ls`.
+
+For our first task, let's pretend that we want to rename all of the fastq
+files to be .fq files instead.  Here, we get to use two of my favorite
+commands - 'for' and 'basename'.
+
+'for' lets you do something to every file in a list.  To see it in action::
+
+  for i in *.fastq
+  do
+     echo $i
+  done
+
+This is running the command 'echo' for every value of the variable 'i', which
+is set (one by one) to all the values in the expression '*.fastq'.
+
+If we want to get rid of the extension '.fastq', we can use the 'basename'
+command::
+
+  for i in *.fastq
+  do
+     basename $i .fastq
+  done
+
+Now, this doesn't actually rename the files - it just prints out the name,
+with the suffix '.fastq' removed.  To rename the files, we need to capture
+the new name in a variable::
+
+  for i in *.fastq
+  do
+     newname=$(basename $i .fastq).fq
+     echo $newname
+  done
+  
+What ``$( ... )`` does is run the command in the middle, and then replace the
+``$( )`` with the value of running the command.
+
+Now we have the old name ($i) and the new name ($newname) and we're ready
+to write the rename command -- ::
+
+  for i in *.fastq
+  do
+     newname=$(basename $i .fastq).fq
+     echo mv $i $newname
+  done
+
+Q: why did I use 'echo' here?
+
+Now that we're pretty sure it all looks good, let's run it for realz::
+
+  for i in *.fastq
+  do
+     newname=$(basename $i .fastq).fq
+     mv $i $newname
+  done
+
+and voila, we have renamed all the files!
+
+Side note: you may see backquotes used instead of ``$(...)``. Same thing.
+
 
 ----
 
