@@ -1,7 +1,7 @@
 # Course materials for GGG298
 ## UC Davis Winter 2020
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ngs-docs/2020-GGG298/master?urlpath=rstudio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ngs-docs/2020-GGG298/shannonekj-week-2)
 
 [Syllabus](https://hackmd.io/3bDesjZaTVSiEzEueSGlDQ?view)
 
