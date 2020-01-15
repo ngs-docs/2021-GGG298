@@ -10,7 +10,6 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 ### Learning Goals
 * visualize file structure
 * understand basic shell vocabulary
-* understand the structure of commands
 * gain exposure to the syntax of shell & scripting
 * look at the contents of a directory 
 * find features of commands with `man`
@@ -75,10 +74,10 @@ ls
 
 We can see the following directories:
 
-~~~
-MiSeq		Slide1.jpg	hello.sh	nano1.png
-README.md	gvng.jpg		nano2.png
-~~~
+> > ~~~
+> > MiSeq		Slide1.jpg	hello.sh	nano1.png
+> > README.md	gvng.jpg		nano2.png
+> > ~~~
 
 However, this directory contains more than the eye can see! To show hidden files we can use the `-a` option.
 
@@ -88,10 +87,10 @@ ls -a
 
 We will see the following:
 
-~~~
-.		MiSeq		Slide1.jpg	hello.sh	nano1.png
-..		README.md	gvng.jpg	hidden		nano2.png
-~~~
+> > ~~~
+> > .		MiSeq		Slide1.jpg	hello.sh	nano1.png
+> > ..		README.md	gvng.jpg	hidden		nano2.png
+> > ~~~
 
 Three new items pop up `.`, `..` and `hidden`. 
 
@@ -102,7 +101,7 @@ man ls
 ```
 
 Here we see a long list of options. Each option will allow us to do something different.
-Try to find the option that allows you to differentiate between directories and executable files (**HINT** to search type `/` before the word you are looking for.)
+**CHALLENGE** Try to find the option that allows you to differentiate between directories and executable files.
 
 ```
 ls -F
@@ -127,8 +126,10 @@ This combination of options will _list_ _all_ the contents of the directory and 
 ### Learning Goals
 * paths
 * look at the contents of files
-* move and copy files and directories 
 * perform functions outside of the directory you are in
+* intro to the wildcard regular expression: `*`
+* move and copy files and directories
+* understand the structure of commands
 * commands: `cat`, `cp`, `mv`
 
 Now we have a fairly good concept of navigating around our computers and seeing what is located in the directory we are. But some of the beauty of the shell is that we can execute activities in locations that we are not currently in. To do this we can either use an absolute path or a relative path. A **relative path** is the path to another directory from the the one you are currently in. 
@@ -149,8 +150,62 @@ cat thisinnotit.txt
 > > This is not the text file you're looking for
 > > ~~~
 
+Let's see what else is in the other tmp directories:
 
+```
+ls ../tmp2
+```
 
+and we can see the contents of tmp3
+
+```
+ls ../tmp3
+```
+
+So, even though we are in the tmp1 directory, we can see what is in other directories by using the relative path to the directory of interest. Note we can also use absolute paths too.
+
+**CHALLENGE** Use the absolute path to list the files in the tmp2 directory.
+
+Wouldn't it be nice to see the contents of all the tmp directories at once? We can use a regular expression to capture a sequence of characters (like the numbers 1, 2 and 3 at the end of the tmp directories). We can use the wild card character `*`, which expands to match any amount of characters.
+
+```
+ls tmp*
+```
+
+> > ../tmp1:
+> > notit.txt	thisinnotit.txt
+> > 
+> > ../tmp2:
+> > anotherfile.txt
+> > 
+> > ../tmp3:
+> > closebutnotit.txt	youfoundit.txt
+
+So, even though we are in the `tmp1` directory we can use a relative path.
+
+We are quite used to moving, copying and deleting files using a GUI. All of these functions can be carried out at the command line with the following commands: 
+
+Copy files with the `cp` command by specifying a file to copy and the location of the copied file. Here we will copy the `thisinnotit.txt` into the file `thisisacopy.txt`. 
+
+```
+cp thisinnotit.txt thisisacopy.txt
+```
+
+The syntax for the copy command is `cp <source_file> <destination_file>`. Using this syntax we can copy files to other directories as well:
+
+```
+cp thisinnotit.txt ../tmp2/.
+```
+
+If we navigate to the tmp2 directory and list the files that are in it we will see the `thisinnotit.txt` file has been copied to the tmp2 directory.
+
+```
+cd ../tmp2
+ls -l
+```
+
+**CHALLENGE 1** Use the `mv` command to move the `thisinnotit.txt` file from tmp2 to tmp3.
+**CHALLENGE 2** Use the `rm` command to remove the `thisisacopy.txt` file from tmp1 while you are in the tmp2 directory.
 
 
 ----
