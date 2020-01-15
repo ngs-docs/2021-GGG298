@@ -10,18 +10,18 @@ This lesson is a combination of Data Carpentry's [Introduction to the Command Li
 ----------------------------------
 
 ### Learning Goals
-* visualize file structure
+* visualize file/directory structures
 * understand basic shell vocabulary
-* gain exposure to the syntax of shell & scripting
+* gain exposure to the syntax of shell & shell scripting
 * look at the contents of a directory 
 * find features of commands with `man`
 * commands: `pwd`, `ls`, `cd`, `man`
 ------------------------------------
 
 #### What is the shell and what is the terminal?
-The **shell** is a computer program that uses a command line interface (CLI) to gives commmands made by your keyboard to your operating system. Most people are used to interacting with a graphic user interface (GUI), where you can use a combination of your mouse and keyboard to carry out commands on your computer. We can use the shell through a **terminal** program. 
+The **shell** is a computer program that uses a command line interface (CLI) to give commmands made by your keyboard to your operating system. Most people are used to interacting with a graphic user interface (GUI), where you can use a combination of your mouse and keyboard to carry out commands on your computer. We can use the shell through a **terminal** program. 
 
-Everything we can do using our computer GUI, we can do in the shell. We can open programs, run analyses, create documents, delete files and create folders. We should note that _folders_ are called **directories** at the command line. For all intensive purposes they can be used interchangeably but if you'd like more information please see "The folder metaphor" section of [Wikipedia](https://en.wikipedia.org/wiki/Directory_%28computing%29#Folder_metaphor).
+Everything we can do using our computer GUI, we can do in the shell. We can open programs, run analyses, create documents, delete files and create folders. We should note that _folders_ are called **directories** at the command line. For all intents and purposes they can be used interchangeably but if you'd like more information please see "The folder metaphor" section of [Wikipedia](https://en.wikipedia.org/wiki/Directory_%28computing%29#Folder_metaphor).
 
 The ease of getting things done via the shell will increase with your exposure to the program.  
 Go ahead and open a new terminal window in binder.
@@ -32,7 +32,7 @@ When we open up terminal in binder we will see a a line of text. This is a **pro
 PS1='$ '
 ```
 
-Then hit <kbd>Enter</kbd>. Better right?
+Then hit <kbd>Enter</kbd>. Better, right?
 
 Let's take a look around. First, we can use the **print working directory** command see what directory we are currently located in.
 
@@ -40,7 +40,7 @@ Let's take a look around. First, we can use the **print working directory** comm
 pwd
 ```
 
-This gives us **absolute path** to the directory where we are located. An absolute path shows the complete series of directories you need to locate either a directory or a file starting from the root directory of your computer.
+This gives us the **absolute path** to the directory where we are located. An absolute path shows the complete series of directories you need to locate either a directory or a file starting from the root directory of your computer.
 
 What is the root?
 A useful way to start thinking about directories and files is through levels. At the highest level of your computer, you have the **root directory**. Everything that is contained in your computer is located in directories below your root directory. 
@@ -127,7 +127,7 @@ This combination of options will _list_ _all_ the contents of the directory and 
 * paths
 * look at the contents of files
 * perform functions outside of the directory you are in
-* intro to the wildcard regular expression: `*`
+* intro to the wildcard expression: `*`
 * copy, move and remove files
 * create and remove directories
 * understand the structure of commands
@@ -164,7 +164,7 @@ and we can see the contents of tmp3
 ls ../tmp3
 ```
 
-So, even though we are in the tmp1 directory, we can see what is in other directories by using the relative path to the directory of interest. Note we can also use absolute paths too. You may have noticed the `../` this is how to get to the directory above the one you are currently located in. 
+So, even though we are in the `tmp1/` directory, we can see what is in other directories by using the relative path to the directory of interest. Note we can also use absolute paths too. You may have noticed the `../` this is how to get to the directory above the one you are currently located in. 
 
 **CHALLENGE:** Use the absolute path to list the files in the tmp2 directory.
 
@@ -241,6 +241,10 @@ You can see that we've created a bit of a monster directory structure...
 
 **CHALLENGE:** Navigate to the data directoy and use the `rm` command to remove the `how` directory and all its contents. 
 
+----
+
+This nicely hints at the power of the shell - you can do certain things (in this case, create a nested hierarchy of directories) much more easily in the shell. But that power cuts both ways - you can also mess things up more easily in the shell!
+
 
 ----
 
@@ -255,7 +259,13 @@ You can see that we've created a bit of a monster directory structure...
 
 A big part of bioinformatics is making sure what you _expect_ in a particular file is what you _have_ in that file. There are a few ways to look at the contents of a file. We've already seen how to print the entirety of a file to the stdout of our `cat` command. We can also look at files using the `less` command. Less is a safe way of looking at the contents of a file without the ability to change it. This is an important note since our raw sequence data should never be altered.
 
-Let's look at some sequence data in a [fastq file](https://en.wikipedia.org/wiki/FASTQ_format) format:
+Starting from the `shell/data/` directory,
+
+```
+cd ../
+```
+
+let's look at some sequence data in a [fastq file](https://en.wikipedia.org/wiki/FASTQ_format) format.
 
 ```
 cd MiSeq
@@ -344,7 +354,7 @@ grep CATTAG *.fastq
 
 ### Renaming a bunch of files
 
-For our first task, let's pretend that we want to rename all of the fastq files to be .fq files instead.  Here, we get to use two of my favorite commands - 'for' and 'basename'.
+For our first task, let's pretend that we want to rename all of the fastq files to be `.fq` files instead (this is a surprisingly useful specific skill, even if you can't immediately think of why you would want to do that!).  Here, we get to use two of my favorite commands - 'for' and 'basename'.
 
 `for` lets you do something to every file in a list.  To see it in action:
 
@@ -376,7 +386,7 @@ do
 done
 ```
 
-What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the value of running the command.
+What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the output of running the command.
 
 Now we have the old name ($i) and the new name ($newname) and we're ready to write the rename command -- ::
 
@@ -402,7 +412,7 @@ done
 
 and voila, we have renamed all the files!
 
-_Side note:_ you may see backquotes used instead of `$(...)`. Same thing.
+_Side note:_ you may see backquotes used instead of `$(...)`. It does the same thing but is trickier to get right, so we teach `$(...)` instead of ``...``.
 
 ----
 
@@ -483,7 +493,7 @@ If you look at one of the FASTQ files with head,
 head F3D0_S188_L001_R1.fq
 ```
 
-you'll see that it's full of FASTQ sequencing records.  Often I want to run a bioinformatices pipeline on some small set of records first, before running it on the full set, just to make sure all the commands work. So I'd like to subset all of these files without modifying the originals.
+you'll see that it's full of FASTQ sequencing records.  Often I want to run a bioinformatices pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands works. So I'd like to subset all of these files without modifying the originals.
 
 First, let's make sure the originals are read-only
 
@@ -497,7 +507,7 @@ Now, let's make a 'subset' directory
 mkdir subset
 ```
 
-Now, to subset each file, we want to run a 'head' with an argument that is the total number of lines we want to take.  In this case, it should be a multiple of 4, because FASTQ records have 4 lines each. So let's plan to take the first 100 lines of each file by using `head -400`.
+Now, to subset each file, we want to run a 'head' with an argument that is the total number of lines we want to take.  In this case, it should be a multiple of 4, because FASTQ records have 4 lines each. Let's take the first 100 records of each file by using `head -400`.
 
 The for loop will now look something like:
 
@@ -519,11 +529,13 @@ done
 
 and voila, you have your subsets!
 
+(This is incredibly useful. You have no idea :)
+
 ----
 
 **CHALLENGE:** Can you rename all of your files in subset/ to have 'subset.fq' at the end?
 
-(Work in small groups; start from working code; there are several ways to do it, all that matters is getting there!)
+(Work in small groups; start from working code; there are several ways to do it; all that matters is getting there!)
 
 A little backtracking...
 ------------------------
@@ -544,17 +556,20 @@ MY$varnameSUBSET
 
 would try to put MY in front of $varnameSUBSET which won't work.
 
-(Unknown/uncreated variables give nothing.)
+(Unknown/uncreated variables are empty.)
+
+NOTE: `${varname}` is quite different from `$(expression)`! The former is replaced by the value assigned to `varname`; the latter is replaced by the result of running `expression`. So, both _replace_ but they do different things. Think of `$` here as meaning, "replace me with something".
 
 ---
 
-We used "$varname" above - what happens if we use ''?
+We used "$varname" above - what happens if we use single quotes -
+e.g. '$varname'?
 
 (Variables are interpreted inside of "", and not inside of ''.)
 
 ----
 
-Pipes and redirection:
+### Pipes and redirection
 
 To redirect stdin and stdout, you can use:
 
@@ -577,7 +592,7 @@ and you can also say::
 >& - to send all output to a file
 ```
 
-Editing on the command line:
+### Editing on the command line:
 
 Most prompts support 'readline'-style editing.  This uses emacs control
 keys.
@@ -586,9 +601,13 @@ Type something out; then type CTRL-a.  Now type CTRL-e.  Beginning and end!
 
 Up arrows to recall previous command, left/right arrows, etc.
 
+CTRL-r will search backwards for recent commands, too! If you find the exact
+command you are looking for, you can hit ENTER to run it again. If you
+want to edit it, use CTRL-a or CTRL-e to move to editing mode.
+
 ----
 
-Another useful command along with 'basename' is 'dirname'. Any idea what
+CHALLENGE: Another useful command along with 'basename' is 'dirname'. Any idea what
 it does?
 
 -----
@@ -632,7 +651,7 @@ do
 done
 ```
 
-...and as you can see here, I'm using '!' to say 'not'.
+...and as you can see here, I'm using '!' to say 'not'. (Why do I need to put a backslash in front of it, though??)
 
 Executing things conditionally based on exit status
 ---------------------------------------------------
@@ -674,7 +693,7 @@ Now make them executable --
 chmod +x success.sh fail.sh
 ```
 
-(Somewhat counterintuitively, an exit status of 0 means "success" in UNIX land.)
+(Somewhat counterintuitively, an exit status of 0 means "success" in UNIX land. Any non-zero exit status is an error.)
 
 You can now use this to chain commands with `&&` and `||` -- :
 
@@ -733,6 +752,7 @@ The general approach I use
 * use intermediate i/o files to figure out what's going on!
 * use echo to debug!
 
+(But we'll also teach you another way to do automation with snakemake.)
 
 The weird awesomeness that is 'find'
 ------------------------------------
