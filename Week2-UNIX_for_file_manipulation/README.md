@@ -339,17 +339,10 @@ grep CATTAG *.fastq
 * combine commands to carry out a sequence of steps with `|`
 * redirect output of commands to files with `>`
 * increase exposure to regular expressions
-* commands `basename`, `echo`
+* commands `for`, `basename`, `echo`
 ------------------------------------------
 
-Renaming a bunch of files
--------------------------
-
-Let's go into the MiSeq directory::
-
-  cd MiSeq
-
-and take a look with `ls`.
+### Renaming a bunch of files
 
 For our first task, let's pretend that we want to rename all of the fastq
 files to be .fq files instead.  Here, we get to use two of my favorite
@@ -408,6 +401,118 @@ Now that we're pretty sure it all looks good, let's run it for realz::
 and voila, we have renamed all the files!
 
 Side note: you may see backquotes used instead of ``$(...)``. Same thing.
+
+----
+
+Let's also get rid of the annoying '_001' that's at the end of the
+files.  basename is all fine and good with the end of files, but what
+do we do about things in the middle? Now we get to use another one of
+my favorite commands -- 'cut'.
+
+What 'cut' does is slide and dice strings.  So, for example, ::
+
+   echo hello, world | cut -c5-
+
+will give you 'o, world'.
+
+But this is kind of a strange construction! What's going on?
+
+Well, 'cut' expects to take a bunch of lines of input from a file. By
+default it is happy to take them in from stdin ("standard input"), so
+you can specify '-' and give it some input via a pipe, which is what
+we're doing with echo:
+
+We're taking the output of 'echo hello, world' and sending it to the
+input of cut with the ``|`` command ('pipe').
+
+You've probably already seen this with head or tail, but many UNIX
+commands take stdin and stdout.
+
+Let's construct the cut command we want to use.  If we look at the names of
+the files, and we want to remove 001 only, we can see that each filename
+has a bunch of fields separated by '_'.  So we can ask 'cut' to pay attention
+to the first four fields, and omit the fifth, around the separator (or
+delimiter) '_'::
+
+   echo F3D141_S207_L001_R1_001.fq | cut -d_ -f1-4
+
+That looks about right -- let's put it into a for loop::
+
+  for i in *.fq
+  do
+     echo $i | cut -d_ -f1-4
+  done
+
+Good - now assign it to a variable and append an ending::
+
+  for i in *.fq
+  do
+     newname=$(echo $i | cut -d_ -f1-4).fq
+     echo $newname
+  done
+  
+and now construct the 'mv' command::
+
+  for i in *.fq
+  do
+     newname=$(echo $i | cut -d_ -f1-4).fq
+     echo mv $i $newname
+  done
+                
+and if that looks right, run it::
+
+  for i in *.fq
+  do
+     newname=$(echo $i | cut -d_ -f1-4).fq
+     mv $i $newname
+  done
+
+Ta-da! You've renamed all your files.
+
+----
+
+Let's do something quite useful - subset a bunch of FASTQ files.
+
+If you look at one of the FASTQ files with head, ::
+
+  head F3D0_S188_L001_R1.fq
+
+you'll see that it's full of FASTQ sequencing records.  Often I want
+to run a bioinformatices pipeline on some small set of records first,
+before running it on the full set, just to make sure all the commands work.
+So I'd like to subset all of these files without modifying the originals.
+
+First, let's make sure the originals are read-only::
+
+  chmod u-w *.fq
+
+Now, let's make a 'subset' directory::
+
+  mkdir subset
+
+Now, to subset each file, we want to run a 'head' with an argument that is the total number of lines we want to take.  In this case, it should be a multiple of 4, because FASTQ records have 4 lines each. So let's plan to take the first 100 lines of each file by using 'head -400'.
+
+The for loop will now look something like::
+
+  for i in *.fq
+  do
+     echo "head -400 $i > subset/$i"
+  done
+
+If that command looks right, run it for realz::
+
+  for i in *.fq
+  do
+     head -400 $i > subset/$i
+  done
+
+and voila, you have your subsets!
+
+----
+
+**CHALLENGE:** Can you rename all of your files in subset/ to have 'subset.fq' at the end?
+
+(Work in small groups; start from working code; there are several ways to do it, all that matters is getting there!)
 
 
 ----
