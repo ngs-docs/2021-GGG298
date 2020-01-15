@@ -133,21 +133,25 @@ This combination of options will _list_ _all_ the contents of the directory and 
 
 Now we have a fairly good concept of navigating around our computers and seeing what is located in the directory we are. But some of the beauty of the shell is that we can execute activities in locations that we are not currently in. To do this we can either use an absolute path or a relative path. A **relative path** is the path to another directory from the the one you are currently in. 
 
-Navigate into the tmp1 directory located in the hidden directory.
+Navigate into the `tmp1` directory located in the `hidden` directory.
 
 ```
 cd hidden/tmp1
 ```
 
-Here we see two files `notit.txt` and `thisinnotit.txt`. We can see what is in the directories using the `cat` command. 
+Here we see two files `notit.txt` and `thisinnotit.txt`. We can see what is in the directories using the `cat` command which concatenates and prints the content of the file we list. 
 
 ```
 cat thisinnotit.txt
 ```
 
-~~~
-This is not the text file you're looking for
-~~~
+> > ~~~
+> > This is not the text file you're looking for
+> > ~~~
+
+
+
+
 
 ----
 
