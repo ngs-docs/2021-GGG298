@@ -165,7 +165,7 @@ ls ../tmp3
 
 So, even though we are in the tmp1 directory, we can see what is in other directories by using the relative path to the directory of interest. Note we can also use absolute paths too. You may have noticed the `../` this is how to get to the directory above the one you are currently located in. 
 
-**CHALLENGE** Use the absolute path to list the files in the tmp2 directory.
+**CHALLENGE:** Use the absolute path to list the files in the tmp2 directory.
 
 Wouldn't it be nice to see the contents of all the tmp directories at once? We can use a regular expression to capture a sequence of characters (like the numbers 1, 2 and 3 at the end of the tmp directories). We can use the wild card character `*`, which expands to match any amount of characters.
 
@@ -207,7 +207,7 @@ cd ../tmp2
 ls -l
 ```
 
-**CHALLENGE** Use the `mv` command to move the `thisinnotit.txt` file from tmp2 to tmp3.
+**CHALLENGE:** Use the `mv` command to move the `thisinnotit.txt` file from tmp2 to tmp3.
 
 Once we know how to copy and move files, we can also copy and move directories. We can create new directories with the command `mkdir`. Let's make a new directory called `tmp4`
 
@@ -230,7 +230,7 @@ or it can create a series of directories on top of one another:
 mkdir -p how/deep/does/the/rabbit/hole/go
 ```
 
-We can use tab complete to get to the `go` directory. Type `cd h` then hit <kbd>tab<kbd> , if you hit <kbd>tab<kbd> enough times your command will eventually read:
+We can use tab complete to get to the `go` directory. Type `cd h` then hit <kbd>tab</kbd> , if you hit <kbd>tab</kbd> enough times your command will eventually read:
 
 ```
 cd how/deep/does/the/rabbit/hole/go/
@@ -238,8 +238,7 @@ cd how/deep/does/the/rabbit/hole/go/
 
 You can see that we've created a bit of a monster...
 
-
-**CHALLENGE** Use the `rm` command to remove the `how` directory and all its contents. 
+**CHALLENGE:** Use the `rm` command to remove the `how` directory and all its contents. 
 
 
 ----
