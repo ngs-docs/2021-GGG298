@@ -11,7 +11,7 @@ Week 1: [outline](https://hackmd.io/@ctb/S1_mb0fe8), [lab notes](https://hackmd.
 
 Week 2: [outline](https://hackmd.io/O6MaR9tMSxazAC_UCr_hTg), [lab notes](https://github.com/ngs-docs/2020-GGG298/tree/master/Week2-UNIX_for_file_manipulation), [reading](https://springerplus.springeropen.com/articles/10.1186/s40064-016-2888-8), [discussion notes](https://hackmd.io/H7EUa5DMQKmjc4yIwdWgDQ)
 
-Week 3: outline, [lab notes](https://hackmd.io/7XxZCUQkRiOq0QnOHDZtaQ), [reading](https://undsci.berkeley.edu/lessons/pdfs/how_science_works.pdf), [discussion notes](https://hackmd.io/lAgWvrN0T5uc9ZYAQaVHqg)
+Week 3: [outline](https://hackmd.io/To23drs_STONN1zdFb2hkw), [lab notes](https://hackmd.io/7XxZCUQkRiOq0QnOHDZtaQ), [reading](https://undsci.berkeley.edu/lessons/pdfs/how_science_works.pdf), [discussion notes](https://hackmd.io/lAgWvrN0T5uc9ZYAQaVHqg)
 
 Week 4
 
