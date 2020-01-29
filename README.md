@@ -13,7 +13,7 @@ Week 2: [outline](https://hackmd.io/O6MaR9tMSxazAC_UCr_hTg), [lab notes](https:/
 
 Week 3: [outline](https://hackmd.io/To23drs_STONN1zdFb2hkw), [lab notes](https://hackmd.io/7XxZCUQkRiOq0QnOHDZtaQ), [reading](https://undsci.berkeley.edu/lessons/pdfs/how_science_works.pdf), [discussion notes](https://hackmd.io/lAgWvrN0T5uc9ZYAQaVHqg)
 
-Week 4: [outline](https://hackmd.io/UuYTlGyVQ7WLTL-3kX3K5A), [lab notes], [reading](http://ivory.idyll.org/blog/2014-function-of-unknown-genes.html), [discussion notes]
+Week 4: [outline](https://hackmd.io/UuYTlGyVQ7WLTL-3kX3K5A), [lab notes](https://hackmd.io/jXwbvOyQTqWqpuWwrpByHQ), [reading](http://ivory.idyll.org/blog/2014-function-of-unknown-genes.html), discussion notes
 
 Week 5
 
