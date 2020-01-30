@@ -1,9 +1,20 @@
-# Course materials for GGG298
+# Course materials for GGG298 - Tools to support data-intensive research
+
 ## UC Davis Winter 2020
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ngs-docs/2020-GGG298/shannonekj-week-2)
 
-[Syllabus](https://hackmd.io/3bDesjZaTVSiEzEueSGlDQ?view)
+### Instructors
+
+C. Titus Brown (IOR) (<ctbrown@ucdavis.edu>), Shannon Joslin (<sejoslin@ucdavis.edu>).
+
+### Course description
+
+This course will provide a practical introduction to common tools used in data-intensive research, including the UNIX shell, version control with git, RMarkdown, JupyterLab, and workflows with snakemake. The associated discussion section will connect the lab practicals to foundational concepts in data science, including repeatability/reproducibility, statistics, and publication ethics.
+
+This course is open to all graduate students. No prior computational experience is required or assumed. There will be some minimal overlap with GGG 201(b) topics. All materials will be open to the community and freely available online.
+
+[Full syllabus](https://hackmd.io/3bDesjZaTVSiEzEueSGlDQ?view)
 
 ## Resources
 
