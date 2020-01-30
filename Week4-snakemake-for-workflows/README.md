@@ -86,7 +86,7 @@ conda activate fqc
 conda install -y -n fqc salmon
 ```
 
-(if you don't have a fqc environment from [week 3](https://hackmd.io/7XxZCUQkRiOq0QnOHDZtaQ?view) @@, you can create this with `conda create -y -n fqc -c bioconda fastqc salmon`.)
+(if you don't have a fqc environment from [week 3](https://github.com/ngs-docs/2020-GGG298/blob/master/Week3-conda_for_software_installation/README.md), you can create this with `conda create -y -n fqc -c bioconda fastqc salmon`.)
 
 We are now set!
 
@@ -424,7 +424,7 @@ There are many advanced features to snakemake, and we'll touch on a few of them 
 
 ### Rule-specific conda environments with `conda:` and `--use-conda`
 
-If you specify a [conda environment file](https://hackmd.io/7XxZCUQkRiOq0QnOHDZtaQ?view#Making-and-using-environment-files) @@, in an `conda:` block in a rule, and run conda with `--use-conda`, it will always run that rule in that software environment.
+If you specify a [conda environment file](https://github.com/ngs-docs/2020-GGG298/blob/master/Week3-conda_for_software_installation/README.md#making-and-using-environment-files), in an `conda:` block in a rule, and run conda with `--use-conda`, it will always run that rule in that software environment.
 
 This is useful when you want to version-pin a specific action, and/or have conflicting software in different rules.
 
@@ -543,7 +543,7 @@ snakemake SRR2584857_1.sam
 ```
 which snakemake can use to figure out what the wildcards should be.
 
-An alternative to specifying the file on the command line is to put it in the default rule, e.g. `rule all:` (see [the section on default rules](https://hackmd.io/cGYzxz07SseGxH0y2gjYJw?view#Create-a-good-%E2%80%9Cdefault%E2%80%9D-rule)) @@ and then you can run `snakemake`.
+An alternative to specifying the file on the command line is to put it in the default rule, e.g. `rule all:` (see [the section on default rules in GGG 201(b)](https://hackmd.io/cGYzxz07SseGxH0y2gjYJw?view#Create-a-good-%E2%80%9Cdefault%E2%80%9D-rule)) and then you can run `snakemake`.
 
 
 We can use the `-n` gives a dry run of the Snakefile. For example `snakemake -p -n`

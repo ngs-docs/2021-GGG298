@@ -130,7 +130,7 @@ conda activate fqc
 
 Your prompt should change to have `(fqc)` at the beginning.
 
-Let's run fastqc on a data file! We'll use the [first data file from week 1's RNAseq workflow](https://hackmd.io/kXHoB6g4R92OIOwoNR2vkg) @@, and we'll put it in a directory for this week, just to keep things clean --
+Let's run fastqc on a data file! We'll use the [first data file from week 1's RNAseq workflow](https://github.com/ngs-docs/2020-GGG298/tree/master/Week1-intro), and we'll put it in a directory for this week, just to keep things clean --
 
 ```
 mkdir ~/298class3/
@@ -340,7 +340,7 @@ Some tips and tricks for using bioconda:
 
 ### Exercise: install and run salmon!
 
-Our goal is to find and install salmon, and then run [the quantification step from week 1](https://hackmd.io/kXHoB6g4R92OIOwoNR2vkg) @@.
+Our goal is to find and install salmon, and then run [the quantification step from week 1](https://github.com/ngs-docs/2020-GGG298/tree/master/Week1-intro#run-salmon-individually-on-each-of-the-samples).
 
 The commands we want to run are:
 
