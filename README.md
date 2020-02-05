@@ -26,7 +26,7 @@ Week 3: Conda for software installation -- [outline](https://hackmd.io/To23drs_S
 
 Week 4: Snakemake for workflows -- [outline](https://hackmd.io/UuYTlGyVQ7WLTL-3kX3K5A), [lab notes](https://github.com/ngs-docs/2020-GGG298/tree/master/Week4-snakemake-for-workflows), [reading](http://ivory.idyll.org/blog/2014-function-of-unknown-genes.html), [discussion notes](https://hackmd.io/UuYTlGyVQ7WLTL-3kX3K5A?view)
 
-Week 5: Project organization and more UNIX shell -- outline, lab notes, [reading](https://meaningness.com/metablog/upgrade-your-cargo-cult), [discussion notes](https://hackmd.io/OUmg6hp1S2Gmq-53FxRx9g?view)
+Week 5: Project organization and more UNIX shell -- outline, [lab notes](https://hackmd.io/ppKOha6USvWvk8J6KV9omA), [reading](https://meaningness.com/metablog/upgrade-your-cargo-cult), [discussion notes](https://hackmd.io/OUmg6hp1S2Gmq-53FxRx9g?view)
 
 Week 6: Git and GitHub for file tracking and sharing
 
