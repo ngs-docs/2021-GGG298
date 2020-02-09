@@ -30,7 +30,7 @@ Week 5: Project organization and more UNIX shell -- [outline](https://hackmd.io/
 
 Week 6: Git and GitHub for file tracking and sharing -- [outline](https://hackmd.io/iuqXzr0RRw-M8rLbWjvuJg?view)
 
-Week 7: Slurm and the Farm cluster for doing analysis
+Week 7: Slurm and the Farm cluster for doing analysis -- [outline](https://hackmd.io/Iy-YHQuPRGWILNV5F_A5lA?view)
 
 Week 8: TBD
 
