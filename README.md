@@ -28,7 +28,7 @@ Week 4: Snakemake for workflows -- [outline](https://hackmd.io/UuYTlGyVQ7WLTL-3k
 
 Week 5: Project organization and more UNIX shell -- [outline](https://hackmd.io/jSF2sFcgS02yuc3gW7RqzQ), [lab notes](https://github.com/ngs-docs/2020-GGG298/tree/master/Week5-project_organization_and_UNIX_shell/README.md), [reading](https://meaningness.com/metablog/upgrade-your-cargo-cult), [discussion notes](https://hackmd.io/DYbcnnfvTeyBpABx72xJGQ)
 
-Week 6: Git and GitHub for file tracking and sharing
+Week 6: Git and GitHub for file tracking and sharing -- [outline](https://hackmd.io/iuqXzr0RRw-M8rLbWjvuJg?view)
 
 Week 7: Slurm and the Farm cluster for doing analysis
 
