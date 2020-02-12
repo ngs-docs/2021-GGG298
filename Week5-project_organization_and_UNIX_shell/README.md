@@ -342,6 +342,13 @@ Let's look at the [samtools](http://www.htslib.org/) steps that happen in our Sn
 
 ### Renaming a bunch of files
 
+Let's grab some data:
+```
+wget https://s3-us-west-1.amazonaws.com/dib-training.ucdavis.edu/shell-data.zip
+unzip shell-data.zip
+cd data/MiSeq
+```
+
 For our first task, let's pretend that we want to rename all of the fastq files to be `.fq` files instead (this is a surprisingly useful specific skill, even if you can't immediately think of why you would want to do that!).  Here, we get to use two of my favorite commands - 'for' and 'basename'.
 
 `for` lets you do something to every file in a list.  To see it in action:
