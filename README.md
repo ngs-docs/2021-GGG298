@@ -30,7 +30,7 @@ Week 5: Project organization and more UNIX shell -- [outline](https://hackmd.io/
 
 Week 6: Git and GitHub for file tracking and sharing -- [outline](https://hackmd.io/iuqXzr0RRw-M8rLbWjvuJg?view), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week6-Git_and_GitHub_for_file_tracking_and_sharing/README.md), [discussion notes](https://hackmd.io/iuqXzr0RRw-M8rLbWjvuJg)
 
-Week 7: Slurm and the Farm cluster for doing analysis -- [outline](https://hackmd.io/Iy-YHQuPRGWILNV5F_A5lA?view)
+Week 7: Slurm and the Farm cluster for doing analysis -- [outline](https://hackmd.io/Iy-YHQuPRGWILNV5F_A5lA?view), [reading](https://hackmd.io/GOM86OhHQ-WKdwxCk1Xtyw?view#Friday-discussion---221)
 
 Week 8: TBD
 
