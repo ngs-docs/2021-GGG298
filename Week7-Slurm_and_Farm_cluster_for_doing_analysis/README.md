@@ -62,6 +62,8 @@ When we submit a script to slurm it is considered a _job_ and gets a unique `job
 First,  to play around with `sbatch` let's create a script called **HelloWorld.sh**.
 
 ```
+mkdir -p ~/298class7
+cd ~/298class7
 nano HelloWorld.sh
 ```
 
@@ -92,7 +94,7 @@ sbatch: error: Batch job submission failed: Requested time limit is invalid (mis
 In order to handle jobs, Slurm needs to know the maximum amount of **walltime** your job will run. Walltime can be thought of as the amount of time from the start of your code running to when the last command in your script finishes. We can tell Slurm how much time to allow our submitted script by using the `-t` flag. Let's tell Slurm that our job _shouldn't_ take longer than 5 minutes (note: the format is `dd-hh:mm:ss`).
 
 ```
-sbatch -t 00-00:06:00 HelloWorld.sh
+sbatch -t 00-00:06:00 -p bmh HelloWorld.sh
 ``` 
 
 You will see your job was successfully submitted and will be given an associated Job ID number `Submitted batch job 15219016`
@@ -116,7 +118,7 @@ We can use a number of different flags to specify resources we want from Slurm:
 
 If we were hard to ourselves we would write these out at the command line each time we submitted a job to slurm with `sbatch`. It would look something like this:
 ```
-sbatch --time=01-02:03:04 -p high --mem=4Gb --mail-user=<your_email> --mail-type=ALL -J <job_name> -o <file_name>.out -e <file_name>.err
+sbatch --time=01-02:03:04 -p bmh --mem=4Gb --mail-user=<your_email> --mail-type=ALL -J <job_name> -o <file_name>.out -e <file_name>.err
 ```
 We would need to switch out all of the `<text>` with parameters specific to our preference, but hopefully you get the gist. 
 
@@ -139,7 +141,7 @@ Let's save the parameters we used to run `HelloWorld.sh` within the batch script
 ```
 #!/bin/bash
 #
-#SBATCH --mail-user=<email>@ucdavis.edu        # YOUR EMAIL ADDRESS
+#SBATCH --mail-user=<email>@ucdavis.edu         # YOUR EMAIL ADDRESS
 #SBATCH --mail-type=ALL                         # NOTIFICATIONS OF SLURM JOB STATUS - ALL, NONE, BEGIN, END, FAIL, REQUEUE
 #SBATCH -J HelloWorld                           # JOB ID
 #SBATCH -e HelloWorld.j%j.err                   # STANDARD ERROR FILE TO WRITE TO
@@ -148,7 +150,7 @@ Let's save the parameters we used to run `HelloWorld.sh` within the batch script
 #SBATCH --ntasks=1                              # MINIMUM NUMBER OF NODES TO ALLOCATE TO JOB
 #SBATCH --mem=1Gb                               # MEMORY POOL TO ALL CORES
 #SBATCH --time=00-00:11:00                      # REQUESTED WALL TIME
-#SBATCH -p low                                  # PARTITION TO SUBMIT TO
+#SBATCH -p bmh                                  # PARTITION TO SUBMIT TO
 
 echo Hello World
 sleep 1m
@@ -164,6 +166,8 @@ sbatch HelloWorld.sh
 
 Once our scripts run, we should see the following files in our current directory: `HelloWorld.j#######.err` and `HelloWorld.j#######.out` these are output from running a batch job with slurm! 
 
+#### A _real_ example
+
 Let's play around with a sample workflow of an E. coli genome assembly.
 
 First, clone or update your GGG298 repos:
@@ -174,7 +178,7 @@ cd 2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/assembly
 ```
 If you've previously cloned the repository, change directories into the repository and pull down the newest version with `git pull` then navigate into the assembly directory.
 
-Second, we can create & setup a conda environment (if you've created this environment from 201b, skip the next command):
+Second, we must create & setup a conda environment (if you've created this environment from 201b, skip the next command):
 ```
 conda create -y -n assembly -c conda-forge -c bioconda prokka megahit snakemake-minimal
 ```
@@ -240,7 +244,7 @@ squeue -u <username>
 
 ```
          JOBID PARTITION     NAME     USER ST        TIME  NODES CPU MIN_ME NODELIST(REASON)
-      15219530       med Hello sejoslin  R        0:28      1 1   2000M  c11-72
+      15219530       bmh ggg298-a ggg298-4  R        0:28      1 8   10G  bm14
 ```
 Much better!! 
 
@@ -310,7 +314,9 @@ As in all computational steps, there are a number of different ways to go about 
    * pros: smallest compressed files, decompression speed similar to gzip
    * cons: memory intensive to compress, not found on all systems (but on the farm!)
    
-**CHALLENGE** Your experiment is over. Tidy up your workspace by compressing or deleting files you will no longer use.
+**CHALLENGE** Your experiment is over. Tidy up your workspace by compressing or deleting files you will no longer use or need access to.
+* What file(s) did you compress? 
+* How small did you make your directory?
 
 
 ### Nodes vs CPUs vs tasks
