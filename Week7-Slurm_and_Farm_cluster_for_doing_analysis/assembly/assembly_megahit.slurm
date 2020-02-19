@@ -1,11 +1,13 @@
 #!/bin/bash -login
-#SBATCH -p bmh                 # partition, or queue, to assign to
-#SBATCH -J ggg298-assembly     # name for job
-#SBATCH -N 1                   # one "node", or computer
-#SBATCH -n 1                   # one task for this node
-#SBATCH -c 8                   # eight cores per task
-#SBATCH -t 0:30:00             # ask for no more than 30 minutes
-#SBATCH --mem=10gb             # ask for no more than 10 GB of memory
+#SBATCH -p bmh                      # partition, or queue, to assign to
+#SBATCH -J ggg298-assembly          # name for job
+#SBATCH -o assembly_megahit.j%j.out # file to write STDOUT to
+#SBATCH -e assembly_megahit.j%j.err # file to write error output to
+#SBATCH -N 1                        # one "node", or computer
+#SBATCH -n 1                        # one task for this node
+#SBATCH -c 8                        # eight cores per task
+#SBATCH -t 0:30:00                  # ask for no more than 30 minutes
+#SBATCH --mem=10gb                  # ask for no more than 10 GB of memory
 
 # initialize conda
 . ~/miniconda3/etc/profile.d/conda.sh
