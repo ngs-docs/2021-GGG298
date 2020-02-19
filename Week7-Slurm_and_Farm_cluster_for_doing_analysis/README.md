@@ -2,7 +2,7 @@
 
 ## What is a cluster?
 
-A cluster can be thought of as a group of computers which work together to allow you to log onto one computer (**head node**) and use resources to perform memory intensive functions from other connected computers.
+A cluster can be thought of as a group of computers which work together to allow you to perform memory intensive functions. Clusters are accessed by logging onto one computer (**head node**) and resources (other computers) are acquired by asking for resources from job schedulers.
 
 <center><img src="https://i.imgur.com/2nl5zzP.png" width="80%"></a></center>
 
@@ -48,20 +48,18 @@ srun --time=02:00:00 --pty /bin/bash
 Pay close attention to the time you give to yourself using `srun`! Slurm will terminate the session immediately at the end of the allotted time. It, sadly, doesn't care if you are 99.99% of the way through your analysis :/
 
 Also, you can request more/different resources by using to following flags:
-* `--mem=<number>Gb` = request memory
+* `--mem=<number>Gb` = request a certain amount of memory
 * `-c <number>` = request a certain number of CPUs
 * `--pty R` = request an interactive R session
 
 
 #### 2. Submit batch scripts with `sbatch`
 
-Batch job scripts (also known as job scripts) are scripts that contain `#!/bin/bash` at the beginning of each script and are submitted to the slurm workload manager by using `sbatch`. They are scripts that contain code usually written in `bash`. We can use most commands (and a few more) that we would use at the command line within our `sbatch` script.
+Batch job scripts (also known as job scripts) are scripts that contain `#!/bin/bash` at the beginning of each script and are submitted to the slurm workload manager by using `sbatch`. They are scripts that contain code usually written in `bash`. We can use most commands (and a few more) that we would use at the command line within our `sbatch` scripts.
 
-When we submit a script to slurm it is considered a _job_ and gets a unique _job ID_ assigned to it.
+When we submit a script to slurm it is considered a _job_ and gets a unique `job_ID` assigned to it.
 
-
-
-First, let's create a script called **HelloWorld.sh**.
+First,  to play around with `sbatch` let's create a script called **HelloWorld.sh**.
 
 ```
 nano HelloWorld.sh
@@ -136,17 +134,7 @@ In the best case (of this terrible scenario) we would have a script to recreate 
 
 We can do this by adding **#SBATCH** lines of code after the shebang line (`#!/bin/bash`) in our script.
 
-Let's run an E. coli genome assembly! 
-
-First, we can create & setup a conda environment (some of you may have this from 201b):
-```
-conda create -y -n assembly -c conda-forge -c bioconda prokka megahit snakemake-minimal
-```
-
-
-
-
-
+Let's save the parameters we used to run `HelloWorld.sh` within the batch script.
 
 ```
 #!/bin/bash
@@ -160,25 +148,55 @@ conda create -y -n assembly -c conda-forge -c bioconda prokka megahit snakemake-
 #SBATCH --ntasks=1                              # MINIMUM NUMBER OF NODES TO ALLOCATE TO JOB
 #SBATCH --mem=1Gb                               # MEMORY POOL TO ALL CORES
 #SBATCH --time=00-00:11:00                      # REQUESTED WALL TIME
-#SBATCH -p low                                 # PARTITION TO SUBMIT TO
+#SBATCH -p low                                  # PARTITION TO SUBMIT TO
 
 echo Hello World
-sleep 10m
+sleep 1m
 date
 ```
 
 Make sure to replace your `<email>` with your UC Davis email address.
 
+Then submit your script:
+```
+sbatch HelloWorld.sh
+```
+
+Once our scripts run, we should see the following files in our current directory: `HelloWorld.j#######.err` and `HelloWorld.j#######.out` these are output from running a batch job with slurm! 
+
+Let's play around with a sample workflow of an E. coli genome assembly.
+
+First, clone or update your GGG298 repos:
+```
+cd ~
+git clone https://github.com/ngs-docs/2020-GGG298.git
+cd 2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/assembly
+```
+If you've previously cloned the repository, change directories into the repository and pull down the newest version with `git pull` then navigate into the assembly directory.
+
+Second, we can create & setup a conda environment (if you've created this environment from 201b, skip the next command):
+```
+conda create -y -n assembly -c conda-forge -c bioconda prokka megahit snakemake-minimal
+```
+
+Next, test the syntax of the batch script by running the bash script locally:
+```
+bash assembly_megahit.slurm
+```
+Note that we get an error where we are calling on some slurm-specific variables. That is okay for now cause we didn't submit the job to slurm!
+Another way of checking syntax is through the use of [shell check](https://www.shellcheck.net/), a tool to find bugs in your bash scripts. (You will have to copy and paste your script into the box on the web browser.)
+
+Currently we are having snakemake carry out a dry run of the assembly. To actually carry out an assembly use `nano assembly_megahit.slurm` to remove the `-n` from the snakemake line.
+
+Now let's run the assembly as a batch job submitted to slurm!
+```
+sbatch assembly_megahit.slurm
+```
+
 
 #### Monitor your jobs with `squeue`
 
 Oftentimes we submit jobs and would like to know certain things about them -- if they've started, how long they've been running, if they are _still_ running, etc, etc... We can look at the status of any job Slurm is handling by using `squeue`
-
-Let's submit the `HelloWorld.sh` to slurm:
-
-```
-sbatch HelloWorld.sh
-```
 
 If we type
 
@@ -261,8 +279,9 @@ To cancel all of the jobs that belong to you, use the `-u`flag.
 squeue -u <username>
 ```
 
-There are any number of ways to cancel jobs. You can by job name with `-n`, partition name `-p`, account `-A` and can use regular expressions to cancel a list of jobs. Be careful how you cancel!
+There are any number of ways to cancel jobs. You can by job name with `-n`, partition name `-p`, account `-A` and can use regular expressions to cancel a list of jobs. BUT be careful how you cancel!
 
+**CHALLENGE** Create your own slurm script and run the fastqc snakemake worklflow located in the `~/2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/fastqc` directory. 
 
 
 
@@ -290,6 +309,9 @@ As in all computational steps, there are a number of different ways to go about 
 * `lzma`
    * pros: smallest compressed files, decompression speed similar to gzip
    * cons: memory intensive to compress, not found on all systems (but on the farm!)
+   
+**CHALLENGE** Your experiment is over. Tidy up your workspace by compressing or deleting files you will no longer use.
+
 
 ### Nodes vs CPUs vs tasks
 
@@ -302,4 +324,3 @@ The `-c` flag will adjust the number of CPUs per process. Alter this if the job 
 The `-n` flag will determine the number of tasks to run. The default Slurm setting is one task per node but is adjusted when using -c. 
 
 <center><img src="https://i.imgur.com/4cercJV.png" width="50%"></a></center>
-
