@@ -280,7 +280,7 @@ scancel <job_ID>
 
 To cancel all of the jobs that belong to you, use the `-u`flag.
 ```
-squeue -u <username>
+scancel -u <username>
 ```
 
 There are any number of ways to cancel jobs. You can by job name with `-n`, partition name `-p`, account `-A` and can use regular expressions to cancel a list of jobs. BUT be careful how you cancel!
