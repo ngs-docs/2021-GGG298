@@ -55,7 +55,11 @@ Also, you can request more/different resources by using to following flags:
 
 #### 2. Submit batch scripts with `sbatch`
 
-Batch job scripts (also known as job scripts) are scripts that contain `#!/bin/bash` at the beginning of each script and are submitted to the slurm workload manager by using `sbatch`. When we submit a script to slurm it is considered a _job_ and gets a unique _job ID_ assigned to it.
+Batch job scripts (also known as job scripts) are scripts that contain `#!/bin/bash` at the beginning of each script and are submitted to the slurm workload manager by using `sbatch`. They are scripts that contain code usually written in `bash`. We can use most commands (and a few more) that we would use at the command line within our `sbatch` script.
+
+When we submit a script to slurm it is considered a _job_ and gets a unique _job ID_ assigned to it.
+
+
 
 First, let's create a script called **HelloWorld.sh**.
 
@@ -107,7 +111,7 @@ We can use a number of different flags to specify resources we want from Slurm:
         * 9 nodes with 64 CPUs and 512GB 
         * 1 node with 96 CPUs and 1024GB 
 * the **memory** required to run our job. We can request a specified amount of time with the following flag: `--mem=<number>Gb`
-* we can have slurm **mail** us updates about our job, such as when it starts(`BEGIN`), ends(`END`), if it fails(`FAIL`) or all of the above (`ALL`). We can request slurm emails us with the following flags: `--mail-user=<your_email> --mail-type=ALL`
+* we can have slurm **mail** us updates about our job, such as when it starts(`BEGIN`), ends(`END`), if it fails(`FAIL`) or all of the above (`ALL`). There are many other mail-type arguements: REQUEUE, ALL, TIME_LIMIT, TIME_LIMIT_90 (reached 90 percent of time limit), TIME_LIMIT_80 (reached 80 percent of time limit), TIME_LIMIT_50 (reached 50 percent of time limit) and ARRAY_TASKS. We can request slurm emails us with the following flags: `--mail-user=<your_email> --mail-type=<argument>`
 * we can also give jobs specific **names**. To name your job use: `-J <job_name>` Be careful, as there is a limit to the number of characters your job name can be.
 * slurm automatically generates **output scripts** where all of the output from commands run from the script are printed to. These will take the form as `slurm12345.out` where 12345 is an identifying number slurm assigns to the file. We can change this to any output file name we want. To specify the name of your output file use `-o <file_name>.out`
 * slurm can generate **error files**, where all of the errors from the script are printed to. We can ask slurm to create err files and name them with `-e <file_name>.err`
@@ -116,9 +120,9 @@ If we were hard to ourselves we would write these out at the command line each t
 ```
 sbatch --time=01-02:03:04 -p high --mem=4Gb --mail-user=<your_email> --mail-type=ALL -J <job_name> -o <file_name>.out -e <file_name>.err
 ```
-We will ned to switch out all of the `<text>` with parameters specific to our preference, but hopefully you get the gist. We can make this easier on ourselves: typing all of the parameters out on the command line everytime we want to submit a batch script is annoying and it also doesn't allow us to record what parameters we used easily.
+We would need to switch out all of the `<text>` with parameters specific to our preference, but hopefully you get the gist. 
 
-Luckily there is a way to put the parameters for each job in the script we submit to slurm!
+Let's make this easier on ourselves: typing all of the parameters out on the command line everytime we want to submit a batch script is annoying and it also doesn't allow us to record what parameters we used easily. We can put the parameters to run each job in the script we submit to slurm!
    
 
 
@@ -131,6 +135,18 @@ Let's say we lost everything except our backed up raw data and we needed to recr
 In the best case (of this terrible scenario) we would have a script to recreate our analysis! So, we can make this easy for our _future_ forgetful-selves and put all of the flags and commands we submit to Slurm INSIDE our batch scripts!
 
 We can do this by adding **#SBATCH** lines of code after the shebang line (`#!/bin/bash`) in our script.
+
+Let's run an E. coli genome assembly! 
+
+First, we can create & setup a conda environment (some of you may have this from 201b):
+```
+conda create -y -n assembly -c conda-forge -c bioconda prokka megahit snakemake-minimal
+```
+
+
+
+
+
 
 ```
 #!/bin/bash
@@ -187,10 +203,16 @@ then we see _many_ rows of jobs...
 
 This is a list of **ALL** the jobs currently submitted to Slurm -- which usually quite a few! And often we won't be able to scroll through the list to find our job(s). So, in order to only see your own job(s) we can specify a **username**:
 
-To find your username you can use the `whoami` command:
+If you don't know your username, you can find it in a couple of ways:
+1. the `whoami` command:
 ```
 whoami
 ```
+2. with  $USER
+```
+echo $USER
+```
+Note: there are subtle differences between the two. The `whoami` command displays the effective user id at the time the command is entered. The `$USER` is an environment variable that is set by the shell--it won't work on all operating systems but it works great here!
 
 We can use the output of this to see the status of the jobs associated with a particular username:
 
@@ -214,6 +236,10 @@ If you do not know what group you are a part of, you can check!
 groups
 ```
 
+```
+squeue -A ggg298
+```
+
 You can also check on the status of particular partitions:
 ```
 squeue -p <partition_name>
@@ -235,27 +261,42 @@ To cancel all of the jobs that belong to you, use the `-u`flag.
 squeue -u <username>
 ```
 
+There are any number of ways to cancel jobs. You can by job name with `-n`, partition name `-p`, account `-A` and can use regular expressions to cancel a list of jobs. Be careful how you cancel!
+
 
 
 
 ### Space Issues
 
-Each group only has so much space on the cluster. Memory can be bought but it is good practice to always compress and delete files as we run analyses. That way, we won't have an extra terrabyte of unnecessary sequence data files hanging around.  
+Each group only has so much space on the cluster. Memory can be bought but it is good practice to always compress and delete files as you run analyses. That way, there won't be an extra terrabyte of unnecessary sequence data files hanging around.  
 
-* space left for group
+To check the amount of space you have left as a group use:
 ```
 df -h | grep <username>
 ```
-* how much space you are taking up
+
+It is also useful to know how much space you are taking up:
 ```
 du -d 0 -h
 ``` 
 
+As in all computational steps, there are a number of different ways to go about compressing files. 
+* `gzip`
+   * pros: fastest compression & decompression, small memory footprint 
+   * cons: compressed files are not as small
+* `bz2`
+   * pros: middle sized compression ratio
+   * cons: slower than both gzip and lzma
+* `lzma`
+   * pros: smallest compressed files, decompression speed similar to gzip
+   * cons: memory intensive to compress, not found on all systems (but on the farm!)
+
 ### Nodes vs CPUs vs tasks
 
-* **Node**: A physical box that connects memory systems with extension cards and CPU cores. (On Barbera you can only request **one** node or else your job will fail)
+* **Node**: A physical box that connects memory systems with extension cards and _CPU cores_. 
 * **CPU Core**: An independent computing unit that can access a certain number of _CPU threads_ with all the threads having independent input streams but sharing the core's total memory.
-* **tasks**: This is 
+* **tasks**: Most bioinformatics software use tasks. A task is an object that represents work that needs to be done. 
+
 
 The `-c` flag will adjust the number of CPUs per process. Alter this if the job is multithreaded and requires more than one CPU per task to perform optimally. If this option is specified without the -n flag, then as many tasks will be allocated to per node as possible.
 The `-n` flag will determine the number of tasks to run. The default Slurm setting is one task per node but is adjusted when using -c. 
