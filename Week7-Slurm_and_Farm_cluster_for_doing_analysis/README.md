@@ -315,8 +315,8 @@ As in all computational steps, there are a number of different ways to go about 
    * cons: memory intensive to compress, not found on all systems (but on the farm!)
    
 **CHALLENGE** Your experiment is over. Tidy up your workspace by compressing or deleting files you will no longer use or need access to.
-* What file(s) did you compress? 
-* How small did you make your directory?
+* What file(s) and/or directories did you modify? 
+* How small is your final directory?
 
 
 ### Nodes vs CPUs vs tasks
