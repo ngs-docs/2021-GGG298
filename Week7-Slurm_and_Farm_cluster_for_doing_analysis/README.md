@@ -12,13 +12,13 @@ Image modified from [vrlab](http://www.vrlab.umu.se/documentation/guides/beginne
 
 ### Job Schedulers
 
-In order to carry out commands that are memory intensive we need to use auxillary computers that will not affect the login/head node. **NOTE:** sometimes merely copying large files is memory intensive enough that we will need to use computers other than the head node! To request resources to run our scripts we use _job schedulers_. Job schedulers handle how to allocate the compute cluster's resources to batch job scripts submitted by users.
+In order to carry out commands that are memory intensive we need to use auxiliary computers that will not affect the login/head node. **NOTE:** sometimes merely copying large files is memory intensive enough that we will need to use computers other than the head node! To request resources to run our scripts we use _job schedulers_. Job schedulers handle how to allocate the compute cluster's resources to batch job scripts submitted by users.
 
 There are a number of different flavors of job schedulers. The job scheduler you will be submitting jobs to is specific to the cluster you are using at your institution but they all have the following general structure:
 
 ![](https://i.imgur.com/9rSbIxR.png)
 
-The job scheduler evaulates when resources will be dedicated to a job based on the:
+The job scheduler evaluates when resources will be dedicated to a job based on the:
 * partition & priority (`-p`)
 * how much of  the group's resources are already being used
 * requested wall time (`-t`)
@@ -77,7 +77,7 @@ sleep 1m
 date
 ```
 
-Then exit nano with <kbd>Crtl+Q</kbd>
+Then exit nano with <kbd>Ctrl+X</kbd>
 
 We can submit this script to **Slurm** with the `sbatch` command.
 
@@ -111,7 +111,7 @@ We can use a number of different flags to specify resources we want from Slurm:
         * 9 nodes with 64 CPUs and 512GB 
         * 1 node with 96 CPUs and 1024GB 
 * the **memory** required to run our job. We can request a specified amount of time with the following flag: `--mem=<number>Gb`
-* we can have slurm **mail** us updates about our job, such as when it starts(`BEGIN`), ends(`END`), if it fails(`FAIL`) or all of the above (`ALL`). There are many other mail-type arguements: REQUEUE, ALL, TIME_LIMIT, TIME_LIMIT_90 (reached 90 percent of time limit), TIME_LIMIT_80 (reached 80 percent of time limit), TIME_LIMIT_50 (reached 50 percent of time limit) and ARRAY_TASKS. We can request slurm emails us with the following flags: `--mail-user=<your_email> --mail-type=<argument>`
+* we can have slurm **mail** us updates about our job, such as when it starts(`BEGIN`), ends(`END`), if it fails(`FAIL`) or all of the above (`ALL`). There are many other mail-type arguments: REQUEUE, ALL, TIME_LIMIT, TIME_LIMIT_90 (reached 90 percent of time limit), TIME_LIMIT_80 (reached 80 percent of time limit), TIME_LIMIT_50 (reached 50 percent of time limit) and ARRAY_TASKS. We can request slurm emails us with the following flags: `--mail-user=<your_email> --mail-type=<argument>`
 * we can also give jobs specific **names**. To name your job use: `-J <job_name>` Be careful, as there is a limit to the number of characters your job name can be.
 * slurm automatically generates **output scripts** where all of the output from commands run from the script are printed to. These will take the form as `slurm12345.out` where 12345 is an identifying number slurm assigns to the file. We can change this to any output file name we want. To specify the name of your output file use `-o <file_name>.out`
 * slurm can generate **error files**, where all of the errors from the script are printed to. We can ask slurm to create err files and name them with `-e <file_name>.err`
@@ -122,11 +122,11 @@ sbatch --time=01-02:03:04 -p bmh --mem=4Gb --mail-user=<your_email> --mail-type=
 ```
 We would need to switch out all of the `<text>` with parameters specific to our preference, but hopefully you get the gist. 
 
-Let's make this easier on ourselves: typing all of the parameters out on the command line everytime we want to submit a batch script is annoying and it also doesn't allow us to record what parameters we used easily. We can put the parameters to run each job in the script we submit to slurm!
+Let's make this easier on ourselves: typing all of the parameters out on the command line every time we want to submit a batch script is annoying and it also doesn't allow us to record what parameters we used easily. We can put the parameters to run each job in the script we submit to slurm!
    
 
 
-#### Repeatibility
+#### Repeatability
 
 One of the most important things in science is repeatability. This sentiment holds true in bioinformatics experiments as well. However, it is exceptionally easy to run a series of command on data, leave the data for a few months (or years) and come back to the data and have no clue how you went from point A to point Z. 
 
@@ -285,13 +285,13 @@ squeue -u <username>
 
 There are any number of ways to cancel jobs. You can by job name with `-n`, partition name `-p`, account `-A` and can use regular expressions to cancel a list of jobs. BUT be careful how you cancel!
 
-**CHALLENGE** Create your own slurm script and run the fastqc snakemake worklflow located in the `~/2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/fastqc` directory. 
+**CHALLENGE** Create your own slurm script and run the fastqc snakemake workflow located in the `~/2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/fastqc` directory. 
 
 
 
 ### Space Issues
 
-Each group only has so much space on the cluster. Memory can be bought but it is good practice to always compress and delete files as you run analyses. That way, there won't be an extra terrabyte of unnecessary sequence data files hanging around.  
+Each group only has so much space on the cluster. Memory can be bought but it is good practice to always compress and delete files as you run analyses. That way, there won't be an extra terabyte of unnecessary sequence data files hanging around.  
 
 To check the amount of space you have left as a group use:
 ```
