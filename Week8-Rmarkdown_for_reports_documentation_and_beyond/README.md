@@ -34,23 +34,26 @@ When an Rmarkdown document is run, it goes through the following steps:
 >Author:  "Shannon E.K. Joslin"  
 >date: "February 26, 2020"  
 >output:  html_document
+>
 >\-\-\-
 
 2. text in Rmarkdown language
 
-> I am going to plot Sepal.length by Sepal.width the iris dataset.
+> I am going to plot Sepal.length by Sepal.width for the iris dataset.
 
 4. code chunks
 
 
 >\```{r chunk_of_code}
- print(iris$Sepal.Width)
+
+print(iris$Sepal.Width)
+
 \```
 
 
 
 ## Creating Rmarkdown documents using Rstudio
-We will create an Rmarkdown document through Rstudio. Note you can create an Rmarkdown script in _any_ text editor, the document just has to render in R/Rstudio.
+We will create an Rmarkdown document through Rstudio. Note: you can create an Rmarkdown script in _any_ text editor, the document will need to be rendered in R/Rstudio.
 
 ### 1. Open file
 
