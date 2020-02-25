@@ -113,6 +113,7 @@ You can set global options for your Rmarkdown document with the following line o
 `knitr::opts_chunk$set(options)`
 
 For example:
+```
 \```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, # display code and results 
                       warning = FALSE, # do not display warnings
@@ -122,6 +123,7 @@ knitr::opts_chunk$set(echo = TRUE, # display code and results
                       fig.path="Figures/",  # Set the figure options
                       fig.align = "center")
 \```
+```
 
 ### 4. Repeat steps 2 & 3 until project is complete!
 
