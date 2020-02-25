@@ -87,7 +87,7 @@ Here's an a [Rmarkdown cheatsheet](https://rstudio.com/wp-content/uploads/2015/0
 
 ### 3. Insert code chunks
 
-Write code to carry out your analysis.
+Write code to carry out your analysis. This can be any code that you would use in R.
 
 #### Code Chunks
 
