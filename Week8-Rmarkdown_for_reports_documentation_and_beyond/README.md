@@ -128,6 +128,29 @@ knitr::opts_chunk$set(echo = TRUE, # display code and results
 
 **Challenge** Create an Rmarkdown pick two graphs from this [Data Visualization with ggplot2](https://www.mailman.columbia.edu/sites/default/files/media/fdawg_ggplot2.html) and create an Rmarkdown document explaining which two plots you picked and your interpretation of what is happening in the plot.
 
+## Rendering from the command line
+
+It is all good and well when we would can run RStudio from our computer but we can't launch RStudio from the farm. So how do we deal with memory intensive analyses? We can run & render our Rmarkdown script from the command line! 
+
+To render a markdown script from the command line, first open up a new terminal, then navigate to the directory with the `Rmd` file.
+
+```
+cd ~/Week8-Rmarkdown_for_reports_documentation_and_beyond/RNAseq_report/
+ls -l
+```
+
+Here we can see that we have the `markdown-angus-rnaseq-viz.Rmd` script that we will be using. SO let's render it from the command line!
+
+```
+echo "rmarkdown::render('markdown-angus-rnaseq-viz.Rmd', clean=TRUE)" | R --slave
+```
+
+Note you can also use:
+```
+Rscript -e "rmarkdown::render('markdown-angus-rnaseq-viz.Rmd', clean=TRUE)"
+```
+
+**CHALLENGE** Logon to the farm and render the `markdown-angus-rnaseq-viz.Rmd` script. (_HINT_ you will need to update the 2020GGG298 GitHub respository using `git pull`)
 
 ## Resources, resources, resources
 * [ANGUS 2017: Rmarkdown RNAseq](https://angus.readthedocs.io/en/2017/rmarkdown_rnaseq.html)
