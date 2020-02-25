@@ -29,6 +29,7 @@ When an Rmarkdown document is run, it goes through the following steps:
 1. YAML header
 
 > \-\-\-
+>
 >title:  "Iris Plot" 
 >Author:  "Shannon E.K. Joslin"  
 >date: "February 26, 2020"  
