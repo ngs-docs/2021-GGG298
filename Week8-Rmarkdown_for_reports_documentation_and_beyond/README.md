@@ -37,19 +37,23 @@ When an Rmarkdown document is run, it goes through the following steps:
 >
 >\-\-\-
 
+
 2. text in Rmarkdown language
 
 > I am going to plot Sepal.length by Sepal.width for the iris dataset.
 
-4. code chunks
 
+3. code chunks
 
 >\```{r chunk_of_code}
+>
+>print(iris$Sepal.Width)
+>
+>\```
 
-print(iris$Sepal.Width)
 
-\```
-
+## Example .Rmd RNAseq experiment
+Launch binder, open up an Rstudio window and let's look at an example Rmarkdown script from the ANGUS course we teach during the summers. 
 
 
 ## Creating Rmarkdown documents using Rstudio
@@ -79,15 +83,11 @@ Note: HackMD is a slightly different language than Rmarkdown but most syntax car
 |_italics_ | \_italics_ |
 |~~strikeout~~ | \~\~strikeout~~ |
 |***bold italics*** | \*\*\*bold italics*** |
-|++Inserted text++ | \+\+Inserted text++ |
-|==highlighted text== | \=\=highlighted text== |
-|super^script^ | super\^script^ |
-|sub~script~ | sub\~script~ |
-|{text|stacked} | \{text|stacked} |
-Here's a long list of just about all the [features in HackMD](https://hackmd.io/features) you could hope for and a [Rmarkdown cheatsheet](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+Here's an a [Rmarkdown cheatsheet](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
 ### 3. Insert code chunks
 
+Write code to carry out your analysis.
 
 #### Code Chunks
 
@@ -104,26 +104,29 @@ Here's a long list of just about all the [features in HackMD](https://hackmd.io/
 |fig.width| width of figures (default is in inches)| 7 |
 |fig.height| height of figures (default is in inches)| 7 |
 |fig.align| axis to align figures| "center", "right", "left" |
-|fig.path| path to the directory where graphics are to be stored | "."
+|fig.path| path to the directory where graphics are to be stored | "." |
 
 Here are more [knit chunk options](http://yihui.name/knitr/options/#chunk_options).
 
 #### Setting global options
+You can set global options for your Rmarkdown document with the following line of code (and using any of options listed above). This is a good place to add something like the path where you would like to save all of your figures or results.
 `knitr::opts_chunk$set(options)`
+
+For example:
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, # display code and results 
+                      warning = FALSE, # do not display warnings
+                      message = FALSE, # do not print messages
+                      engine = "R", # Chunks will always have R code, unless noted
+                      error = TRUE, # display error messages 
+                      fig.path="Figures/",  # Set the figure options
+                      fig.align = "center")
+```
 
 ### 4. Repeat steps 2 & 3 until project is complete!
 
 
-## Example .Rmd RNAseq experiment
-Launch binder and let's look at an example Rmarkdown script: 
-
-```bash
-wget https://github.com/ngs-docs/angus/raw/2017/_static/markdown_tutorial.tar.gz
-tar xvf markdown_tutorial.tar.gz
-```
-
-
-@@put in notes about using on the farm...harder
+**Challenge** Create an Rmarkdown pick two graphs from this [Data Visualization with ggplot2](https://www.mailman.columbia.edu/sites/default/files/media/fdawg_ggplot2.html) and create an Rmarkdown document explaining which two plots you picked and your interpretation of what is happening in the plot.
 
 
 ## Resources, resources, resources
