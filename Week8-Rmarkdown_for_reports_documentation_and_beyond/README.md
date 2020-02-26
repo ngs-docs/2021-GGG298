@@ -126,7 +126,7 @@ knitr::opts_chunk$set(echo = TRUE, # display code and results
 ### 4. Repeat steps 2 & 3 until project is complete!
 
 
-**Challenge** Create an Rmarkdown pick two graphs from this [Data Visualization with ggplot2](https://www.mailman.columbia.edu/sites/default/files/media/fdawg_ggplot2.html) and create an Rmarkdown document explaining which two plots you picked and your interpretation of what is happening in the plot.
+**Challenge** Pick two graphs from this [Data Visualization with ggplot2](https://www.mailman.columbia.edu/sites/default/files/media/fdawg_ggplot2.html) and create an Rmarkdown document explaining which two plots you picked and your interpretation of what is happening in the plot. Don't forget to insert a bit of markdown magic in your narrative text! Render the file and send the `.html` file to sejoslin@ucdavis.edu a subject line titled "GGG298-Rmarkdown Iris Plots"
 
 ## Rendering from the command line
 
@@ -150,7 +150,6 @@ Note you can also use:
 Rscript -e "rmarkdown::render('markdown-angus-rnaseq-viz.Rmd', clean=TRUE)"
 ```
 
-**CHALLENGE** Logon to the farm and render the `markdown-angus-rnaseq-viz.Rmd` script. (_HINT_ you will need to update the 2020GGG298 GitHub respository using `git pull`)
 
 ## Resources, resources, resources
 * [ANGUS 2017: Rmarkdown RNAseq](https://angus.readthedocs.io/en/2017/rmarkdown_rnaseq.html)
