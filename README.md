@@ -32,7 +32,7 @@ Week 6: Git and GitHub for file tracking and sharing -- [outline](https://hackmd
 
 Week 7: Slurm and the Farm cluster for doing analysis -- [outline](https://hackmd.io/Iy-YHQuPRGWILNV5F_A5lA?view), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week7-Slurm_and_Farm_cluster_for_doing_analysis/README.md), [reading](https://hackmd.io/GOM86OhHQ-WKdwxCk1Xtyw?view#Friday-discussion---221)
 
-Week 8: R/Rmarkdown for Reports, Documentation and beyond -- [outline](https://hackmd.io/FxdMZvJdTBy5r2Um4KeMjw), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week8-Rmarkdown_for_reports_documentation_and_beyond), [reading](https://www.worldscientific.com/doi/pdf/10.1142/9789813235533_0008)
+Week 8: R/Rmarkdown for Reports, Documentation and beyond -- [outline](https://hackmd.io/FxdMZvJdTBy5r2Um4KeMjw), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week8-Rmarkdown_for_reports_documentation_and_beyond), [reading](https://www.worldscientific.com/doi/pdf/10.1142/9789813235533_0008), [discussion notes](https://hackmd.io/z9GLXC_WS8-MTAAZhkgCMw)
 
 Week 9: TBD
 
