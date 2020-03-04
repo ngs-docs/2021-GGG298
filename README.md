@@ -34,6 +34,6 @@ Week 7: Slurm and the Farm cluster for doing analysis -- [outline](https://hackm
 
 Week 8: R/Rmarkdown for Reports, Documentation and beyond -- [outline](https://hackmd.io/FxdMZvJdTBy5r2Um4KeMjw), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week8-Rmarkdown_for_reports_documentation_and_beyond), [reading](https://www.worldscientific.com/doi/pdf/10.1142/9789813235533_0008), [discussion notes](https://hackmd.io/z9GLXC_WS8-MTAAZhkgCMw)
 
-Week 9: TBD
+Week 9: Integrating it all: a sourmash project! -- [outline](https://hackmd.io/juznPUnSRmWJlJ00SCJsUA?view), [lab notes](https://hackmd.io/XgI03HNBRtS6kyKcycKFLA?view), [reading](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0088889), [discussion notes](https://hackmd.io/juznPUnSRmWJlJ00SCJsUA?view)
 
 Week 10: TBD
