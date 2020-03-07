@@ -19,7 +19,7 @@
   <a rel="dct:publisher"
      href="mailto:sejoslin@ucdavis.edu">
     <span property="dct:title">Shannon Joslin</span></a>
-  has waived all copyright and related or neighboring rights to
+  have waived all copyright and related or neighboring rights to
   <span property="dct:title">GGG 298, Winter 2020 at UC Davis</span>.
 This work is published from:
 <span property="vcard:Country" datatype="dct:ISO3166"
