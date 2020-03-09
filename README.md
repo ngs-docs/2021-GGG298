@@ -59,4 +59,4 @@ Week 8: R/Rmarkdown for Reports, Documentation and beyond -- [outline](https://h
 
 Week 9: Integrating it all: a sourmash project! -- [outline](https://hackmd.io/juznPUnSRmWJlJ00SCJsUA?view), [lab notes](https://hackmd.io/XgI03HNBRtS6kyKcycKFLA?view), [reading](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0088889), [discussion notes](https://hackmd.io/juznPUnSRmWJlJ00SCJsUA?view)
 
-Week 10: TBD
+Week 10: Advanced intro UNIX and integration -- [outline](https://hackmd.io/NkDTSmHBT-Gut6yCgCSAXQ)
