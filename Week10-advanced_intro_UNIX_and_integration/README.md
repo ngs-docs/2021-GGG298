@@ -28,9 +28,10 @@
 
 ### Renaming a bunch of files
 
-Let's grab some data:
+Let's make a directory and grab some data:
 ```
-mkdir ~298week10
+mkdir ~/298week10
+cd ~/298week10
 wget https://s3-us-west-1.amazonaws.com/dib-training.ucdavis.edu/shell-data.zip
 unzip shell-data.zip
 cd data/MiSeq
