@@ -1,11 +1,14 @@
 # Advanced Intro UNIX and integration
 
-## Learning Objectives
-----------------------
-* 
+### Learning Objectives
+
+* complete a project integrating conda, snakemake, and version control
+* acquire a few more UNIX tips & tricks
+* know available paths for continued learning and teaching 
 
 
 ## Part 1: Sourmash project revisited
+-------------------------------------
 
 [Let's pick up our sourmash project where we ended last week.](https://hackmd.io/XgI03HNBRtS6kyKcycKFLA?view#4-Add-your-files-to-git-and-push-to-github)
 
@@ -15,17 +18,19 @@
 ## Part 2: File Manipulation
 -------------------------------
 
-### Learning Goals
+### Section Goal
 * combine commands to carry out a sequence of steps with `|`
 * redirect output of commands to files with `>`
 * increase exposure to regular expressions
 * commands `for`, `basename`, `echo`
+
 ------------------------------------------
 
 ### Renaming a bunch of files
 
 Let's grab some data:
 ```
+mkdir ~298week10
 wget https://s3-us-west-1.amazonaws.com/dib-training.ucdavis.edu/shell-data.zip
 unzip shell-data.zip
 cd data/MiSeq
