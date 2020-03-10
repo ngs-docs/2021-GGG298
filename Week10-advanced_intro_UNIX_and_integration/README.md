@@ -186,7 +186,7 @@ head F3D0_S188_L001_R1.fq
 
 you'll see that it's full of FASTQ sequencing records.  Often I want to run a bioinformatices pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands works. So I'd like to subset all of these files without modifying the originals.
 
-First, let's make sure the originals are read-only
+First, make sure the originals are read-only
 
 ```
 chmod u-w *.fq
@@ -209,7 +209,7 @@ do
 done
 ```
 
-If that command looks right, run it for realz:
+If that command looks right, run it for real:
 
 ```
 for i in *.fq
@@ -224,37 +224,45 @@ and voila, you have your subsets!
 
 ----
 
-**CHALLENGE:** Can you rename all of your files in subset/ to have 'subset.fq' at the end?
+**CHALLENGE:** Can you rename all of your files in subset/ to have `subset.fq` at the end?
 
-(Work in small groups; start from working code; there are several ways to do it; all that matters is getting there!)
 
 A little backtracking...
 ------------------------
 
 Variables:
 
-You can use either $varname or ${varname}.  The latter is useful when you want to construct a new filename, e.g.
+You can use either $varname or ${varname}.  The latter is useful when you want to call on a variable between characters of text.
 
+Let's say we had a variable called varname
 ```
-   MY${varname}SUBSET
-```
-
-would expand ${varname} and then put MY .. SUBSET on either end, while 
-
-```
-MY$varnameSUBSET
+varname="LLOW"
 ```
 
-would try to put MY in front of $varnameSUBSET which won't work.
+
+```
+ echo HE${varname}ORLD
+```
+
+would expand ${varname} and then put HE .. ORLD on either end of the variable, while 
+
+```
+echo HE$varnameORLD
+```
+
+would try to put HE in front of the variable $varnameORLD which won't work/ doesn't exist.
 
 (Unknown/uncreated variables are empty.)
+
+We can also put the variable in quotes:
+```
+echo HE"$varname"ORLD
 
 NOTE: `${varname}` is quite different from `$(expression)`! The former is replaced by the value assigned to `varname`; the latter is replaced by the result of running `expression`. So, both _replace_ but they do different things. Think of `$` here as meaning, "replace me with something".
 
 ---
 
-We used "$varname" above - what happens if we use single quotes -
-e.g. '$varname'?
+***Question*** We used ${varname} and "$varname" above - what happens if we use single quotes - e.g. '$varname'?
 
 (Variables are interpreted inside of "", and not inside of ''.)
 
