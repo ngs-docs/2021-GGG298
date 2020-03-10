@@ -39,7 +39,9 @@ unzip shell-data.zip
 cd data/MiSeq
 ```
 
-For our first task, let's pretend that we want to rename all of the fastq files to be `.fq` files instead (this is a surprisingly useful specific skill, even if you can't immediately think of why you would want to do that!).  Here, we get to use two of my favorite commands - 'for' and 'basename'.
+Go ahead and look at what is in our current directory by using the `ls` command.
+
+For our first task, let's pretend that we want to rename all of the fastq files to be `.fq` files instead (this is a surprisingly useful specific skill, even if you can't immediately think of why you would want to do that!).  Here, we get to use two of my favorite commands - `for` and `basename`.
 
 `for` lets you do something to every file in a list.  To see it in action:
 
@@ -50,7 +52,7 @@ do
 done
 ```
 
-This is running the command `echo` for every value of the variable 'i', which is set (one by one) to all the values in the expression `*.fastq`.
+This is running the command `echo` for every value of the variable `i`, which is set (one by one) to all the values in the expression `*.fastq`.
 
 If we want to get rid of the extension '.fastq', we can use the `basename` command:
 
@@ -61,7 +63,7 @@ do
 done
 ```
 
-Now, this doesn't actually rename the files - it just prints out the name, with the suffix '.fastq' removed.  To rename the files, we need to capture the new name in a variable::
+Now, this doesn't actually rename the files - it just prints out the name, with the suffix '.fastq' removed. (You can be certain of this by using `ls` to verify the files in the current directory havent changed names)  To rename the files, we need to capture the _new name_ in a variable::
 
 ```
 for i in *.fastq
@@ -71,9 +73,9 @@ do
 done
 ```
 
-What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the output of running the command.
+What `$( ... )` does is run the command in the middle of the parenthesis, and then replace the `$( )` with the output of running the command.
 
-Now we have the old name ($i) and the new name ($newname) and we're ready to write the rename command -- ::
+Now we have two variables: The old name (`$i`) and the new name (`$newname`). Now  we're ready to write the rename command -- ::
 
 ```
 for i in *.fastq
@@ -95,7 +97,7 @@ do
 done
 ```
 
-and voila, we have renamed all the files!
+and voila, we have renamed all the files! (Check with `ls`)
 
 _Side note:_ you may see backquotes used instead of `$(...)`. It does the same thing but is trickier to get right, so we teach `$(...)` instead of ``...``.
 
@@ -119,8 +121,10 @@ We're taking the output of 'echo hello, world' and sending it to the input of cu
 
 You may have already seen this with head or tail, but many UNIX commands take stdin and stdout.
 
-Let's construct the `cut` command we want to use.  If we look at the names of the files, and we want to remove '001' only, we can see that each filename has a bunch of fields separated by '\_'.  So we can ask 'cut' to pay attention to the first four fields, and omit the fifth, around the separator (or delimiter) '\_':
+Let's construct the `cut` command we want to use.  If we look at the names of the files, and we want to remove '001' only, we can see that each filename has a bunch of fields separated by '\_'.  So we can ask 'cut' to pay attention to the first four fields, and omit the fifth, around the separator (or delimiter) '\_'
 
+
+For example:
 ```
 echo F3D141_S207_L001_R1_001.fq | cut -d_ -f1-4
 ```
@@ -165,6 +169,8 @@ done
 ```
 
 Ta-da! You've renamed all your files.
+
+**CHALLENGE** Create command that uses one `for` loop to rename the original files (e.g. F3D144_S210_L001_R1_001.fastq) without the \_001 and have a `*.fq` ending (e.g. F3D144_S210_L001_R1.fq).
 
 ----
 
