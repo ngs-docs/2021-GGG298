@@ -10,7 +10,9 @@
 ## Part 1: Sourmash project revisited
 -------------------------------------
 
-[Let's pick up our sourmash project where we ended last week.](https://hackmd.io/XgI03HNBRtS6kyKcycKFLA?view#4-Add-your-files-to-git-and-push-to-github)
+Step 1: log onto the farm!
+
+Step 2: [Let's pick up our sourmash project where we ended last week.](https://hackmd.io/XgI03HNBRtS6kyKcycKFLA?view#4-Add-your-files-to-git-and-push-to-github)
 
 
 
