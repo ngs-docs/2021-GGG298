@@ -412,6 +412,19 @@ We can use other test commands such as:
 [ $x -ge $n ] is TRUE if the first integer is **greater than or equal to** the second integer
  ```
 
+Everything looks good so let's go ahead and make those directories:
+
+```bash
+n=$(wc -l index.list | awk '{print $1}')
+x=1
+while [ $x -le $n ]
+do
+    string=$(sed -n ${x}p index.list)
+    mkdir $string
+    x=$(( $x + 1 ))
+done
+```
+
 
 Executing things conditionally based on exit status
 ---------------------------------------------------
