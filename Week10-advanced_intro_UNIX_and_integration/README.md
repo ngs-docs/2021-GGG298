@@ -300,12 +300,12 @@ Type something out; then type <kbd>CTRL-a</kbd>.  Now type <kbd>CTRL-e</kbd>.  B
 
 Up arrows to recall previous command, left/right arrows, etc.
 
-i<kbd>CTRL-r</kbd> will search backwards for recent commands, too! If you find the exact
+<kbd>CTRL-r</kbd> will search backwards for recent commands, too! If you find the exact
 command you are looking for, you can hit ENTER to run it again. If you
 want to edit it, use <kbd>CTRL-a</kbd> or <kbd>CTRL-e</kbd> to move to editing mode.
 
 
-**CHALLENGE:** Another useful command along with `basename` is `dirname`. Any idea what
+**QUESTION:** Another useful command along with `basename` is `dirname`. Any idea what
 it does?
 
 -----
@@ -381,27 +381,36 @@ This `cat` command allows us to create a block of text (including new lines) to 
 
 Next we can form a `while` loop to create directories for each of our index ID's:
 
-```
+
+```bash
 n=$(wc -l index.list | awk '{print $1}')
 x=1
-while [ $x -le 1 ]
+while [ $x -le $n ]
 do
-
-    string="sed -n ${x}p index.list"
-    str=$($string)
-
-    var=$(echo $str | awk -F"\t" '{print $1}')
-    set -- $var
-    c1=$1   ### site_ID ###
-
-    cat ${c1}_?_R1.fastq > ${c1}_R1.fastq
-    cat ${c1}_?_R2.fastq > ${c1}_R2.fastq
-
+    string=$(sed -n ${x}p index.list)
+    echo mkdir $string
     x=$(( $x + 1 ))
-
 done
 ```
 
+Here we are doing a few things: 
+1. We are setting up the variable `n` to be the number of lines that the 'index.list' is (in this case it is 4). We do this by:
+    * using an expression of a comand with $( ... ) 
+    * using the command `awk` to print out the first component of running the `wc -l index.list` command.
+2. Saving the variable 'x' to equal 1
+3. Creating a `while` loop to last as long as the length of the 'index.list' file. Here the `while` loop lasts while `$x` is _less than_ `$n`.
+4. Using the `sed` command to extract a particular line of the 'index.list' file and create a directory with its name.
+5. Adding +1 to the x variable so we can move to the next line of the file.
+
+We can use other test commands such as:
+```
+[ $x -eq $n ] is TRUE if integers are **equal**
+[ $x -ne $n ] is TRUE if integers are **not equal**
+[ $x -lt $n ] is TRUE if the first integer is **less than** the second
+[ $x -gt $n ] is TRUE if the first integer is **greater than** the second integer
+[ $x -le $n ] is TRUE if the first integer is **less than or equal to** the second integer
+[ $x -ge $n ] is TRUE if the first integer is **greater than or equal to** the second integer
+ ```
 
 
 Executing things conditionally based on exit status
