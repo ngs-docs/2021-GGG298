@@ -230,7 +230,7 @@ and voila, you have your subsets!
 A little backtracking...
 ------------------------
 
-Variables:
+### Variables:
 
 You can use either $varname or ${varname}.  The latter is useful when you want to call on a variable between characters of text.
 
@@ -257,10 +257,10 @@ would try to put HE in front of the variable $varnameORLD which won't work/ does
 We can also put the variable in quotes:
 ```
 echo HE"$varname"ORLD
+```
 
 NOTE: `${varname}` is quite different from `$(expression)`! The former is replaced by the value assigned to `varname`; the latter is replaced by the result of running `expression`. So, both _replace_ but they do different things. Think of `$` here as meaning, "replace me with something".
 
----
 
 ***Question*** We used ${varname} and "$varname" above - what happens if we use single quotes - e.g. '$varname'?
 
@@ -268,7 +268,7 @@ NOTE: `${varname}` is quite different from `$(expression)`! The former is replac
 
 ----
 
-### Pipes and redirection
+### Pipes and redirection:
 
 To redirect stdin and stdout, you can use:
 
@@ -296,17 +296,16 @@ and you can also say::
 Most prompts support 'readline'-style editing.  This uses emacs control
 keys.
 
-Type something out; then type CTRL-a.  Now type CTRL-e.  Beginning and end!
+Type something out; then type <kbd>CTRL-a</kbd>.  Now type <kbd>CTRL-e</kbd>.  Beginning and end!
 
 Up arrows to recall previous command, left/right arrows, etc.
 
-CTRL-r will search backwards for recent commands, too! If you find the exact
+i<kbd>CTRL-r</kbd> will search backwards for recent commands, too! If you find the exact
 command you are looking for, you can hit ENTER to run it again. If you
-want to edit it, use CTRL-a or CTRL-e to move to editing mode.
+want to edit it, use <kbd>CTRL-a</kbd> or <kbd>CTRL-e</kbd> to move to editing mode.
 
-----
 
-CHALLENGE: Another useful command along with 'basename' is 'dirname'. Any idea what
+**CHALLENGE:** Another useful command along with `basename` is `dirname`. Any idea what
 it does?
 
 -----
@@ -314,10 +313,12 @@ it does?
 Working with collections of files; conditionals
 -----------------------------------------------
 
+### if and elif
+
 Let's go back to the 'data' directory and play around with loops some more. 
 
 ```
-  cd ..
+cd ..
 ```
 
 `if` acts on things conditionally:
@@ -351,6 +352,57 @@ done
 ```
 
 ...and as you can see here, I'm using '!' to say 'not'. (Why do I need to put a backslash in front of it, though??)
+
+
+### while loops
+
+Sometimes we may have lists contained within files that we would like to do things for each line of the file. For example, we may want to create a directory for each index ID in a library. We can create a while loop to run through the contents of a file. 
+
+First lets make a directory to play in:
+
+```
+mkdir -p loops
+cd loops
+```
+
+And let's create a directory that has some index ID's
+
+```
+cat << INDEX >> index.list
+ATGTTA
+GATTGG
+CCTGAA
+ACTGGT
+INDEX
+```
+
+This `cat` command allows us to create a block of text (including new lines) to print into a file of our choosing. Here we've told it to print the four index ID's to the 'index.list' files.
+
+
+Next we can form a `while` loop to create directories for each of our index ID's:
+
+```
+n=$(wc -l index.list | awk '{print $1}')
+x=1
+while [ $x -le 1 ]
+do
+
+    string="sed -n ${x}p index.list"
+    str=$($string)
+
+    var=$(echo $str | awk -F"\t" '{print $1}')
+    set -- $var
+    c1=$1   ### site_ID ###
+
+    cat ${c1}_?_R1.fastq > ${c1}_R1.fastq
+    cat ${c1}_?_R2.fastq > ${c1}_R2.fastq
+
+    x=$(( $x + 1 ))
+
+done
+```
+
+
 
 Executing things conditionally based on exit status
 ---------------------------------------------------
