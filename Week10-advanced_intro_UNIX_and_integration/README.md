@@ -530,12 +530,7 @@ The general approach I use
 
 
 
-## Part 3: Integration
+## Part 3: Next steps!
 ----------------------
 
-@@ctb
-
-Topics will include:
-* how does a computer work
-* practical next steps for everyone
-    * workshops, online sites, books, etc
+[What next??](https://hackmd.io/1aw0Wm8jSpOvN0v9VJWNrA?view)
