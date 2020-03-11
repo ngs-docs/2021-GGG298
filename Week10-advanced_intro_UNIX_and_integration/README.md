@@ -31,7 +31,7 @@ Step 2: [Let's pick up our sourmash project where we ended last week.](https://h
 ### Renaming a bunch of files
 
 Let's make a directory and grab some data:
-```
+```bash
 mkdir ~/298week10
 cd ~/298week10
 wget https://s3-us-west-1.amazonaws.com/dib-training.ucdavis.edu/shell-data.zip
@@ -45,7 +45,7 @@ For our first task, let's pretend that we want to rename all of the fastq files 
 
 `for` lets you do something to every file in a list.  To see it in action:
 
-```
+```bash
 for i in *.fastq
 do
    echo $i
@@ -56,7 +56,7 @@ This is running the command `echo` for every value of the variable `i`, which is
 
 If we want to get rid of the extension '.fastq', we can use the `basename` command:
 
-```
+```bash
 for i in *.fastq
 do
    basename $i .fastq
@@ -65,7 +65,7 @@ done
 
 Now, this doesn't actually rename the files - it just prints out the name, with the suffix '.fastq' removed. (You can be certain of this by using `ls` to verify the files in the current directory havent changed names)  To rename the files, we need to capture the _new name_ in a variable::
 
-```
+```bash
 for i in *.fastq
 do
    newname=$(basename $i .fastq).fq
@@ -77,7 +77,7 @@ What `$( ... )` does is run the command in the middle of the parenthesis, and th
 
 Now we have two variables: The old name (`$i`) and the new name (`$newname`). Now  we're ready to write the rename command -- ::
 
-```
+```bash
 for i in *.fastq
 do
    newname=$(basename $i .fastq).fq
@@ -89,7 +89,7 @@ done
 
 Now that we're pretty sure it all looks good, let's run it for realz:
 
-```
+```bash
 for i in *.fastq
 do
    newname=$(basename $i .fastq).fq
@@ -107,7 +107,7 @@ Now let's also get rid of the annoying '\_001' that's at the end of the all file
 
 What `cut` does is slice and dice strings.  So, for example, :
 
-```
+```bash
 echo hello, world | cut -c5-
 ```
 
@@ -125,13 +125,13 @@ Let's construct the `cut` command we want to use.  If we look at the names of th
 
 
 For example:
-```
+```bash
 echo F3D141_S207_L001_R1_001.fq | cut -d_ -f1-4
 ```
 
 That looks about right -- let's put it into a for loop:
 
-```
+```bash
 for i in *.fq
 do
    echo $i | cut -d_ -f1-4
@@ -140,7 +140,7 @@ done
 
 Looking good - now assign it to a variable and append an ending:
 
-```
+```bash
 for i in *.fq
 do
    newname=$(echo $i | cut -d_ -f1-4).fq
@@ -150,7 +150,7 @@ done
   
 and now construct the `mv` command:
 
-```
+```bash
 for i in *.fq
 do
    newname=$(echo $i | cut -d_ -f1-4).fq
@@ -160,7 +160,7 @@ done
 
 and if that looks right, run it:
 
-```
+```bash
 for i in *.fq
 do
    newname=$(echo $i | cut -d_ -f1-4).fq
@@ -180,7 +180,7 @@ Let's do something quite useful - subset a bunch of FASTQ files.
 
 If you look at one of the FASTQ files with head, 
 
-```
+```bash
 head F3D0_S188_L001_R1.fq
 ```
 
@@ -188,13 +188,13 @@ you'll see that it's full of FASTQ sequencing records.  Often I want to run a bi
 
 First, make sure the originals are read-only
 
-```
+```bash
 chmod u-w *.fq
 ```
 
 Now, let's make a 'subset' directory
 
-```
+```bash
 mkdir subset
 ```
 
@@ -202,7 +202,7 @@ Now, to subset each file, we want to run a 'head' with an argument that is the t
 
 The for loop will now look something like:
 
-```
+```bash
 for i in *.fq
 do
    echo "head -400 $i > subset/$i"
@@ -211,7 +211,7 @@ done
 
 If that command looks right, run it for real:
 
-```
+```bash
 for i in *.fq
 do
    head -400 $i > subset/$i
@@ -235,18 +235,19 @@ A little backtracking...
 You can use either $varname or ${varname}.  The latter is useful when you want to call on a variable between characters of text.
 
 Let's say we had a variable called varname
-```
+```bash
 varname="LLOW"
 ```
 
+We can call on our variables at the command line:
 
-```
+```bash
  echo HE${varname}ORLD
 ```
 
 would expand ${varname} and then put HE .. ORLD on either end of the variable, while 
 
-```
+```bash
 echo HE$varnameORLD
 ```
 
@@ -255,7 +256,7 @@ would try to put HE in front of the variable $varnameORLD which won't work/ does
 (Unknown/uncreated variables are empty.)
 
 We can also put the variable in quotes:
-```
+```bash
 echo HE"$varname"ORLD
 ```
 
@@ -317,13 +318,13 @@ Working with collections of files; conditionals
 
 Let's go back to the 'data' directory and play around with loops some more. 
 
-```
+```bash
 cd ..
 ```
 
 `if` acts on things conditionally:
 
-```
+```bash
 for i in *
 do
    if [ -f $i ]; then
@@ -336,13 +337,13 @@ done
 
 but what the heck is this `[ ]` notation?  That's actually running the 'test' command; try `help test | less` to see the docs.  This is a weird syntax that lets you do all sorts of useful things with files -- I usually use it to get rid of empty files.
 
-```
+```bash
 touch emptyfile.txt
 ```
 
 to create an empty file, and then::
 
-```
+```bash
 for i in *
 do
    if [ \! -s $i ]; then
@@ -360,14 +361,14 @@ Sometimes we may have lists contained within files that we would like to do thin
 
 First lets make a directory to play in:
 
-```
+```bash
 mkdir -p loops
 cd loops
 ```
 
 And let's create a directory that has some index ID's
 
-```
+```bash
 cat << INDEX >> index.list
 ATGTTA
 GATTGG
@@ -431,7 +432,7 @@ Executing things conditionally based on exit status
 
 Let's create two scripts (you can use 'nano' here if you want) -- in 'success.sh', put:
 
-```
+```bash
   #! /bin/bash
   echo mesucceed
   exit 0
@@ -439,7 +440,7 @@ Let's create two scripts (you can use 'nano' here if you want) -- in 'success.sh
 
 and in 'fail.sh', put:
 
-```
+```bash
   #! /bin/bash
   echo mefail
   exit 1
@@ -447,7 +448,7 @@ and in 'fail.sh', put:
 
 You can do this with 'heredocs' -- ::
 
-```
+```bash
   cat > success.sh <<EOF
   #! /bin/bash
   echo mesucceed
@@ -462,7 +463,7 @@ You can do this with 'heredocs' -- ::
 
 Now make them executable -- 
 
-```
+```bash
 chmod +x success.sh fail.sh
 ```
 
@@ -470,7 +471,7 @@ chmod +x success.sh fail.sh
 
 You can now use this to chain commands with `&&` and `||` -- :
 
-```
+```bash
 ./success.sh && echo this succeeded || echo this failed
 ./fail.sh && echo this succeeded || echo this failed
 ```
@@ -479,12 +480,12 @@ You can do this with R and python scripts too -- in R, you set the exit status o
 
 The exit status of the previous command can be examined with `$?` -- :
 
-```
+```bash
 ./success.sh
 if [ $? -eq 0 ]; then echo succ; fi
 ```
 
-```
+```bash
 ./success.sh
 if [ $? -ne 0 ]; then echo fail; fi
 ```
