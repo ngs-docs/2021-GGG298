@@ -60,7 +60,7 @@ Let's edit the README.md file:
 ```
 nano -ET4 README.md
 ```
-and add a new line like "example github repo for GGG 298 at UC Davis." to the file, then save it and exit nano.
+and add a new line like "example github repo for GGG 298 at UC Davis." to the file, then save it and exit nano using CTRL-X.
 
 Now type:
 ```
@@ -195,7 +195,7 @@ Push your commited file with:
 git push
 ```
 
-Verify that it the changes show up on github by refreshing your webpage.
+Verify that the changes show up on github by refreshing your webpage.
 
 Look at the change history, view the diffs.
 
@@ -218,7 +218,7 @@ rule hello:
     shell:
         "echo hello, world > hello.txt"
 ```
-use <kbd>ctrl-k</kbd> <kbd>y</kbd> to save it.
+use <kbd>ctrl-x</kbd> <kbd>y</kbd> to save it.
 
 and now run it:
 ```
@@ -503,3 +503,9 @@ Now go back to zenodo. You should see that a DOI has been assigned! This is a fr
 ## A blog post to read
 
 Check out Daniel Standage's blog post on [using github to collaborate with yourself](https://standage.github.io/developer-pull-request-thyself.html) for inspiration!
+
+TODO:
+
+- discuss `git stash` / `git stash apply`
+- discuss `git add` with wildcards, and `git add -f`
+
