@@ -1,8 +1,8 @@
 # Course materials for GGG298 - Tools to support data-intensive research
 
-## UC Davis Winter 2020
+## UC Davis Winter 2021
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ngs-docs/2020-GGG298/master)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ngs-docs/2021-GGG298/master)
 
 ### Materials availability
 
@@ -49,14 +49,16 @@ Week 3: Conda for software installation -- [outline](https://hackmd.io/To23drs_S
 
 Week 4: Snakemake for workflows -- [outline](https://hackmd.io/UuYTlGyVQ7WLTL-3kX3K5A), [lab notes](https://github.com/ngs-docs/2020-GGG298/tree/master/Week4-snakemake-for-workflows/README.md), [reading](http://ivory.idyll.org/blog/2014-function-of-unknown-genes.html), [discussion notes](https://hackmd.io/UuYTlGyVQ7WLTL-3kX3K5A?view)
 
-Week 5: Project organization and more UNIX shell -- [outline](https://hackmd.io/jSF2sFcgS02yuc3gW7RqzQ), [lab notes](https://github.com/ngs-docs/2020-GGG298/tree/master/Week5-project_organization_and_UNIX_shell/README.md), [reading](https://meaningness.com/metablog/upgrade-your-cargo-cult), [discussion notes](https://hackmd.io/DYbcnnfvTeyBpABx72xJGQ)
+Week 6: Project organization and more UNIX shell -- [outline](https://hackmd.io/jSF2sFcgS02yuc3gW7RqzQ), [lab notes](https://github.com/ngs-docs/2020-GGG298/tree/master/Week6-project_organization_and_UNIX_shell/README.md), [reading](https://meaningness.com/metablog/upgrade-your-cargo-cult), [discussion notes](https://hackmd.io/DYbcnnfvTeyBpABx72xJGQ)
 
-Week 6: Git and GitHub for file tracking and sharing -- [outline](https://hackmd.io/iuqXzr0RRw-M8rLbWjvuJg?view), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week6-Git_and_GitHub_for_file_tracking_and_sharing/README.md), [discussion notes](https://hackmd.io/iuqXzr0RRw-M8rLbWjvuJg)
+Week 7: Git and GitHub for file tracking and sharing -- [outline](https://hackmd.io/iuqXzr0RRw-M8rLbWjvuJg?view), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week7-Git_and_GitHub_for_file_tracking_and_sharing/README.md), [discussion notes](https://hackmd.io/iuqXzr0RRw-M8rLbWjvuJg)
 
-Week 7: Slurm and the Farm cluster for doing analysis -- [outline](https://hackmd.io/Iy-YHQuPRGWILNV5F_A5lA?view), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week7-Slurm_and_Farm_cluster_for_doing_analysis/README.md), [reading](https://hackmd.io/GOM86OhHQ-WKdwxCk1Xtyw?view#Friday-discussion---221)
+Week 8: Slurm and the Farm cluster for doing analysis -- [outline](https://hackmd.io/Iy-YHQuPRGWILNV5F_A5lA?view), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week8-Slurm_and_Farm_cluster_for_doing_analysis/README.md), [reading](https://hackmd.io/GOM86OhHQ-WKdwxCk1Xtyw?view#Friday-discussion---221)
 
-Week 8: R/Rmarkdown for Reports, Documentation and beyond -- [outline](https://hackmd.io/FxdMZvJdTBy5r2Um4KeMjw), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week8-Rmarkdown_for_reports_documentation_and_beyond), [reading](https://www.worldscientific.com/doi/pdf/10.1142/9789813235533_0008), [discussion notes](https://hackmd.io/z9GLXC_WS8-MTAAZhkgCMw)
+Week 10: R/Rmarkdown for Reports, Documentation and beyond -- [outline](https://hackmd.io/FxdMZvJdTBy5r2Um4KeMjw), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week-Rmarkdown_for_reports_documentation_and_beyond), [reading](https://www.worldscientific.com/doi/pdf/10.1142/9789813235533_0008), [discussion notes](https://hackmd.io/z9GLXC_WS8-MTAAZhkgCMw)
 
-Week 9: Integrating it all: a sourmash project! -- [outline](https://hackmd.io/juznPUnSRmWJlJ00SCJsUA?view), [lab notes](https://hackmd.io/XgI03HNBRtS6kyKcycKFLA?view), [reading](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0088889), [discussion notes](https://hackmd.io/juznPUnSRmWJlJ00SCJsUA?view)
+OLD:
 
-Week 10: Advanced intro UNIX and integration -- [outline](https://hackmd.io/NkDTSmHBT-Gut6yCgCSAXQ), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/Week10-advanced_intro_UNIX_and_integration/README.md), [reading](https://bookbook.pubpub.org/pub/zrlj0jqb)
+Integrating it all: a sourmash project! -- [outline](https://hackmd.io/juznPUnSRmWJlJ00SCJsUA?view), [lab notes](https://hackmd.io/XgI03HNBRtS6kyKcycKFLA?view), [reading](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0088889), [discussion notes](https://hackmd.io/juznPUnSRmWJlJ00SCJsUA?view)
+
+Advanced intro UNIX and integration -- [outline](https://hackmd.io/NkDTSmHBT-Gut6yCgCSAXQ), [lab notes](https://github.com/ngs-docs/2020-GGG298/blob/master/bak.advanced_intro_UNIX_and_integration/README.md), [reading](https://bookbook.pubpub.org/pub/zrlj0jqb)
