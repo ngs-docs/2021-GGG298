@@ -1,7 +1,7 @@
 ---
-tags: ggg, ggg2020, ggg298
+tags: ggg, ggg2021, ggg298
 ---
-# GGG298 -- Week 8 - Rmarkdown for reports, documentation and beyond 
+# GGG298 -- Week 10 - Rmarkdown for reports, documentation and beyond 
 
 [toc]
 
@@ -17,7 +17,7 @@ Rmarkdown is a type of [literate programming](https://en.wikipedia.org/wiki/Lite
 
 When an Rmarkdown document is run, it goes through the following steps:
 
-![literate programming workflow](https://raw.github.com/ngs-docs/2020-GGG298/master/Week8-Rmarkdown_for_reports_documentation_and_beyond/Literate_Programming_workflow.png)
+![literate programming workflow](https://raw.github.com/ngs-docs/2021-GGG298/master/Week10-Rmarkdown_for_reports_documentation_and_beyond/Literate_Programming_workflow.png)
 
 1. **Parse** the source document and separate code from narratives.
 2. **Execute** source code and return results.
@@ -61,7 +61,7 @@ We will create an Rmarkdown document through Rstudio. Note: you can create an Rm
 
 ### 1. Open file
 
-![open Rmd](https://raw.github.com/ngs-docs/2020-GGG298/master/Week8-Rmarkdown_for_reports_documentation_and_beyond/Open_Rmarkdown_doc.png)
+![open Rmd](https://raw.github.com/ngs-docs/2021-GGG298/master/Week10-Rmarkdown_for_reports_documentation_and_beyond/Open_Rmarkdown_doc.png)
 
 Fill in a title for the project you will be working on. Select 
 - [x] HTML
@@ -135,7 +135,7 @@ It is all good and well when we would can run RStudio from our computer but we c
 To render a markdown script from the command line, first open up a new terminal, then navigate to the directory with the `Rmd` file.
 
 ```
-cd ~/Week8-Rmarkdown_for_reports_documentation_and_beyond/RNAseq_report/
+cd ~/Week10-Rmarkdown_for_reports_documentation_and_beyond/RNAseq_report/
 ls -l
 ```
 

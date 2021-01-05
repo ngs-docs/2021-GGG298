@@ -1,7 +1,7 @@
 ---
-tags: ggg, ggg2020, ggg298
+tags: ggg, ggg2021, ggg298
 ---
-# GGG 298, Jan 2020 - Week 6 - git and GitHub for change tracking!
+# GGG 298, Jan 2021 - Week 7 - git and GitHub for change tracking!
 
 [toc]
 
@@ -32,7 +32,7 @@ Also select 'Initialize this repository with a README'.
 
 Then click 'Create repository'.
 
-After a few seconds, you should be redirected to a web page with a URL like `https://github.com/USERNAME/2020-ggg298-week6`. This is your GitHub URL for this repository; note that it's public (unless you selected private) which means that _anyone_ can get a read-only copy of this repo.
+After a few seconds, you should be redirected to a web page with a URL like `https://github.com/USERNAME/2021-ggg298-week6`. This is your GitHub URL for this repository; note that it's public (unless you selected private) which means that _anyone_ can get a read-only copy of this repo.
 
 Select the URL and copy it into your paste buffer.
 
@@ -44,13 +44,13 @@ Run:
 
 ```
 cd ~/
-git clone https://github.com/USERNAME/2020-ggg298-week6
+git clone https://github.com/USERNAME/2021-ggg298-week6
 ```
-This will create a directory `2020-ggg298-week6` under your home directory.
+This will create a directory `2021-ggg298-week6` under your home directory.
 
 Change into it:
 ```
-cd 2020-ggg298-week6
+cd 2021-ggg298-week6
 ```
 and look around with `ls -a`. You'll notice two files: a `.git` subdirectory (this is a directory that git uses to keep information about this repo!) and a `README.md` file that contains the name of the repository. This file is the same README that is displayed at the above GitHub URL when you go to it.
 
@@ -98,8 +98,8 @@ index a5af6ae..f46e8b3 100644
 --- a/README.md
 +++ b/README.md
 @@ -1 +1,3 @@
--# 2020-ggg298-week6
->+# 2020-ggg298-week6
+-# 2021-ggg298-week6
+>+# 2021-ggg298-week6
 >+
 +example repository for ggg 298
 
@@ -148,7 +148,7 @@ git push
 ```
 It should now ask you for a username and a password; enter your GitHub username and password. At the end it will say something like
 
-> To https://github.com/ctb/2020-ggg298-week6
+> To https://github.com/ctb/2021-ggg298-week6
 >   a6faf82..e5f2790  master -> master
 
 which tells you that it pushed your changes through changeset e5f2790 to your GitHub URL.
@@ -169,7 +169,7 @@ If you go over to the '...' menu on the far right, you can view the file as of t
 
 What we're doing is the simplest way to use git and GitHub to manage your own repository. There are more complicated options but this is a nice blend of practicality and features (backups, change tracking, sharing options).
 
-![](https://github.com/ngs-docs/2020-GGG298/raw/master/git-one-repo-model.png)
+![](https://github.com/ngs-docs/2021-GGG298/raw/master/git-one-repo-model.png)
 
 ## Let's do it all again!
 
@@ -480,7 +480,7 @@ To do this:
 * go to zenodo.org in a new browser tab
 * log in with GitHub
 * go to upper right menu, select 'GitHub'
-* flip the switch next to your 2020-ggg298-week6 repository
+* flip the switch next to your 2021-ggg298-week6 repository
 
 Now, go back to your github.com tab.
 

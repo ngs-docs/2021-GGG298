@@ -1,13 +1,9 @@
 ---
-tags: ggg, ggg2020, ggg298
+tags: ggg, ggg2021, ggg298
 ---
-# GGG298 -- Week 5 - Project organization and file manipulation
+# GGG298 -- Week 6 - Project organization and file manipulation
 
 [toc]
-
-## Updated Office Hours
-('cause I forgot to tell everyone...whoops!)
-Shannon's office hours will be from 11am-12pm on Fridays in the DataLab & as needed; just send me an email.
 
 ## Learning Objectives
 By the end of this lesson, students will:
@@ -18,6 +14,8 @@ By the end of this lesson, students will:
 * gain an ability to work with subsets of data to test run workflows
 
 ## a rough bioinformatics workflow
+
+@@
 
 ![bioinformatics_workflow](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/Bioinformatics_Workflow.png)
 
