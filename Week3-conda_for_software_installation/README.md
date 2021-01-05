@@ -1,11 +1,11 @@
 ---
-tags: ggg, ggg2020,ggg298
+tags: ggg, ggg2021,ggg298
 ---
 [toc]
 
-# GGG 298, jan 2020 - Week 3 - conda for software installation!
+# GGG 298, jan 2021 - Week 3 - conda for software installation!
 
-Titus Brown and Shannon Joslin, Jan 22, 2020
+Titus Brown and Shannon Joslin, Jan 22, 2021
 
 Learning objectives:
 
@@ -23,11 +23,13 @@ It's a confusing ecosystem of operating systems (Mac OS X, many versions of Linu
 
 Many software has many dependencies (e.g. just consider base language -- C++, Java, Python, R, and their different versions)
 
+@@
 ![isolation](https://github.com/ngs-docs/2020-GGG298/raw/master/Week3-conda_for_software_installation/conda-isolation.png)
 
 
 This leads to confusing situations where different versions of underlying software are need to run two different programs -- what if you wanted to run Macs14 and sourmash both, but one wanted 'python' to mean python2 and the other wanted 'python' to mean python3?
 
+@@
 ![versions](https://github.com/ngs-docs/2020-GGG298/raw/master/Week3-conda_for_software_installation/versions.png)
 
 Decoupling user-focused software from underlying operating systems is a Big Deal - imagine, otherwise you'd have to rebuild software for every OS! (This is kind of what conda does for you, actually - it's just centralized!)

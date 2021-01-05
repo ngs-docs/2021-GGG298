@@ -1,7 +1,7 @@
 ---
-tags: ggg, ggg2020, ggg298
+tags: ggg, ggg2021, ggg298
 ---
-# GGG 298, jan 2020 - class 1 - NOTES
+# GGG 298, jan 2021 - class 1 - NOTES
 
 Titus Brown, ctbrown@ucdavis.edu
 Shannon Joslin, sejoslin@ucdavis.edu

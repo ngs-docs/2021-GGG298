@@ -37,7 +37,7 @@ This course will provide a practical introduction to common tools used in data-i
 
 This course is open to all graduate students. No prior computational experience is required or assumed. There will be some minimal overlap with GGG 201(b) topics. All materials will be open to the community and freely available online.
 
-[Full syllabus](https://hackmd.io/3bDesjZaTVSiEzEueSGlDQ?view)
+[Full syllabus](https://hackmd.io/3zFfz02TTGm4117qwy1xNg?view)
 
 ## Resources
 
@@ -59,7 +59,7 @@ Week 8: Slurm and the Farm cluster for doing analysis -- [outline](https://hackm
 
 Week 9: Integrating it all, round 2 - a sourmash project!
 
-Week 10: R/Rmarkdown for Reports, Documentation and beyond -- [outline](https://hackmd.io/FxdMZvJdTBy5r2Um4KeMjw), [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week-Rmarkdown_for_reports_documentation_and_beyond)
+Week 10: R/Rmarkdown for Reports, Documentation and beyond -- [outline](https://hackmd.io/FxdMZvJdTBy5r2Um4KeMjw), [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week10-Rmarkdown_for_reports_documentation_and_beyond)
 
 OLD:
 

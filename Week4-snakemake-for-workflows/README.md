@@ -1,14 +1,9 @@
 ---
-tags: ggg, ggg2020, ggg298
+tags: ggg, ggg2021, ggg298
 ---
-# GGG 298, Jan 2020 - Week 4 - snakemake for running workflows!
+# GGG 298, Jan 2021 - Week 4 - snakemake for running workflows!
 
 [toc]
-
-## Side note
-
-I'm available for office hours today, in CCAH 251 or 253.
-Shannon Office Hours: Friday 11am-12pm in the DataLab (3rd Floor Library) 
 
 ## Learning objectives
 
@@ -22,6 +17,8 @@ By the end of this lecture, students will:
 ## Introduction to workflows
 
 Many things in bioinformatics are workflows. Data goes in, data comes out! Today we're going to talk about ways of automating this, using snakemake.
+
+@@
 
 ![RNAseq workflow](https://raw.githubusercontent.com/ngs-docs/2020-ggg-298-first-day-rnaseq/master/txome%20workflow.png)
 
