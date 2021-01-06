@@ -41,7 +41,7 @@ This course is open to all graduate students. No prior computational experience 
 
 ## Resources
 
-Week 1: Introduction to the course, and a basic RNAseq pipeline -- [outline](https://hackmd.io/@ctb/S1_mb0fe8), [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week1-intro/README.md)
+Week 1: Introduction to the course, and a basic RNAseq pipeline -- [outline](https://hackmd.io/HLok6m69TMWn6Ql452mf-Q?view), [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week1-intro/README.md)
 
 Week 2: UNIX shell for file manipulation -- [outline](https://hackmd.io/O6MaR9tMSxazAC_UCr_hTg), [lab notes](https://github.com/ngs-docs/2021-GGG298/tree/master/Week2-UNIX_for_file_manipulation)
 
