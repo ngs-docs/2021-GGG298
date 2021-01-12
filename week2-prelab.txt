@@ -1,0 +1,27 @@
+# 298
+
+Recap overview - RNAseq part of presentation
+
+Where does shell fit in
+- files, directories
+- Snakemake commands!
+- Under most bioinformatics wrappers, for various reasons
+
+How do shell commands work?
+- command - "what I want to do"
+- required arguments (typically filenames, input or output) - "what I want to do it to, where I want results to go"
+- Long and short options 
+
+How do you find out what commands to use!? Google. Name recognition. Experience :shrug:
+
+Where *is* shell?
+- Mac and Linux and even widows
+
+What this wed will be about:
+- a bit about basic commands
+- Dissect rnaseq Snakefile commands a bit
+- Piping, redirection, etc.
+- The current lesson
+
+where will we be running?
+- Binder or farm 
