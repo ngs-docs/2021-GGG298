@@ -201,7 +201,7 @@ cp thisinnotit.txt thisisacopy.txt
 The syntax for the copy command is `cp <source_file> <destination_file>`. Using this syntax we can copy files to other directories as well:
 
 ```
-cp thisinnotit.txt ../tmp2/.
+cp thisinnotit.txt ../tmp2
 ```
 
 If we navigate to the tmp2 directory and list the files that are in it we will see the `thisinnotit.txt` file has been copied to the tmp2 directory.
@@ -845,6 +845,7 @@ getting there.)
 Things I forgot to talk about
 -----------------------------
 
+* ls -h is really useful
 * sort (and sort -n)
 * wc
 * special characters and tricky filenames
