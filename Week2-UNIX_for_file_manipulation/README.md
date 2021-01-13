@@ -76,7 +76,7 @@ Let's have a look around.
 ls
 ```
 
-We can see the following directories:
+We can see the following files:
 
 > > ~~~
 > > MiSeq		Slide1.jpg	hello.sh	nano1.png
@@ -98,15 +98,15 @@ We will see the following:
 
 Three new items pop up `.`, `..` and `.hidden`. 
 
-Using options with our commands allows us to do a lot! But how did we know to add `-a` after ls? The `man` command allows us to look at what options any shell command has. Let's look at the available options that `ls` has:
+Using options with our commands allows us to do a lot! But how did we know to add `-a` after ls? Most commands offer a `--help`. Let's look at the available options that `ls` has:
 
 ```
-man ls
+ls --help
 ```
 
-Here we see a long list of options. Each option will allow us to do something different. Type `q` to quit looking at the manual page.
+Here we see a long list of options. Each option will allow us to do something different.
 
-**CHALLENGE** Try to find the option that allows you to differentiate between directories and executable files when using `ls`.
+**CHALLENGE** Try to find the option that allows you to differentiate between directories and executable files when using `ls`. Hint: look for the word classify.
 
 
 We can also combine commands:
@@ -151,6 +151,8 @@ cat thisinnotit.txt
 > > This is not the text file you're looking for
 > > ~~~
 
+NOTE - you can use TAB to do filename completion, so if you type `cat this` and then press your Tab key once, it will autocomplete if there is a unique match. If there is more than one match, the first Tab will do nothing, and the second will show all the possible matches.
+
 Let's see what else is in the other tmp directories:
 
 ```
@@ -164,6 +166,8 @@ ls ../tmp3
 ```
 
 So, even though we are in the `tmp1/` directory, we can see what is in other directories by using the relative path to the directory of interest. Note we can also use absolute paths too. You may have noticed the `../` this is how to get to the directory above the one you are currently located in. 
+
+Note: in this case, we have access to the RStudio file browser, too, which is really nice. But in the future we won't. So we can use the file browser today, but on Farm we'll have to get by with just the command line interface and no other interface!
 
 **CHALLENGE:** Use the absolute path to list the files in the tmp2 directory.
 
@@ -258,10 +262,10 @@ This nicely hints at the power of the shell - you can do certain things (in this
 
 A big part of bioinformatics is making sure what you _expect_ in a particular file is what you _have_ in that file. There are a few ways to look at the contents of a file. We've already seen how to print the entirety of a file to the stdout of our `cat` command. We can also look at files using the `less` command. Less is a safe way of looking at the contents of a file without the ability to change it. This is an important note since our raw sequence data should never be altered.
 
-Starting from the `shell/data/` directory,
+Starting from the `data/` directory in our home directory
 
 ```
-cd ../
+cd ~/data/
 ```
 
 let's look at some sequence data in a [fastq file](https://en.wikipedia.org/wiki/FASTQ_format) format.
@@ -333,7 +337,7 @@ We can also use the **wildcard** regular expression to search `CATTAG` in all of
 grep CATTAG *.fastq
 ```
 
-**CHALLENGE:** What line does `CATTAG` occur on in `F3D141_S207_L001_R1_001.fastq`? (HINT: Use `man` to search for `grep` options related to line number)
+**CHALLENGE:** What line does `CATTAG` occur on in `F3D141_S207_L001_R1_001.fastq`? (HINT: Use `grep --help` to search for `grep` options related to line number)
 
 
 
@@ -397,7 +401,7 @@ do
 done
 ```
 
-***Question:*** why did I use `echo` here?
+***Question:*** why did I put `echo` here?
 
 Now that we're pretty sure it all looks good, let's run it for realz:
 
@@ -849,6 +853,3 @@ Other notes
 -----------
 
 Google (and especially stackoverflow) is your friend.
-
-
-
