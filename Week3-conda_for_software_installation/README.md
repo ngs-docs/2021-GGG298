@@ -5,7 +5,7 @@ tags: ggg, ggg2021,ggg298
 
 # GGG 298, jan 2021 - Week 3 - conda for software installation!
 
-Titus Brown and Shannon Joslin, Jan 22, 2021
+Titus Brown and Shannon Joslin, Jan 20, 2021
 
 Learning objectives:
 
@@ -23,14 +23,12 @@ It's a confusing ecosystem of operating systems (Mac OS X, many versions of Linu
 
 Many software has many dependencies (e.g. just consider base language -- C++, Java, Python, R, and their different versions)
 
-@@
-![isolation](https://github.com/ngs-docs/2020-GGG298/raw/master/Week3-conda_for_software_installation/conda-isolation.png)
+![isolation](https://github.com/ngs-docs/2021-GGG298/raw/master/Week3-conda_for_software_installation/conda-isolation.png)
 
 
 This leads to confusing situations where different versions of underlying software are need to run two different programs -- what if you wanted to run Macs14 and sourmash both, but one wanted 'python' to mean python2 and the other wanted 'python' to mean python3?
 
-@@
-![versions](https://github.com/ngs-docs/2020-GGG298/raw/master/Week3-conda_for_software_installation/versions.png)
+![versions](https://github.com/ngs-docs/2021-GGG298/raw/master/Week3-conda_for_software_installation/versions.png)
 
 Decoupling user-focused software from underlying operating systems is a Big Deal - imagine, otherwise you'd have to rebuild software for every OS! (This is kind of what conda does for you, actually - it's just centralized!)
 
@@ -50,51 +48,14 @@ Conda is a solution that seems to work pretty well, and can be used by any user.
 
 ![conda image](https://angus.readthedocs.io/en/2019/_static/conda2.png)
 
-Note that conda emerged from the Python world but is now much broader and works for many more software packages.
+Note that conda emerged from the Python world but is now much broader and works for many more software packages, including R!
 
 ## Getting started with conda
 
 ### Installing conda
 
-(Everyone taking GGG 298 should already have done this, using the instructions in an e-mail titled "farm accounts" that we sent!)
-
-Follow [these instructions](https://docs.conda.io/projects/conda/en/latest/user-guide/install/) to install miniconda. Please use the 64-bit version when working with Python 3.x.
-
-### Installing on farm:
-
-Or, if you're working on farm, 
-the short version for installing it on farm is:
-
-```
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-echo source ~/.bashrc >> ~/.profile
-bash miniconda.sh
-```
-and then answer yes to everything, and select all the default paths.
-
-
-
-
-### Checking that you can run it
-
-To ensure  you've  successfully installed conda, log out of the farm by typing
-
-```
-exit
-```
-Then log back in. Once you are back on the farm, you should see a prompt like:
-
-```
-(base) ggg298-43@farm:~$ 
-```
-
-Try running:
-
-```
-conda --version
-```
-
-If that succeeds, you're in good shape for the rest of this tutorial!
+Conda already comes installed in the binder we'll be using!
+<!-- @@ -->
 
 ### Set up your channels
 
@@ -108,7 +69,7 @@ conda config --add channels conda-forge
 ### Creating your first environment & installing FastQC!
 
 #### What is an environment?
-A environment is a directory that contains a specific collection of packages/tools that you have installed. For example, you may have one environment with Python 2.7 and its dependencies, and another environment with Python 3.4 for legacy testing. If you change one environment, your other environments are not affected. You can easily `activate` new environments, which is how you switch between them.
+A environment is a directory that contains a specific collection of packages/tools that you have installed. For example, you may have one environment with Python 2.7 and its dependencies, and another environment with Python 3.4, both for legacy testing. And then you might have a Python 3.9 environment for the latest version of Python. If you change one environment, your other environments are not affected. You can easily `activate` new environments, which is how you switch between them.
 
 #### Installation!
 
@@ -121,6 +82,8 @@ Here's the command to `create` a new conda environment, named 'fqc', with fastqc
 ```
 conda create -y --name fqc -c conda-forge -c bioconda fastqc
 ```
+(you don't actually need to use `-c conda-forge -c bioconda` if you've
+set up your channels like the above.)
 
 Here we are asking conda to use the **bioconda** channel to look for software; bioconda has a lot (most? all?) of bioinformatics software in it. We'll talk more about this below.
 
@@ -132,7 +95,8 @@ conda activate fqc
 
 Your prompt should change to have `(fqc)` at the beginning.
 
-Let's run fastqc on a data file! We'll use the [first data file from week 1's RNAseq workflow](https://github.com/ngs-docs/2020-GGG298/tree/master/Week1-intro), and we'll put it in a directory for this week, just to keep things clean --
+<!-- @@@ -->
+Let's run fastqc on a data file! We'll use the [first data file from week 1's RNAseq workflow](https://github.com/ngs-docs/2021-GGG298/tree/master/Week1-intro), and we'll put it in a directory for this week, just to keep things clean --
 
 ```
 mkdir ~/298class3/
@@ -157,40 +121,28 @@ fastqc ERR458493.fastq.gz
 
 and voila! You'll get some output, in two files: `ERR458493_fastqc.html` and `ERR458493_fastqc.zip`, that you can download and look at.
 
-(To download files a command like
-```
-scp -P 2022 ggg298-43@farm.cse.ucdavis.edu:298class3/ERR458493_fastqc.html .
-```
-should work. You can also use:
-
-* CyberDuck
-* Mobaxterm
-* https://fetchsoftworks.com/
-
-)
-
 You should see output that looks like this:
-![FASTQC-01](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-01-Basic_Statistics.png)
+![FASTQC-01](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-01-Basic_Statistics.png)
 
-![FASTQC-02](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-02-Per_base_sequence_quality.png)
+![FASTQC-02](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-02-Per_base_sequence_quality.png)
 
-![FASTQC-03](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-03-Per_tile_sequence_quality.png)
+![FASTQC-03](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-03-Per_tile_sequence_quality.png)
 
-![FASTQC-4](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-04-Per_sequence_quality_scores.png)
+![FASTQC-4](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-04-Per_sequence_quality_scores.png)
 
-![FASTQC-5](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-05-Per_base_sequence_content.png)
+![FASTQC-5](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-05-Per_base_sequence_content.png)
 
-![FASTQC-6](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-06-Per_sequence_GC_content.png)
+![FASTQC-6](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-06-Per_sequence_GC_content.png)
 
-![FASTQC-7](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-07-Per_base_N_content.png)
+![FASTQC-7](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-07-Per_base_N_content.png)
 
-![FASTQC-8](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-08-Sequence_length_distribution.png)
+![FASTQC-8](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-08-Sequence_length_distribution.png)
 
-![FASTQC-9](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-09-Sequence_duplication_levels.png)
+![FASTQC-9](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-09-Sequence_duplication_levels.png)
 
-![FASTQC-10](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-10-Overrepresented_Sequences.png)
+![FASTQC-10](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-10-Overrepresented_Sequences.png)
 
-![FASTQC-11](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week3-conda_for_software_installation/FASTQC-11-Adapter_content.png)
+![FASTQC-11](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-11-Adapter_content.png)
 
 ## Installing more software in your current environment
 
@@ -221,12 +173,14 @@ and look at the second column. (Note that `conda list` doesn't need an exact mat
 
 As of Jan 2020, conda installs fastqc version 0.11.8. You can force conda to install _exactly_ this version in the future like so,
 ```
-conda install -c conda-forge -c bioconda fastqc=0.11.8
+conda install fastqc=0.11.8
 ```
 
 Unfortunately there's no good way to know if a new version of a software package is "significant" or not, unless they use [semantic versioning](https://semver.org/)... Generally if there's a big number update (1.0 -> 2.0) the software will work quite differently, but there's no guarantee on that.
 
-For example, our software sourmash 1.0 was very different from 2.0, but sourmash 3.0 is virtually identical to 2.0 in usage (but not in implementation). The next version, sourmash 4.0, will start breaking things again. *shrug* :)
+For example, our software sourmash 1.0 was very different from 2.0, but sourmash 3.0 is virtually identical to 2.0 in usage (but not in implementation). The next version, sourmash 4.0, will start breaking things again.
+
+(The lesson is, don't trust software projects to be consistent in their versioning!)
 
 ### Making and using environment files
 
@@ -242,7 +196,7 @@ If you have a complicated environment that you want to save, you can make an env
 conda env export > export.yml
 ```
 
-To look at the environment files we've just setup, do:
+To look at the environment files we've just created, do:
 ```
 cat export.yml
 ```
