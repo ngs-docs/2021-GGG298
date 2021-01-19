@@ -17,6 +17,12 @@ Other references:
 * [ANGUS 2019 lesson](https://angus.readthedocs.io/en/2019/conda_tutorial.html)
 * [Why you need Python Environments and How to Manage Them with Conda](https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/)
 
+## Ladies and gents, start your binder --
+
+Launch binder:
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.pangeo.io/v2/gh/ngs-docs/2020-ggg-201b-rnaseq/stable?urlpath=rstudio)
+
 ## Why is software installation hard?
 
 It's a confusing ecosystem of operating systems (Mac OS X, many versions of Linux, Windows)
