@@ -1,0 +1,30 @@
+revisit workflow: runs a bunch of programs
+some come installed on UNIX, some don't
+you figure out which is why through experience
+lots of ways to install software, many of them system specific (Linux - apt; yum; Mac)
+most require ownership or sysadmin privileges on computer
+most also require that the software be compatbile with other software and OS / not interfere with other software
+
+conda is a program that supports isolated environments, non-admin approval, text install files with version pinning
+integrated with snakemake so that snakemake manages installations, too
+
+with conda you can -
+* install and update software yourself (incuding conda)
+* on Mac and Linux environments, and sometimes Windows
+* record what you've installed and communicate it to other people
+* have multiple different installations of incompatible software (python2 vs python3)
+* provide the community with conda environments
+
+this lets you also -
+* expeiriment with new vesrions without messing up old installations
+* work with colalborators who like software that you don't necessarily use a lot
+* "pin" your versions so that you're always using the same version of the software (until you decide you want to change)
+
+diagram of how conda works
+
+what are we going to do on wed?
+* install some software using conda (fastqc and trimmomatic, specifically)
+* try running it and looking at the output
+* show you how to find different versions
+* show you how to create conda environment files and use them
+
