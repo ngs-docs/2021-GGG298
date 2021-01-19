@@ -83,7 +83,7 @@ Here's the command to `create` a new conda environment, named 'fqc', with fastqc
 conda create -y --name fqc -c conda-forge -c bioconda fastqc
 ```
 (you don't actually need to use `-c conda-forge -c bioconda` if you've
-set up your channels like the above.)
+set up your channels like the above, so I'm just including them as an FYI here :)
 
 Here we are asking conda to use the **bioconda** channel to look for software; bioconda has a lot (most? all?) of bioinformatics software in it. We'll talk more about this below.
 
@@ -202,7 +202,6 @@ cat export.yml
 ```
 
 and you can create a new environment from this file like so:
-(don't run this!)
 ```
 conda env create -n fqc2 -f export.yml
 ```
@@ -264,7 +263,7 @@ conda search <software>
 
 [Bioconda](https://bioconda.github.io/) is a "software channel" for conda, that lets you install a lot of stuff.
 
-You can install stuff directly from it as above, by specifying the bioconda channel explicitly: `conda install -c bioconda ...`. Or, you can add it to your "default" set of channels to search, like so:
+You can install stuff directly from it as above, by specifying the bioconda channel explicitly: `conda install -c bioconda ...`. Or, you can add it to your "default" set of channels to search, as we did above:
 
 ```
 conda config --add channels defaults
