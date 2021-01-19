@@ -23,12 +23,12 @@ It's a confusing ecosystem of operating systems (Mac OS X, many versions of Linu
 
 Many software has many dependencies (e.g. just consider base language -- C++, Java, Python, R, and their different versions)
 
-![isolation](https://github.com/ngs-docs/2021-GGG298/raw/master/Week3-conda_for_software_installation/conda-isolation.png)
+![isolation](https://github.com/ngs-docs/2021-GGG298/raw/latest/Week3-conda_for_software_installation/conda-isolation.png)
 
 
 This leads to confusing situations where different versions of underlying software are need to run two different programs -- what if you wanted to run Macs14 and sourmash both, but one wanted 'python' to mean python2 and the other wanted 'python' to mean python3?
 
-![versions](https://github.com/ngs-docs/2021-GGG298/raw/master/Week3-conda_for_software_installation/versions.png)
+![versions](https://github.com/ngs-docs/2021-GGG298/raw/latest/Week3-conda_for_software_installation/versions.png)
 
 Decoupling user-focused software from underlying operating systems is a Big Deal - imagine, otherwise you'd have to rebuild software for every OS! (This is kind of what conda does for you, actually - it's just centralized!)
 
@@ -96,7 +96,7 @@ conda activate fqc
 Your prompt should change to have `(fqc)` at the beginning.
 
 <!-- @@@ -->
-Let's run fastqc on a data file! We'll use the [first data file from week 1's RNAseq workflow](https://github.com/ngs-docs/2021-GGG298/tree/master/Week1-intro), and we'll put it in a directory for this week, just to keep things clean --
+Let's run fastqc on a data file! We'll use the [first data file from week 1's RNAseq workflow](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week1-intro), and we'll put it in a directory for this week, just to keep things clean --
 
 ```
 mkdir ~/298class3/
@@ -122,27 +122,27 @@ fastqc ERR458493.fastq.gz
 and voila! You'll get some output, in two files: `ERR458493_fastqc.html` and `ERR458493_fastqc.zip`, that you can download and look at.
 
 You should see output that looks like this:
-![FASTQC-01](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-01-Basic_Statistics.png)
+![FASTQC-01](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-01-Basic_Statistics.png)
 
-![FASTQC-02](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-02-Per_base_sequence_quality.png)
+![FASTQC-02](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-02-Per_base_sequence_quality.png)
 
-![FASTQC-03](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-03-Per_tile_sequence_quality.png)
+![FASTQC-03](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-03-Per_tile_sequence_quality.png)
 
-![FASTQC-4](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-04-Per_sequence_quality_scores.png)
+![FASTQC-4](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-04-Per_sequence_quality_scores.png)
 
-![FASTQC-5](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-05-Per_base_sequence_content.png)
+![FASTQC-5](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-05-Per_base_sequence_content.png)
 
-![FASTQC-6](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-06-Per_sequence_GC_content.png)
+![FASTQC-6](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-06-Per_sequence_GC_content.png)
 
-![FASTQC-7](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-07-Per_base_N_content.png)
+![FASTQC-7](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-07-Per_base_N_content.png)
 
-![FASTQC-8](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-08-Sequence_length_distribution.png)
+![FASTQC-8](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-08-Sequence_length_distribution.png)
 
-![FASTQC-9](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-09-Sequence_duplication_levels.png)
+![FASTQC-9](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-09-Sequence_duplication_levels.png)
 
-![FASTQC-10](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-10-Overrepresented_Sequences.png)
+![FASTQC-10](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-10-Overrepresented_Sequences.png)
 
-![FASTQC-11](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week3-conda_for_software_installation/FASTQC-11-Adapter_content.png)
+![FASTQC-11](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week3-conda_for_software_installation/FASTQC-11-Adapter_content.png)
 
 ## Installing more software in your current environment
 
@@ -186,7 +186,7 @@ For example, our software sourmash 1.0 was very different from 2.0, but sourmash
 
 What if you want to specify collections of software?
 
-conda has a nice human-readable format for that, called an **'environment file'**. These are supposed to be reasonably portable files that you can ship around to different computers and have them automatically install the right stuff. You can see one [here](https://github.com/ngs-docs/2020-ggg-201b-variant-calling/blob/master/binder/environment.yml) for variant calling in GGG 201(b), and one [here](https://github.com/spacegraphcats/spacegraphcats/blob/master/environment.yml) for our spacegraphcats software.
+conda has a nice human-readable format for that, called an **'environment file'**. These are supposed to be reasonably portable files that you can ship around to different computers and have them automatically install the right stuff. You can see one [here](https://github.com/ngs-docs/2021-ggg-201b-variant-calling/blob/latest/binder/environment.yml) for variant calling in GGG 201(b), and one [here](https://github.com/spacegraphcats/spacegraphcats/blob/latest/environment.yml) for our spacegraphcats software.
 
 (These are [YAML files](https://en.wikipedia.org/wiki/YAML), which are in a format that's structured for computers to read but not super difficult for humans to write. You'll see these used occasionally in configuration files for bioinformatics software, too.)
 
@@ -286,7 +286,7 @@ But unfortunately bioconda packages are only available for OS X and Linux, and n
 
 ### How to engage with bioconda
 
-bioconda is a community-driven library of software. It relies upon people (like you!) to package software; this involves writing a recipe, like [the sourmash recipe](https://github.com/bioconda/bioconda-recipes/blob/master/recipes/sourmash/meta.yaml).
+bioconda is a community-driven library of software. It relies upon people (like you!) to package software; this involves writing a recipe, like [the sourmash recipe](https://github.com/bioconda/bioconda-recipes/blob/latest/recipes/sourmash/meta.yaml).
 
 Some tips and tricks for using bioconda:
 
@@ -296,7 +296,7 @@ Some tips and tricks for using bioconda:
 
 ### Exercise: install and run salmon!
 
-Our goal is to find and install salmon, and then run [the quantification step from week 1](https://github.com/ngs-docs/2020-GGG298/tree/master/Week1-intro#run-salmon-individually-on-each-of-the-samples).
+Our goal is to find and install salmon, and then run [the quantification step from week 1](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week1-intro#run-salmon-individually-on-each-of-the-samples).
 
 The commands we want to run are:
 
