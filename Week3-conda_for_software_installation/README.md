@@ -61,7 +61,19 @@ Note that conda emerged from the Python world but is now much broader and works 
 ### Installing conda
 
 Conda already comes installed in the binder we'll be using!
-<!-- @@ -->
+
+However we do need to initialize it, and I also want to fix the prompt.
+So copy-paste in:
+
+```
+conda init
+echo "PS1='\w $ '" >> .bashrc
+```
+which will (1) initialize conda and (2) modify your shell settings to
+a cleaner prompt.
+
+Now close & reopen your terminal, by typing 'exit' and then going to
+Tools... New Terminal.
 
 ### Set up your channels
 
@@ -101,8 +113,7 @@ conda activate fqc
 
 Your prompt should change to have `(fqc)` at the beginning.
 
-<!-- @@@ -->
-Let's run fastqc on a data file! We'll use the [first data file from week 1's RNAseq workflow](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week1-intro), and we'll put it in a directory for this week, just to keep things clean --
+Let's run fastqc on a data file! We'll use the [first data file from week 1's RNAseq workflow](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week1-intro), and we'll put it in a subdirectory, just to keep things clean --
 
 ```
 mkdir ~/298class3/
@@ -291,7 +302,7 @@ But unfortunately bioconda packages are only available for OS X and Linux, and n
 
 ### How to engage with bioconda
 
-bioconda is a community-driven library of software. It relies upon people (like you!) to package software; this involves writing a recipe, like [the sourmash recipe](https://github.com/bioconda/bioconda-recipes/blob/latest/recipes/sourmash/meta.yaml).
+bioconda is a community-driven library of software. It relies upon people (like you!) to package software; this involves writing a recipe, like [the sourmash recipe](https://github.com/bioconda/bioconda-recipes/blob/master/recipes/sourmash/meta.yaml).
 
 Some tips and tricks for using bioconda:
 
@@ -336,9 +347,7 @@ Solution: use isolated environments to install single packages, instead.
 
 ### Conda and R
 
-conda and R do not necessarily work well together - see [Vince Buffalo's blog post](http://vincebuffalo.org/notes/2017/08/28/notes-on-anaconda.html), although maybe this [has changed?](https://takehomessage.com/2020/01/07/virtual-environment-r-development/))
-
-This is probably more a matter of growing the community engagement and support for R than anything else...
+conda-forge now has some pretty good support for R - see [this environment file](https://github.com/ngs-docs/2020-ggg-201b-rnaseq/blob/latest/binder/environment.yml) for RNAseq, for example. It installs both tidyverse packages and bioconductor packages!
 
 ### Explicit package listing
 
@@ -375,6 +384,10 @@ See [the conda docs](https://docs.conda.io/projects/conda/en/latest/user-guide/t
 + Conda [Documentation](https://conda.io/en/latest/)
 + Drawing credit: Gergely Szerovay. Read original article [here](https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/)
 
-## @CTB TODO:
+## Suggested lesson improvements and discussion items:
 
-Add a discussion of disk, vs environment, vs login shell; multiple terminals, all looking at same disk.
+* What happens if something isn't conda installable?
+  * You can install it as normal, and it will be usable as normal.
+  * However, it won't be "managed" via conda (or snakemake)
+* Disk, vs environment, vs login shell
+  * especially note that multiple terminals all look at the same disk
