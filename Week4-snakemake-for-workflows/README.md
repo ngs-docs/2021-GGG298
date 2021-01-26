@@ -18,13 +18,11 @@ By the end of this lecture, students will:
 
 Many things in bioinformatics are workflows. Data goes in, data comes out! Today we're going to talk about ways of automating this, using snakemake.
 
-@@
-
 ![RNAseq workflow](https://raw.githubusercontent.com/ngs-docs/2020-ggg-298-first-day-rnaseq/master/txome%20workflow.png)
 
 Generally the end result of a workflow is something you load into R and process (e.g. RMarkdown).
 
-Realistically workflows get [much more complicated](https://github.com/spacegraphcats/2018-paper-spacegraphcats/raw/master/paper/figures/hu_dag.pdf) when you're doing real things, too!
+Realistically workflows get [much more complicated](https://github.com/spacegraphcats/2018-paper-spacegraphcats/raw/master/paper/figures/hu_dag.png) when you're doing real things, too!
 
 ### What is a workflow system, and why use one?
 
@@ -32,7 +30,7 @@ Every computational workflow consists of multiple steps, taking previous outputs
 
 raw data -> workflow -> summary data for plotting and statistics
 
-See also [Nature Toolbox, "Workflow systems turn raw data into scientific knowledge"](https://www.nature.com/articles/d41586-019-02619-z)
+See also [Nature Toolbox, "Workflow systems turn raw data into scientific knowledge"](https://www.nature.com/articles/d41586-019-02619-z), and [Streamlining data-intensive biology with workflow systems](https://academic.oup.com/gigascience/article/10/1/giaa140/6092773?login=true) from Titus's lab!
 
 ## Introduction to snakemake
 
@@ -83,7 +81,7 @@ conda activate fqc
 conda install -y -n fqc salmon
 ```
 
-(if you don't have a fqc environment from [week 3](https://github.com/ngs-docs/2020-GGG298/blob/master/Week3-conda_for_software_installation/README.md), you can create this with `conda create -y -n fqc -c bioconda fastqc salmon`.)
+(if you don't have a fqc environment from [week 3](https://github.com/ngs-docs/2021-GGG298/blob/master/Week3-conda_for_software_installation/README.md), you can create this with `conda create -y -n fqc -c bioconda fastqc salmon`.)
 
 We are now set!
 
@@ -421,7 +419,7 @@ There are many advanced features to snakemake, and we'll touch on a few of them 
 
 ### Rule-specific conda environments with `conda:` and `--use-conda`
 
-If you specify a [conda environment file](https://github.com/ngs-docs/2020-GGG298/blob/master/Week3-conda_for_software_installation/README.md#making-and-using-environment-files), in an `conda:` block in a rule, and run conda with `--use-conda`, it will always run that rule in that software environment.
+If you specify a [conda environment file](https://github.com/ngs-docs/2021-GGG298/blob/master/Week3-conda_for_software_installation/README.md#making-and-using-environment-files), in an `conda:` block in a rule, and run conda with `--use-conda`, it will always run that rule in that software environment.
 
 This is useful when you want to version-pin a specific action, and/or have conflicting software in different rules.
 
