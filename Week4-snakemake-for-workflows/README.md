@@ -50,7 +50,20 @@ The name 'snakemake' comes from the fact that it's written in (and can be extend
 
 ### Setting ourselves up
 
-Go ahead and log into the farm.
+We'll be using [a binder](mybinder.org/) again, to do everything on an anonymous remote cloud computer.
+
+Start it up by clicking here -
+
+[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/binder-examples/r-conda/master?urlpath=rstudio)
+
+To configure our terminal in the RStudio terminal window on the binder, run:
+```
+conda init
+echo "PS1='\w $ '" >> .bashrc
+```
+and then close with `exit` and open a new Terminal.
+
+Your prompt should now look like this: `~ $`.
 
 Create a working directory:
 ```
@@ -69,19 +82,20 @@ curl -L https://osf.io/nmqe6/download -o ERR458501.fastq.gz
 Configure bioconda channels, just in case this didn't happen the first time through:
 
 ```
-conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
-(rerunning these commands is harmless!)
 
-and, finally, activate our previous conda environment that contains fastqc. Then install salmon:
+and, finally, create a conda environment that contains fastqc, salmon, and snakemake
+```
+mamba create -y -n fqc fastqc salmon snakemake-minimal
+```
+(mamba is a faster version of conda ;)
+
+and then activate the software environment:
 ```
 conda activate fqc
-conda install -y -n fqc salmon
 ```
-
-(if you don't have a fqc environment from [week 3](https://github.com/ngs-docs/2021-GGG298/blob/master/Week3-conda_for_software_installation/README.md), you can create this with `conda create -y -n fqc -c bioconda fastqc salmon`.)
 
 We are now set!
 
@@ -91,11 +105,9 @@ We have a file "ERR458493.fastq.gz" and we want to make "ERR458493_fastqc.html" 
 
 We _could_  run `fastqc ERR458493.fastq.gz` at the command line, but let's use this task as the start of our snakemake workflow first!
 
-Run:
-```
-nano -ET4 Snakefile
-```
-and copy/paste the following in; 
+Create a new file, `Snakefile`, in the RStudio editor, and copy/paste
+the following in;
+
 ```
 rule all:
     input:
@@ -111,14 +123,17 @@ rule make_fastqc:
     shell:
         "fastqc ERR458493.fastq.gz"
 ```
-hit <kbd>CTRL+X</kbd>, <kbd>y</kbd>, <kbd>ENTER</kbd> to save the changes.
+and save.
 
 now run:
 ```
-snakemake -p
+snakemake -p -j 1
 ```
 
 and you will see snakemake run fastqc for you, as specified!
+
+(You can view the output by clicking on the HTML file in the RStudio window,
+if you like!)
 
 The logic above is this:
 
@@ -148,13 +163,13 @@ Here, the "input:" in the rule `all` _has_ to match the "output" in the rule `ma
 
 ### Some features of workflows
 
-If you run `snakemake -p` again, it won't do anything. That's because all of the input files for the first rule already exist!
+If you run `snakemake -p -j 1` again, it won't do anything. That's because all of the input files for the first rule already exist!
 
 However, if you remove a file and run snakemake:
 
 ```
 rm ERR458493_fastqc.html
-snakemake -p
+snakemake -p -j 1
 ```
 then snakemake will run fastqc again, because now you don't have one of the files you're asking it to make!
 
@@ -204,10 +219,10 @@ ERR458501_fastqc.zip
 
 Notice how the top three and the bottom three have the same prefix (ERR458), and how the suffixes are the same between the two samples?
 
-Use `nano -ET4 Snakefile` and change the `make_fastqc` rule so: 
+Use and change the `make_fastqc` rule so: 
 * the input: is `"{sample}.fastq.gz"` 
 * the output is `"{sample}_fastqc.html", "{sample}_fastqc.zip"`
-* delete the `make_fastqc2` rule (you can use CTRL-K to delete an entire line if your cursor is on that line). 
+* delete the `make_fastqc2` rule. 
 
 Your complete Snakefile should look like this:
 
@@ -235,7 +250,7 @@ Try it!
 
 ```
 rm *.html
-snakemake -p
+snakemake -p -j 1
 ```
 
 Note that wildcards print out in the snakemake output for each task, so you can see exactly what is being substituted!
@@ -277,7 +292,7 @@ Suggestion:
 * (note that `download_reference` doesn't take any input files, because it's downloading the data from the Internet!)
 * then, add an `input:` line to `index_reference`. What does it take in?
 * in `index_reference`, replace the filename it takes in the shell line with `{input}`, too.
-* now, run the commands via snakemake to see if they work -- `snakemake -p `
+* now, run the commands via snakemake to see if they work -- `snakemake -p -j 1`
 
 **(one) Solution**
 Add these to the end of your Snakefile
@@ -297,10 +312,10 @@ rule index_reference:
         "salmon index --index {output} --transcripts {input}"
 ```
 
-BUT if you try to run `snakemake -p` then it won't run... we have to specify the rule to run:
+BUT if you try to run `snakemake -p -j 1` then it won't run... we have to specify the rule to run:
 ```
-snakemake -p download_reference
-snakemake -p index_reference
+snakemake -p -j 1 download_reference
+snakemake -p -j 1 index_reference
 ```
 If you'd like to have `snakemake -p` run these, then add their output to the input: of `rule all:`
 
@@ -355,7 +370,7 @@ rule salmon_quant:
    shell:
        "salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias"
 ```
-and make sure that works: `snakemake -p salmon_quant`
+and make sure that works: `snakemake -p -j 1 salmon_quant`
 
 Now, add `input:` and `output:`...
 
@@ -366,7 +381,7 @@ rule salmon_quant:
     shell:
         "salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias"
 ```
-and check that for syntax: `snakemake -p salmon_quant`
+and check that for syntax: `snakemake -p -j 1 salmon_quant`
 
 and finally replace the prefixes with the `{sample}` `{input}` and `{output}` wildcards we learned before:
 
@@ -382,7 +397,7 @@ Now, you can no longer run `salmon_quant` directly -- you have to ask snakemake 
 
 ```
 rm -fr ERR458493.fastq.gz.quant
-snakemake -p ERR458493.fastq.gz.quant
+snakemake -p -j 1 ERR458493.fastq.gz.quant
 ```
 
 The reason for this is that snakemake doesn't *automatically* look at all the files in the directory and figure out which ones it can apply rules to - you have to ask it more specifically, by asking for the specific files you want.
@@ -505,7 +520,7 @@ If you want to see some good examples of how to build nice, clean, simple lookin
 
 google is your friend!
 
-The first three 201(b) class materials are a fairly gentle introduction: https://hackmd.io/YaM6z84wQeK619cSeLJ2tg#Schedule-of-lab-topics
+The first three 201(b) class materials are a fairly gentle introduction: https://hackmd.io/wnAlw5Y6QRu4kfWiri9Cwg?view
 
 here's another tutorial I wrote... [link](https://github.com/ctb/2019-snakemake-ucdavis/blob/master/tutorial.md)
 
@@ -541,7 +556,7 @@ which snakemake can use to figure out what the wildcards should be.
 An alternative to specifying the file on the command line is to put it in the default rule, e.g. `rule all:` (see [the section on default rules in GGG 201(b)](https://hackmd.io/cGYzxz07SseGxH0y2gjYJw?view#Create-a-good-%E2%80%9Cdefault%E2%80%9D-rule)) and then you can run `snakemake`.
 
 
-We can use the `-n` gives a dry run of the Snakefile. For example `snakemake -p -n`
+We can use the `-n` gives a dry run of the Snakefile. For example `snakemake -p -j 1 -n`
 
 ### A quick checklist:
 
