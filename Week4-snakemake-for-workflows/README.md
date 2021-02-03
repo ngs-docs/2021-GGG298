@@ -158,7 +158,7 @@ Here, the "input:" in the rule `all` _has_ to match the "output" in the rule `ma
 * you can specify a subset of outputs, e.g. just the .html file, and snakemake will run the rule even if it only needs one of the files.
 * it goes all red if it fails! (try breaking one command :)
 * it's all case sensitive
-* tabs and spacing matters... that's why we're using `nano -ET4` to edit!
+* tabs and spacing matter...
 * you can make lists for multiple input or output files by separating filenames with a comma
 
 ### Some features of workflows
@@ -177,7 +177,7 @@ This ability to selectively figure out whether or not to run a command is one of
 
 ### Add a variable substitution
 
-Let's make the `make_fastqc` rule a little more generic. Use `nano -ET4 Snakefile` to edit the file and make the rule look like this:
+Let's make the `make_fastqc` rule a little more generic. Edit the file and make the rule look like this:
 
 ```
 rule make_fastqc:
@@ -275,7 +275,7 @@ Let's add the first two as new rules. Here are the shell commands to run; can yo
 
 the `download_reference` shell command is:
 ```
-curl -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz
+curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz
 ```
 
 the `index_reference` shell command is:
