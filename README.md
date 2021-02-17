@@ -47,14 +47,16 @@ Week 3: Conda for software installation -- [lab notes](https://github.com/ngs-do
 
 Week 4: Snakemake for workflows -- [lab notes](https://github.com/ngs-docs/2021-GGG298/tree/master/Week4-snakemake-for-workflows/README.md)
 
-Week 5: Integrating it all, round 1 - a sourmash project!
+Week 5: cancelled for Internet outage reasons.
 
-Week 6: Project organization and more UNIX shell -- [lab notes](https://github.com/ngs-docs/2021-GGG298/tree/master/Week6-project_organization_and_UNIX_shell/README.md)
+Week 6: Integrating it all, round 1 - a sourmash project!
 
 Week 7: Git and GitHub for file tracking and sharing -- [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week7-Git_and_GitHub_for_file_tracking_and_sharing/README.md)
 
-Week 8: Slurm and the Farm cluster for doing analysis -- [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week8-Slurm_and_Farm_cluster_for_doing_analysis/README.md)
+Week 8: Project organization and more UNIX shell -- [lab notes](https://github.com/ngs-docs/2021-GGG298/tree/master/Week8-project_organization_and_UNIX_shell/README.md)
 
-Week 9: Integrating it all, round 2 - a sourmash project!
+Week 9: Slurm and the Farm cluster for doing analysis -- [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week9-Slurm_and_Farm_cluster_for_doing_analysis/README.md)
 
-Week 10: R/Rmarkdown for Reports, Documentation and beyond -- [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week10-Rmarkdown_for_reports_documentation_and_beyond)
+Week 10: Integrating it all, round 2 - a sourmash project!
+
+Week 11: R/Rmarkdown for Reports, Documentation and beyond -- [lab notes](https://github.com/ngs-docs/2021-GGG298/blob/master/Week11-Rmarkdown_for_reports_documentation_and_beyond)
