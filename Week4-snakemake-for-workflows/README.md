@@ -307,10 +307,11 @@ rule index_reference:
     input:
         "orf_coding.fasta.gz"
     output:
-        "yeast_orfs"
+        directory("yeast_orfs")
     shell:
         "salmon index --index {output} --transcripts {input}"
 ```
+# @CTB explain directory.
 
 BUT if you try to run `snakemake -p -j 1` then it won't run... we have to specify the rule to run:
 ```
@@ -467,7 +468,6 @@ General advice:
 * start small, grow your snakefile!
 * DO copy and paste from this tutorial and others you find online!
 * it rarely hurts to just re-run snakemake until it does nothing but error out, and then analyze that error :)
-* we can help, at [Meet and Analyze Data! Wed 3-5pm](http://mad.oxli.org), or [online](http://mad.oxli.org).
 
 ### Approach 1: write down your shell commands
 
