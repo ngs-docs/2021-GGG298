@@ -38,7 +38,7 @@ Select the URL and copy it into your paste buffer.
 
 ### Log in!
 
-Now, log in to farm, as per usual, or start up a
+Now, log in to farm, or start up a
 [binder](https://binder.pangeo.io/v2/gh/binder-examples/r-conda/master?urlpath=rstudio)
 and go to the terminal.
 
@@ -69,9 +69,10 @@ and look around with `ls -a`. You'll notice two files: a `.git` subdirectory (th
 
 ### Edit a file
 
-Let's edit the README.md file:
+Let's edit the README.md file; on binder, you can use RStudio, or use
+`nano` on farm:
 ```
-nano -ET4 README.md
+nano README.md
 ```
 and add a new line like "example github repo for GGG 298 at UC Davis." to the file, then save it and exit nano using CTRL-X.
 
@@ -82,8 +83,8 @@ git status
 
 You should see the following message:
 
->On branch master
->Your branch is up to date with 'origin/master'.
+>On branch main
+>Your branch is up to date with 'origin/main'.
 >
 >Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -96,7 +97,7 @@ You should see the following message:
 This is telling you a few things.
 
 * the most important is that README.md has been modified!
-* it also tells you that, as far as git knows, you have the latest version of what's on github ('origin' branch 'master'). We'll revisit this later.
+* it also tells you that, as far as git knows, you have the latest version of what's on github ('origin' branch 'main'). We'll revisit this later.
 * it also gives you some instructions. You can trash the modifications to README.md by typing `git checkout -- README.md` and it will **revert** the file to the last change that git tracked. Alternatively, you can do `git add` to tell git that you plan to `commit` these changes.
 
 We'll commit these changes in a second; let's look at them first. Run:
@@ -127,7 +128,7 @@ git commit -am "added info to README"
 ```
 
 This tells git that the changes to the README.md file are worth keeping as a changeset, and that you want to tag this changeset with the **commit message** "added info to README". You should see something like:
->[master e5f2790] added info to README
+>[main e5f2790] added info to README
 > 1 file changed, 3 insertions(+), 1 deletion(-)
 
 here, `e5f2790` is the changeset id. We'll talk about this later.
@@ -146,13 +147,13 @@ again?
 
 You should see:
 
->On branch master
->Your branch is ahead of 'origin/master' by 1 commit.
+>On branch main
+>Your branch is ahead of 'origin/main' by 1 commit.
   (use "git push" to publish your local commits)
 >
 >nothing to commit, working tree clean
 
-What this tells you is that you are now **out of sync** with your origin/master git repo, which is the GitHub URL above from which you cloned this repo.
+What this tells you is that you are now **out of sync** with your origin/main git repo, which is the GitHub URL above from which you cloned this repo.
 
 Let's fix that:
 
@@ -162,7 +163,7 @@ git push
 It should now ask you for a username and a password; enter your GitHub username and password. At the end it will say something like
 
 > To https://github.com/ctb/2021-ggg298-week7
->   a6faf82..e5f2790  master -> master
+>   a6faf82..e5f2790  main -> main
 
 which tells you that it pushed your changes through changeset e5f2790 to your GitHub URL.
 
@@ -182,7 +183,7 @@ If you go over to the '...' menu on the far right, you can view the file as of t
 
 What we're doing is the simplest way to use git and GitHub to manage your own repository. There are more complicated options but this is a nice blend of practicality and features (backups, change tracking, sharing options).
 
-![](https://github.com/ngs-docs/2021-GGG298/raw/master/git-one-repo-model.png)
+![](https://github.com/ngs-docs/2021-GGG298/raw/main/git-one-repo-model.png)
 
 ## Let's do it all again!
 
@@ -192,7 +193,7 @@ Let's try that again...
 
 Go to your command line on farm.
 
-Edit the file with `nano -ET4 README.md`, and add a new line.
+Edit the file with `nano README.md`, and add a new line.
 
 Verify with `git status` and `git diff` that the change is to the right file.
 
@@ -223,7 +224,7 @@ You can easily work with multiple files, though! Git changesets track simultaneo
 ### Create some files
 
 Let's make a Snakefile that produces an output file.
-Run `nano -ET4 Snakefile` and paste in the following content:
+Run `nano Snakefile` and paste in the following content:
 
 ```
 rule hello:
@@ -279,7 +280,7 @@ In brief,
 
 ### Add more stuff to the Snakefile
 
-Use `nano -ET4 Snakefile` to add the following lines at the top of the Snakefile (you can just paste them in).
+Use `nano Snakefile` to add the following lines at the top of the Snakefile (you can just paste them in).
 
 ```
 rule all:
@@ -309,7 +310,7 @@ QUESTION: why didn't we need to do a git add?
 
 ### Unwinding mistakes
 
-Let's make a mistake. Add some random characters to the top of the Snakefile with `nano -ET4 Snakefile` and then save it with <kbd>CTRL-X</kbd><kbd>y</kbd>.
+Let's make a mistake. Add some random characters to the top of the Snakefile with `nano Snakefile` and then save it with <kbd>CTRL-X</kbd><kbd>y</kbd>.
 
 Now commit and push.
 ```
@@ -354,7 +355,7 @@ snakemake -n
 NO. Unfortunately, we pushed this to GitHub! And we need to do some extra foo to fix that.
 
 ```
-git push -f origin master
+git push -f origin main
 ```
 
 This will *force* the update of your GitHub to your current changeset.
@@ -395,8 +396,8 @@ If you've done all the above, `git status` will show several files that you don'
 ```
 git status
 ```
-> On branch master
-Your branch is up to date with 'origin/master'.
+> On branch main
+Your branch is up to date with 'origin/main'.
 >
 >Untracked files:
 >  (use "git add <file>..." to include in what will be committed)
@@ -466,8 +467,8 @@ git fetch
 git status
 ```
 and now you'll see:
->On branch master
->Your branch is behind 'origin/master' by 1 commit, and >can be fast-forwarded.
+>On branch main
+>Your branch is behind 'origin/main' by 1 commit, and >can be fast-forwarded.
 >  (use "git pull" to update your local branch)
 
 >nothing to commit, working tree clean
