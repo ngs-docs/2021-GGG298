@@ -26,31 +26,44 @@ By default the free accounts allow unlimited private repositories with up to thr
 
 ### Create a git repository on GitHub
 
-Click on the 'plus' in the upper right of the screen at github.com, and select 'New repository'. Name it `2020-ggg298-week6`. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)
+Click on the 'plus' in the upper right of the screen at github.com, and select 'New repository'. Name it `2021-ggg298-week7`. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)
 
 Also select 'Initialize this repository with a README'.
 
 Then click 'Create repository'.
 
-After a few seconds, you should be redirected to a web page with a URL like `https://github.com/USERNAME/2021-ggg298-week6`. This is your GitHub URL for this repository; note that it's public (unless you selected private) which means that _anyone_ can get a read-only copy of this repo.
+After a few seconds, you should be redirected to a web page with a URL like `https://github.com/USERNAME/2021-ggg298-week7`. This is your GitHub URL for this repository; note that it's public (unless you selected private) which means that _anyone_ can get a read-only copy of this repo.
 
 Select the URL and copy it into your paste buffer.
 
-### Clone the repository 
+### Log in!
 
-Now, log in to farm, as per usual.
+Now, log in to farm, as per usual, or start up a
+[binder](https://binder.pangeo.io/v2/gh/binder-examples/r-conda/master?urlpath=rstudio)
+and go to the terminal.
+
+### Optional: set up a password helper
+
+You'll have to type in your password each time you want to make
+changes, unless you do this:
+
+```
+git config --global credential.helper cache
+```
+
+### Clone the repository 
 
 Run:
 
 ```
 cd ~/
-git clone https://github.com/USERNAME/2021-ggg298-week6
+git clone https://github.com/USERNAME/2021-ggg298-week7
 ```
-This will create a directory `2021-ggg298-week6` under your home directory.
+This will create a directory `2021-ggg298-week7` under your home directory.
 
 Change into it:
 ```
-cd 2021-ggg298-week6
+cd 2021-ggg298-week7
 ```
 and look around with `ls -a`. You'll notice two files: a `.git` subdirectory (this is a directory that git uses to keep information about this repo!) and a `README.md` file that contains the name of the repository. This file is the same README that is displayed at the above GitHub URL when you go to it.
 
@@ -98,8 +111,8 @@ index a5af6ae..f46e8b3 100644
 --- a/README.md
 +++ b/README.md
 @@ -1 +1,3 @@
--# 2021-ggg298-week6
->+# 2021-ggg298-week6
+-# 2021-ggg298-week7
+>+# 2021-ggg298-week7
 >+
 +example repository for ggg 298
 
@@ -148,7 +161,7 @@ git push
 ```
 It should now ask you for a username and a password; enter your GitHub username and password. At the end it will say something like
 
-> To https://github.com/ctb/2021-ggg298-week6
+> To https://github.com/ctb/2021-ggg298-week7
 >   a6faf82..e5f2790  master -> master
 
 which tells you that it pushed your changes through changeset e5f2790 to your GitHub URL.
@@ -480,7 +493,7 @@ To do this:
 * go to zenodo.org in a new browser tab
 * log in with GitHub
 * go to upper right menu, select 'GitHub'
-* flip the switch next to your 2021-ggg298-week6 repository
+* flip the switch next to your 2021-ggg298-week7 repository
 
 Now, go back to your github.com tab.
 
