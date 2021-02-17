@@ -381,6 +381,20 @@ This will *force* the update of your GitHub to your current changeset.
 
 `git reset` is a nice way to undo a recent commit. But it's not awesome in some circumstances, because it rolls back the entire repository (since changesets apply to multiple files). Are there alternatives? Yes!
 
+### `git revert` as an alternative
+
+If you catch a bad commit immediately, you can also use `git revert`.
+
+EXERCISE:
+
+Give it try - 
+
+* add a bad commit to Snakefile
+* commit it
+* run `git revert HEAD`
+
+what does this do?
+
 ### 'git show' as a way to retrieve older versions
 
 Suppose you want to retrieve an older version of a particular file, but don't want to roll the rest of the repo back.
@@ -541,4 +555,3 @@ TODO:
 
 - discuss `git stash` / `git stash apply`
 - discuss `git add` with wildcards, and `git add -f`
-- git revert instead
