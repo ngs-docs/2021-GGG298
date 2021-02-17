@@ -42,6 +42,17 @@ Now, log in to farm, or start up a
 [binder](https://binder.pangeo.io/v2/gh/binder-examples/r-conda/master?urlpath=rstudio)
 and go to the terminal.
 
+You'll also need to install snakemake --
+
+```
+conda create -c bioconda -c conda-forge -n 298week7 -y snakemake-minimal
+```
+
+and activate that environment:
+```
+conda activate 298week7
+```
+
 ### Optional: set up a password helper
 
 You'll have to type in your password each time you want to make
@@ -107,6 +118,7 @@ git diff
 ```
 
 >You should see something like:
+```
 diff --git a/README.md b/README.md
 index a5af6ae..f46e8b3 100644
 --- a/README.md
@@ -116,6 +128,7 @@ index a5af6ae..f46e8b3 100644
 >+# 2021-ggg298-week7
 >+
 +example repository for ggg 298
+```
 
 This is telling you that you changed one file (README.md), and that you changed three lines: you added a newline at the end of the first line, a blank line, and, for the third line, whatever text you added.
 
@@ -141,7 +154,7 @@ again - it should show you nothing at all.
 
 What if you run
 ```
-git diff
+git status
 ```
 again?
 
@@ -236,12 +249,13 @@ use <kbd>ctrl-x</kbd> <kbd>y</kbd> to save it.
 
 and now run it:
 ```
-snakemake
+snakemake -j 1
 ```
 This will create the file `hello.txt` with the words `hello, world` in it.
 
-What should we add to git? In general, add _scripts_ and _metadata_ to git, but not _generated files_ that can be produced by the scripts. So in this case, 
-We want to add the Snakefile, but _not_ the output file.
+What should we add to git? In general, add _scripts_ and _metadata_ to
+git, but not _generated files_ that can be produced by the scripts. So
+in this case, we want to add the Snakefile, but _not_ the output file.
 
 If you run
 ```
@@ -292,6 +306,11 @@ rule howdy:
         "echo yeah texas > howdy.txt"
 ```
 
+test it:
+```
+snakemake -j 1
+```
+
 and now commit and push:
 ```
 git commit -am "update Snakefile with howdy rule"
@@ -326,7 +345,7 @@ WE BROKE IT!!! WHAT DO WE DO!?
 
 Never fear! We can unwind it!
 
-First, you should generally test at least the syntax of your files before you commit. `snakemake -n` would have told you that this was a problematic change. But we all make mistakes. So! Let's unwind (or "reset") the changes!
+First, you should generally test at least the syntax of your files before you commit. `snakemake -j 1 -n` would have told you that this was a problematic change. But we all make mistakes. So! Let's unwind (or "reset") the changes!
 
 First, undo the commit:
 ```
@@ -348,7 +367,7 @@ this says "check out the last committed change", which, after the `reset`, is th
 
 Try the snakefile out:
 ```
-snakemake -n
+snakemake -j 1 -n
 ```
 ...ok, should be no syntax error. Are we done?
 
@@ -522,4 +541,4 @@ TODO:
 
 - discuss `git stash` / `git stash apply`
 - discuss `git add` with wildcards, and `git add -f`
-
+- git revert instead
