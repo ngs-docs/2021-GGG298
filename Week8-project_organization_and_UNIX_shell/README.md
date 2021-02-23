@@ -1,9 +1,8 @@
 ---
 tags: ggg, ggg2021, ggg298
 ---
-# GGG298 -- Week 6 - Project organization and file manipulation
+# GGG298 -- Week 8 - Project organization and file manipulation
 
-[toc]
 
 ## Learning Objectives
 By the end of this lesson, students will:
@@ -17,7 +16,7 @@ By the end of this lesson, students will:
 
 @@
 
-![bioinformatics_workflow](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/Bioinformatics_Workflow.png)
+![bioinformatics_workflow](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/Bioinformatics_Workflow.png)
 
 
 ## Sending and Receiving Data
@@ -35,8 +34,8 @@ We don't have data to download from the farm, so we'll be grabbing some from [OS
 Let's download some data:
 
 ```
-mkdir -p ~/298class5
-cd ~/298class5
+mkdir -p ~/298class8
+cd ~/298class8
 curl -L https://osf.io/srdhb/download -o mini_Alca-torda.tar.gz
 tar -xvf mini_Alca-torda.tar.gz
 cd mini_A-torda
@@ -87,7 +86,7 @@ Anytime you download data you should check to make sure it has downloaded succes
 We can also make a list of md5sum's for a group of files:
 
 ```
-cd ~/298class5/mini_A-torda
+cd ~/298class8/mini_A-torda
 md5sum mini-chr[1-9]*.fna.gz  >> autosomes.md5
 ```
 
@@ -198,14 +197,14 @@ In bioinformatics, _organization is everything_. It allows us to be efficient in
 
 Here we can see how organization allows for a tidy workspace:
 
-![paths](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/paths_one_project.png)
+![paths](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/paths_one_project.png)
 
 The list of files up top isn't too cringeworthy if you only have one project. But multiple projects or experiments in one directory results in an organizational disater...
 
-![paths](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/paths_multiple_projects.png)
+![paths](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/paths_multiple_projects.png)
 
 I like to have the following directory structure:
-![directory_structure](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/example_directory_str.png)
+![directory_structure](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/example_directory_str.png)
 
 -------------------------------
 ## Working with data
@@ -227,7 +226,7 @@ We can take a small chunk of a file and use it to test if our newly written code
 
 Let's grab some data:
 ```
-mkdir -p ~/298class5/yeast/data
+mkdir -p ~/298class8/yeast/data
 cd !$
 ln -s /home/ctbrown/data/ggg201b/SRR2584403_1.fastq.gz .
 ln -s /home/ctbrown/data/ggg201b/SRR2584404_1.fastq.gz .
@@ -254,7 +253,7 @@ And now we have a subset of all of our fastq files!
 Using GitHub, snakemake and conda together can make life a lot easier. We can grab our collaborator's code by cloning their repo:
 
 ```
-cd ~/298class5/yeast
+cd ~/298class8/yeast
 git clone https://github.com/shannonekj/2020_ggg298_variant_calling.git
 cd 2020_ggg298_variant_calling
 ```
@@ -318,7 +317,7 @@ We can use this to our advantage by making the ends of files denote what step(s)
 
 Let's look at the [samtools](http://www.htslib.org/) steps that happen in our Snakefile
 
-![file_endings](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/file_endings.png)
+![file_endings](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/file_endings.png)
 
 -------------------------------
 ## Additional resources
