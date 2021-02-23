@@ -345,53 +345,11 @@ unzip shell-data.zip
 cd data/MiSeq
 ```
 
-For our first task, let's pretend that we want to rename all of the fastq files to be `.fq` files instead (this is a surprisingly useful specific skill, even if you can't immediately think of why you would want to do that!).  Here, we get to use two of my favorite commands - 'for' and 'basename'.
+A little recap from Week 2...
 
-`for` lets you do something to every file in a list.  To see it in action:
+Remember we want to rename all of the fastq files to be `.fq` files instead. We get to use two of my favorite commands - 'for' and 'basename'.
 
-```
-for i in *.fastq
-do
-   echo $i
-done
-```
-
-This is running the command `echo` for every value of the variable 'i', which is set (one by one) to all the values in the expression `*.fastq`.
-
-If we want to get rid of the extension '.fastq', we can use the `basename` command:
-
-```
-for i in *.fastq
-do
-   basename $i .fastq
-done
-```
-
-Now, this doesn't actually rename the files - it just prints out the name, with the suffix '.fastq' removed.  To rename the files, we need to capture the new name in a variable::
-
-```
-for i in *.fastq
-do
-   newname=$(basename $i .fastq).fq
-   echo $newname
-done
-```
-
-What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the output of running the command.
-
-Now we have the old name ($i) and the new name ($newname) and we're ready to write the rename command -- ::
-
-```
-for i in *.fastq
-do
-   newname=$(basename $i .fastq).fq
-   echo mv $i $newname
-done
-```
-
-***Question:*** why did I use `echo` here?
-
-Now that we're pretty sure it all looks good, let's run it for realz:
+In week two we developed a nice `for` loop to allow us to rename the ending of our files:
 
 ```
 for i in *.fastq
@@ -401,7 +359,7 @@ do
 done
 ```
 
-and voila, we have renamed all the files!
+and boom, we renamed all the files again!
 
 _Side note:_ you may see backquotes used instead of `$(...)`. It does the same thing but is trickier to get right, so we teach `$(...)` instead of ``...``.
 
