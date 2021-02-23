@@ -14,7 +14,6 @@ By the end of this lesson, students will:
 
 ## a rough bioinformatics workflow
 
-@@
 
 ![bioinformatics_workflow](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/Bioinformatics_Workflow.png)
 
@@ -23,15 +22,15 @@ By the end of this lesson, students will:
 
 Here at UC Davis most researchers sequence at the UC Davis [DNA Technologies Core](https://dnatech.genomecenter.ucdavis.edu/). You can find their sample submission form [here](https://dnatech.genomecenter.ucdavis.edu/sample-submission-scheduling/).
 
-When they've sequenced your samples they will hold your sequencing data on [SLIMS lab information management system](https://slims.bioinformatics.ucdavis.edu/) for three months after the sequencing run finishes. Do yourself a favor and download & back it up to a hard disk IMMEDIATELY.
+When they've sequenced your samples they will hold your sequencing data on either [SLIMS lab information management system](https://slims.bioinformatics.ucdavis.edu/) for three months after the sequencing run finishes or [bioshare](https://bioshare.bioinformatics.ucdavis.edu/) for an undetermined amount of time. Do yourself a favor and download & back your new sequencing data up to a hard disk IMMEDIATELY.
 
 
 ### Downloading data
-To download your data **onto a cluster** (i.e. by using slurm) follow [these directions](https://github.com/shannonekj/cluster_computing/blob/master/How2s/How_To-download_data.md).
+To download your data from slims **onto a cluster** (by using slurm) follow [these directions](https://github.com/shannonekj/cluster_computing/blob/master/How2s/How_To-download_data.md).
 
-We don't have data to download from the farm, so we'll be grabbing some from [OSF](https://osf.io/), an open science framework that hosts a small amount of data (5Gb limit).
+Luckily for this class we don't have data to download from the farm, so we'll be grabbing some from [OSF](https://osf.io/), an open science framework that can host small amounts of data (5Gb limit).
 
-Let's download some data:
+Let's setup a directory to work from and download some data:
 
 ```
 mkdir -p ~/298class8
@@ -254,21 +253,21 @@ Using GitHub, snakemake and conda together can make life a lot easier. We can gr
 
 ```
 cd ~/298class8/yeast
-git clone https://github.com/shannonekj/2020_ggg298_variant_calling.git
-cd 2020_ggg298_variant_calling
+git clone https://github.com/shannonekj/2021_ggg298_variant_calling.git
+cd 2021_ggg298_variant_calling
 ```
 
 then we'll install a few more pieces of software with conda
 
 ```
-conda create -y -n fqc-day5 samtools bcftools bwa snakemake-minimal
-conda activate fqc-day5
+conda create -y -n fqc-day8 -c bioconda -c conda-forge samtools bcftools bwa snakemake-minimal
+conda activate fqc-day8
 ```
 
 and run their Snakefile to test calling variants on the subset file.
 
 ```
-snakemake -p
+snakemake -p -j 1
 ```
 
 In this one command we've done the following:
