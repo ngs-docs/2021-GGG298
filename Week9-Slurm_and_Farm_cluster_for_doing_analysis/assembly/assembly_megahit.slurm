@@ -1,5 +1,5 @@
 #!/bin/bash -login
-#SBATCH -p bmh                      # partition, or queue, to assign to
+#SBATCH -p high2                      # partition, or queue, to assign to
 #SBATCH -J ggg298-assembly          # name for job
 #SBATCH -o assembly_megahit.j%j.out # file to write STDOUT to
 #SBATCH -e assembly_megahit.j%j.err # file to write error output to

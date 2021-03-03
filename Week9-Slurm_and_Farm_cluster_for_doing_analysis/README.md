@@ -174,18 +174,22 @@ Once our scripts run, we should see the following files in our current directory
 
 Let's play around with a sample workflow of an E. coli genome assembly.
 
-First, clone or update your GGG298 repos:
+First, clone or update a repository for an assembly workflow (from 201b :)
 ```
-cd ~
-git clone https://github.com/ngs-docs/2021-GGG298.git
-cd 2021-GGG298/Week9-Slurm_and_Farm_cluster_for_doing_analysis/assembly
+git clone https://github.com/ngs-docs/2021-ggg-201b-assembly ~/298lab9
+cd ~/298lab9/
 ```
 If you've previously cloned the repository, change directories into the repository and pull down the newest version with `git pull` then navigate into the assembly directory.
 
-Second, we must create & setup a conda environment (if you've created this environment from 201b, skip the next command):
-@@CTB
+Second, we must create & setup a conda environment:
 ```
-conda create -y -n assembly -c conda-forge -c bioconda prokka megahit snakemake-minimal
+conda create -y -n assembly -c conda-forge -c bioconda snakemake-minimal megahit
+```
+(If you run it and get an error because it already exists from GGG 201b, you're good!)
+
+and, finally, download a slurm batch script!
+```
+https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week9-Slurm_and_Farm_cluster_for_doing_analysis/assembly/assembly_megahit.slurm
 ```
 
 Next, test the syntax of the batch script by running the bash script locally:
