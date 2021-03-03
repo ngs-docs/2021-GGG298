@@ -62,8 +62,8 @@ When we submit a script to slurm it is considered a _job_ and gets a unique `job
 First,  to play around with `sbatch` let's create a script called **HelloWorld.sh**.
 
 ```
-mkdir -p ~/298class9
-cd ~/298class9
+mkdir -p ~/298lab9
+cd ~/298lab9
 nano HelloWorld.sh
 ```
 
@@ -73,11 +73,18 @@ Then copy and paste the following:
 #!/bin/bash
 
 echo Hello World
-sleep 1m
+sleep 15
 date
 ```
 
 Then exit nano with <kbd>Ctrl+X</kbd>
+
+Try running it:
+
+```
+bash HelloWorld.sh
+```
+what does it do?
 
 We can submit this script to **Slurm** with the `sbatch` command.
 
@@ -96,7 +103,7 @@ In order to handle jobs, Slurm needs to know the maximum amount of **walltime** 
 We can tell Slurm how much time to allow our submitted script by using the `-t` flag. Let's tell Slurm that our job _shouldn't_ take longer than 5 minutes (note: the format is `dd-hh:mm:ss`).
 
 ```
-sbatch -t 00-00:05:00 -p bmh HelloWorld.sh
+sbatch -t 00-00:05:00 -p high2 HelloWorld.sh
 ``` 
 
 You will see your job was successfully submitted and will be given an associated Job ID number: `Submitted batch job 15219016`
@@ -120,7 +127,7 @@ We can use a number of different flags to specify resources we want from Slurm:
 
 If we were being mean to ourselves we would write these out at the command line each time we submitted a job to slurm with `sbatch`. It would look something like this:
 ```
-sbatch --time=01-02:03:04 -p bmh --mem=4Gb --mail-user=<your_email> --mail-type=ALL -J <job_name> -o <file_name>.out -e <file_name>.err
+sbatch --time=01-02:03:04 -p high2 --mem=4Gb --mail-user=<your_email> --mail-type=ALL -J <job_name> -o <file_name>.out -e <file_name>.err
 ```
 (We would need to switch out all of the `<text>` with parameters specific to our preference, but hopefully you get the gist.)
 
@@ -176,8 +183,8 @@ Let's play around with a sample workflow of an E. coli genome assembly.
 
 First, clone or update a repository for an assembly workflow (from 201b :)
 ```
-git clone https://github.com/ngs-docs/2021-ggg-201b-assembly ~/298lab9
-cd ~/298lab9/
+git clone https://github.com/ngs-docs/2021-ggg-201b-assembly ~/298lab9-assembly
+cd ~/298lab9-assembly
 ```
 If you've previously cloned the repository, change directories into the repository and pull down the newest version with `git pull` then navigate into the assembly directory.
 
@@ -185,17 +192,25 @@ Second, we must create & setup a conda environment:
 ```
 conda create -y -n assembly -c conda-forge -c bioconda snakemake-minimal megahit
 ```
-(If you run it and get an error because it already exists from GGG 201b, you're good!)
+(If you run this command and get an error because it already exists from GGG 201b, you're good!)
 
 and, finally, download a slurm batch script!
 ```
-https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week9-Slurm_and_Farm_cluster_for_doing_analysis/assembly/assembly_megahit.slurm
+wget https://raw.githubusercontent.com/ngs-docs/2021-GGG298/latest/Week9-Slurm_and_Farm_cluster_for_doing_analysis/assembly/assembly_megahit.slurm
 ```
 
 Next, test the syntax of the batch script by running the bash script locally:
 ```
 bash assembly_megahit.slurm
 ```
+
+Whoops! Looks like we forgot something - let's link in the data!
+```
+ln -s ~ctbrown/data/ggg201b/SRR2584857_?.fastq.gz .
+```
+
+OK, run it again - how does it look?
+
 Note that we get an error where we are calling on some slurm-specific variables. That is okay for now 'cause we didn't submit the job to slurm!
 Another way of checking syntax is through the use of [shell check](https://www.shellcheck.net/), a tool to find bugs in your bash scripts. (You will have to copy and paste your script into the box on the web browser.)
 
@@ -257,25 +272,15 @@ squeue -u $USER
 ```
 Much better!! 
 
-Not only can you check on your own job's status but you can also check on the status of your **group**:
-
-@@CTB
-```
-squeue -A ggg298
-```
-
-If you do not know what group you are a part of, you can check!
-```
-groups
-```
+Not only can you check on your own job's status but you can also check on the status of your slurm group:
 
 ```
-squeue -A ggg298
+squeue -A ctbrowngrp
 ```
 
 You can also check on the status of particular partitions:
 ```
-squeue -p bmh
+squeue -p high2
 ```
 
 These will show you what resources are being used so you can figure out which are free.
@@ -297,7 +302,6 @@ scancel -u <username>
 There are any number of ways to cancel jobs. You can by job name with `-n`, partition name `-p`, account `-A` and can use regular expressions to cancel a list of jobs. BUT be careful how you cancel!
 
 **CHALLENGE** Create your own slurm script and run the fastqc snakemake workflow located in the `~/2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/fastqc` directory. 
-
 
 
 ### Space Issues
