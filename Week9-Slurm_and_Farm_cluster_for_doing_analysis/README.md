@@ -62,8 +62,8 @@ When we submit a script to slurm it is considered a _job_ and gets a unique `job
 First,  to play around with `sbatch` let's create a script called **HelloWorld.sh**.
 
 ```
-mkdir -p ~/298class7
-cd ~/298class7
+mkdir -p ~/298class9
+cd ~/298class9
 nano HelloWorld.sh
 ```
 
@@ -91,22 +91,24 @@ but we receive an error message...
 sbatch: error: Batch job submission failed: Requested time limit is invalid (missing or exceeds some limit)
 ```
 
-In order to handle jobs, Slurm needs to know the maximum amount of **walltime** your job will run. Walltime can be thought of as the amount of time from the start of your code running to when the last command in your script finishes. We can tell Slurm how much time to allow our submitted script by using the `-t` flag. Let's tell Slurm that our job _shouldn't_ take longer than 5 minutes (note: the format is `dd-hh:mm:ss`).
+In order to handle jobs, Slurm needs to know the maximum amount of **walltime** your job will run. Walltime is literally "the time shown on the clock on the wall", can be set of as the expected amount of time from the start of your code running to when the last command in your script finishes. (Always make this longer than you think you will need, because the cluster will kill your job if it exceeds it!)
+
+We can tell Slurm how much time to allow our submitted script by using the `-t` flag. Let's tell Slurm that our job _shouldn't_ take longer than 5 minutes (note: the format is `dd-hh:mm:ss`).
 
 ```
 sbatch -t 00-00:05:00 -p bmh HelloWorld.sh
 ``` 
 
-You will see your job was successfully submitted and will be given an associated Job ID number `Submitted batch job 15219016`
+You will see your job was successfully submitted and will be given an associated Job ID number: `Submitted batch job 15219016`
 
 #### Flags to use when submitting jobs
 
 We can use a number of different flags to specify resources we want from Slurm:
-* the **partition** we would like to use for our job––this will also entail the _priority_ in which our job is submitted (priorities can be high, medium or low). We can request a partition by using the following flag: `-p <name_of_partition>`. The farm has the following partitions:
-    * parallel nodes names: `high`, `med`, `low`
+* the **partition** we would like to use for our job––this will also entail the _priority_ in which our job is submitted (priorities can be high, medium or low). We can request a partition by using the following flag: `-p <name_of_partition>`. Our class allocation on farm has the following partitions:
+    * parallel nodes names: `high2`, `med2`, `low2` - good for disk/compute intensive jobs, like mapping and RNAseq
         * 24 nodes with 64 CPUs and 256GB ram
         * 95 nodes with 32 CPUs and 64GB ram
-    * bigmem nodes names: `bmh`, `bmm`, `bml`, `bigmemh`, `bigmemm`, `bigmeml`
+    * bigmem nodes names: `bmh`, `bmm`, `bml` - good for large memory jobs, like vertebrate genome assembly
         * 13 nodes with 96 CPUs and 1TB ram
         * 9 nodes with 64 CPUs and 512GB 
         * 1 node with 96 CPUs and 1024GB 
@@ -116,19 +118,21 @@ We can use a number of different flags to specify resources we want from Slurm:
 * slurm automatically generates **output scripts** where all of the output from commands run from the script are printed to. These will take the form as `slurm-12345.out` where 12345 is an identifying number (the job ID, by default!) slurm assigns to the file. We can change this to any output file name we want. To specify the name of your output file use `-o <file_name>.out`
 * slurm can generate **error files**, where all of the errors from the script are printed to. We can ask slurm to create err files and name them with `-e <file_name>.err`
 
-If we were hard to ourselves we would write these out at the command line each time we submitted a job to slurm with `sbatch`. It would look something like this:
+If we were being mean to ourselves we would write these out at the command line each time we submitted a job to slurm with `sbatch`. It would look something like this:
 ```
 sbatch --time=01-02:03:04 -p bmh --mem=4Gb --mail-user=<your_email> --mail-type=ALL -J <job_name> -o <file_name>.out -e <file_name>.err
 ```
-We would need to switch out all of the `<text>` with parameters specific to our preference, but hopefully you get the gist. 
+(We would need to switch out all of the `<text>` with parameters specific to our preference, but hopefully you get the gist.)
 
-Let's make this easier on ourselves: typing all of the parameters out on the command line every time we want to submit a batch script is annoying and it also doesn't allow us to record what parameters we used easily. We can put the parameters to run each job in the script we submit to slurm!
+But: let's make this easier on ourselves! Typing all of the parameters out on the command line every time we want to submit a batch script is annoying and it also doesn't allow us to record what parameters we used easily. We can instead put the parameters to run each job in the script we submit to slurm!
    
 
 
 #### Repeatability
 
 One of the most important things in science is repeatability. This sentiment holds true in bioinformatics experiments as well. However, it is exceptionally easy to run a series of command on data, leave the data for a few months (or years) and come back to the data and have no clue how you went from point A to point Z. 
+
+(To be clear, this is bad. :)
 
 Let's say we lost everything except our backed up raw data and we needed to recreate an analysis. In the worst case, where  the commands used to carry out the experiment were not saved, we would have to figure out all of the commands with only a vague memory of the steps we took to get results. It is hard, if not impossible to recreate an analysis with exactly the same string of commands and parameters. So, we should think about documenting things as we go.
 
@@ -173,12 +177,13 @@ Let's play around with a sample workflow of an E. coli genome assembly.
 First, clone or update your GGG298 repos:
 ```
 cd ~
-git clone https://github.com/ngs-docs/2020-GGG298.git
-cd 2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/assembly
+git clone https://github.com/ngs-docs/2021-GGG298.git
+cd 2021-GGG298/Week9-Slurm_and_Farm_cluster_for_doing_analysis/assembly
 ```
 If you've previously cloned the repository, change directories into the repository and pull down the newest version with `git pull` then navigate into the assembly directory.
 
 Second, we must create & setup a conda environment (if you've created this environment from 201b, skip the next command):
+@@CTB
 ```
 conda create -y -n assembly -c conda-forge -c bioconda prokka megahit snakemake-minimal
 ```
@@ -249,6 +254,8 @@ squeue -u $USER
 Much better!! 
 
 Not only can you check on your own job's status but you can also check on the status of your **group**:
+
+@@CTB
 ```
 squeue -A ggg298
 ```
@@ -267,7 +274,7 @@ You can also check on the status of particular partitions:
 squeue -p bmh
 ```
 
-These will help you figure out what resources are being used so you can figure out which are free.
+These will show you what resources are being used so you can figure out which are free.
 
 
 
@@ -291,7 +298,7 @@ There are any number of ways to cancel jobs. You can by job name with `-n`, part
 
 ### Space Issues
 
-Each group only has so much space on the cluster. Memory can be bought but it is good practice to always compress and delete files as you run analyses. That way, there won't be an extra terabyte of unnecessary sequence data files hanging around.  
+Each group only has so much space on the cluster. Disk space can be bought but it is good practice to always compress and delete files as you run analyses. That way, there won't be an extra terabyte of unnecessary sequence data files hanging around.  
 
 To check the amount of space you have left as a group use:
 ```
