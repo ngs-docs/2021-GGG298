@@ -17,7 +17,7 @@ conda activate assembly
 
 # go to the directory you ran 'sbatch' in, OR just hardcode it...
 #cd $SLURM_SUBMIT_DIR
-cd ~/2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/assembly
+cd ~/298lab9-assembly
 
 # fail on weird errors
 set -o nounset
