@@ -161,7 +161,7 @@ Let's save the parameters we used to run `HelloWorld.sh` within the batch script
 #SBATCH --ntasks=1                              # MINIMUM NUMBER OF NODES TO ALLOCATE TO JOB
 #SBATCH --mem=1Gb                               # MEMORY POOL TO ALL CORES
 #SBATCH --time=00-00:11:00                      # REQUESTED WALL TIME
-#SBATCH -p bmh                                  # PARTITION TO SUBMIT TO
+#SBATCH -p high2                                  # PARTITION TO SUBMIT TO
 
 echo Hello World
 sleep 1m
@@ -301,8 +301,14 @@ scancel -u <username>
 
 There are any number of ways to cancel jobs. You can by job name with `-n`, partition name `-p`, account `-A` and can use regular expressions to cancel a list of jobs. BUT be careful how you cancel!
 
-**CHALLENGE** Create your own slurm script and run the fastqc snakemake workflow located in the `~/2020-GGG298/Week7-Slurm_and_Farm_cluster_for_doing_analysis/fastqc` directory. 
+**CHALLENGE** Create your own slurm script and run the fastqc snakemake workflow located at https://github.com/ctb/2021-ggg298-fastqc.
 
+You can get started by doing:
+
+```
+git clone https://github.com/ctb/2021-ggg298-fastqc ~/298lab9-fastqc
+cd ~/298lab9-fastqc
+```
 
 ### Space Issues
 
