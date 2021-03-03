@@ -1,9 +1,8 @@
 ---
 tags: ggg, ggg2021, ggg298
 ---
-# GGG298 -- Week 6 - Project organization and file manipulation
+# GGG298 -- Week 8 - Project organization and file manipulation
 
-[toc]
 
 ## Learning Objectives
 By the end of this lesson, students will:
@@ -15,28 +14,27 @@ By the end of this lesson, students will:
 
 ## a rough bioinformatics workflow
 
-@@
 
-![bioinformatics_workflow](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/Bioinformatics_Workflow.png)
+![bioinformatics_workflow](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/Bioinformatics_Workflow.png)
 
 
 ## Sending and Receiving Data
 
 Here at UC Davis most researchers sequence at the UC Davis [DNA Technologies Core](https://dnatech.genomecenter.ucdavis.edu/). You can find their sample submission form [here](https://dnatech.genomecenter.ucdavis.edu/sample-submission-scheduling/).
 
-When they've sequenced your samples they will hold your sequencing data on [SLIMS lab information management system](https://slims.bioinformatics.ucdavis.edu/) for three months after the sequencing run finishes. Do yourself a favor and download & back it up to a hard disk IMMEDIATELY.
+When they've sequenced your samples they will hold your sequencing data on either [SLIMS lab information management system](https://slims.bioinformatics.ucdavis.edu/) for three months after the sequencing run finishes or [bioshare](https://bioshare.bioinformatics.ucdavis.edu/) for an undetermined amount of time. Do yourself a favor and download & back your new sequencing data up to a hard disk IMMEDIATELY.
 
 
 ### Downloading data
-To download your data **onto a cluster** (i.e. by using slurm) follow [these directions](https://github.com/shannonekj/cluster_computing/blob/master/How2s/How_To-download_data.md).
+To download your data from slims **onto a cluster** (by using slurm) follow [these directions](https://github.com/shannonekj/cluster_computing/blob/master/How2s/How_To-download_data.md).
 
-We don't have data to download from the farm, so we'll be grabbing some from [OSF](https://osf.io/), an open science framework that hosts a small amount of data (5Gb limit).
+Luckily for this class we don't have data to download from the farm, so we'll be grabbing some from [OSF](https://osf.io/), an open science framework that can host small amounts of data (5Gb limit).
 
-Let's download some data:
+Let's setup a directory to work from and download some data:
 
 ```
-mkdir -p ~/298class5
-cd ~/298class5
+mkdir -p ~/298class8
+cd ~/298class8
 curl -L https://osf.io/srdhb/download -o mini_Alca-torda.tar.gz
 tar -xvf mini_Alca-torda.tar.gz
 cd mini_A-torda
@@ -87,7 +85,7 @@ Anytime you download data you should check to make sure it has downloaded succes
 We can also make a list of md5sum's for a group of files:
 
 ```
-cd ~/298class5/mini_A-torda
+cd ~/298class8/mini_A-torda
 md5sum mini-chr[1-9]*.fna.gz  >> autosomes.md5
 ```
 
@@ -198,14 +196,14 @@ In bioinformatics, _organization is everything_. It allows us to be efficient in
 
 Here we can see how organization allows for a tidy workspace:
 
-![paths](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/paths_one_project.png)
+![paths](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/paths_one_project.png)
 
 The list of files up top isn't too cringeworthy if you only have one project. But multiple projects or experiments in one directory results in an organizational disater...
 
-![paths](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/paths_multiple_projects.png)
+![paths](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/paths_multiple_projects.png)
 
 I like to have the following directory structure:
-![directory_structure](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/example_directory_str.png)
+![directory_structure](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/example_directory_str.png)
 
 -------------------------------
 ## Working with data
@@ -227,7 +225,7 @@ We can take a small chunk of a file and use it to test if our newly written code
 
 Let's grab some data:
 ```
-mkdir -p ~/298class5/yeast/data
+mkdir -p ~/298class8/yeast/data
 cd !$
 ln -s /home/ctbrown/data/ggg201b/SRR2584403_1.fastq.gz .
 ln -s /home/ctbrown/data/ggg201b/SRR2584404_1.fastq.gz .
@@ -254,22 +252,22 @@ And now we have a subset of all of our fastq files!
 Using GitHub, snakemake and conda together can make life a lot easier. We can grab our collaborator's code by cloning their repo:
 
 ```
-cd ~/298class5/yeast
-git clone https://github.com/shannonekj/2020_ggg298_variant_calling.git
-cd 2020_ggg298_variant_calling
+cd ~/298class8/yeast
+git clone https://github.com/shannonekj/2021_ggg298_variant_calling.git
+cd 2021_ggg298_variant_calling
 ```
 
 then we'll install a few more pieces of software with conda
 
 ```
-conda create -y -n fqc-day5 samtools bcftools bwa snakemake-minimal
-conda activate fqc-day5
+conda create -y -n fqc-day8 -c bioconda -c conda-forge samtools bcftools bwa snakemake-minimal
+conda activate fqc-day8
 ```
 
 and run their Snakefile to test calling variants on the subset file.
 
 ```
-snakemake -p
+snakemake -p -j 1
 ```
 
 In this one command we've done the following:
@@ -318,7 +316,7 @@ We can use this to our advantage by making the ends of files denote what step(s)
 
 Let's look at the [samtools](http://www.htslib.org/) steps that happen in our Snakefile
 
-![file_endings](https://raw.githubusercontent.com/ngs-docs/2020-GGG298/master/Week5-project_organization_and_UNIX_shell/file_endings.png)
+![file_endings](https://raw.githubusercontent.com/ngs-docs/2021-GGG298/master/Week8-project_organization_and_UNIX_shell/file_endings.png)
 
 -------------------------------
 ## Additional resources
@@ -347,53 +345,11 @@ unzip shell-data.zip
 cd data/MiSeq
 ```
 
-For our first task, let's pretend that we want to rename all of the fastq files to be `.fq` files instead (this is a surprisingly useful specific skill, even if you can't immediately think of why you would want to do that!).  Here, we get to use two of my favorite commands - 'for' and 'basename'.
+A little recap from Week 2...
 
-`for` lets you do something to every file in a list.  To see it in action:
+Remember we want to rename all of the fastq files to be `.fq` files instead. We get to use two of my favorite commands - 'for' and 'basename'.
 
-```
-for i in *.fastq
-do
-   echo $i
-done
-```
-
-This is running the command `echo` for every value of the variable 'i', which is set (one by one) to all the values in the expression `*.fastq`.
-
-If we want to get rid of the extension '.fastq', we can use the `basename` command:
-
-```
-for i in *.fastq
-do
-   basename $i .fastq
-done
-```
-
-Now, this doesn't actually rename the files - it just prints out the name, with the suffix '.fastq' removed.  To rename the files, we need to capture the new name in a variable::
-
-```
-for i in *.fastq
-do
-   newname=$(basename $i .fastq).fq
-   echo $newname
-done
-```
-
-What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the output of running the command.
-
-Now we have the old name ($i) and the new name ($newname) and we're ready to write the rename command -- ::
-
-```
-for i in *.fastq
-do
-   newname=$(basename $i .fastq).fq
-   echo mv $i $newname
-done
-```
-
-***Question:*** why did I use `echo` here?
-
-Now that we're pretty sure it all looks good, let's run it for realz:
+In week two we developed a nice `for` loop to allow us to rename the ending of our files:
 
 ```
 for i in *.fastq
@@ -403,7 +359,7 @@ do
 done
 ```
 
-and voila, we have renamed all the files!
+and boom, we renamed all the files again!
 
 _Side note:_ you may see backquotes used instead of `$(...)`. It does the same thing but is trickier to get right, so we teach `$(...)` instead of ``...``.
 
